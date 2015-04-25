@@ -93,6 +93,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SMO.Implementation\SMO.Implementation.csproj">
+      <Project>{4ed151ca-ff9f-4381-92dd-4b3017d0aedb}</Project>
+      <Name>SMO.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SMO.Interfaces\SMO.Interfaces.csproj">
+      <Project>{38109650-859d-46e6-9e70-dc7b37ab3100}</Project>
+      <Name>SMO.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

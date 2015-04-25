@@ -1,1 +1,17 @@
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\DBAdministrator.exe.config
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\DBAdministrator.exe
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\DBAdministrator.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DBAdministrator.csprojResolveAssemblyReference.cache
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\MainWindow.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\MainWindow.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\App.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DBAdministrator_MarkupCompile.cache
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DBAdministrator.g.resources
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DBAdministrator.Properties.Resources.resources
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DBAdministrator.csproj.GenerateResource.Cache
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DBAdministrator.exe
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DBAdministrator.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\SMO.Implementation.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\SMO.Interfaces.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\SMO.Implementation.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\SMO.Interfaces.pdb
