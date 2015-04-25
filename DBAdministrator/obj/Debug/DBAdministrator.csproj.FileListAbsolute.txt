@@ -15,3 +15,5 @@ E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\SMO.Interfaces.dll
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\SMO.Implementation.pdb
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\SMO.Interfaces.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\ICSharpCode.AvalonEdit.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\ICSharpCode.AvalonEdit.xml

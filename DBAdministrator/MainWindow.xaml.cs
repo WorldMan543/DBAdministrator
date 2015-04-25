@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SMO.Implementation;
+using System.IO;
+using System.Xml;
+using ICSharpCode.AvalonEdit.Highlighting;
+using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 
 namespace DBAdministrator
 {
@@ -23,7 +27,15 @@ namespace DBAdministrator
 	{
 		public MainWindow()
 		{
+			
 			InitializeComponent();
+			using (Stream s = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("DBAdministrator.Resources.SQL.xshd"))
+			{
+				using (XmlTextReader reader = new XmlTextReader(s))
+				{
+					MyAvalonEdit.SyntaxHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
+				}
+			}
 		}
 
 		private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
