@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
-namespace DBAdministrator.Helpers
+namespace DBAdministrator.Models.Helpers
 {
 	public static class ReflectionHelpers
 	{

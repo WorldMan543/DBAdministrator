@@ -21,7 +21,6 @@ namespace DBAdministrator.Helpers
 				return LogicalTreeHelper.GetChildren(node).OfType<DependencyObject>().All(IsValid);
 			}
 			return true;
-			
 		}
 	}
 }

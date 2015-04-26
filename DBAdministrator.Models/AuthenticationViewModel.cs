@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Security;
-using DBAdministrator.Enums;
-using DBAdministrator.Helpers;
 
 namespace DBAdministrator.Models
 {
@@ -11,13 +8,6 @@ namespace DBAdministrator.Models
 		private string _serverName;
 		private string _userName;
 		private SecureString _password;
-
-		public AuthenticationViewModel()
-		{
-			AuthenticationTypes = ReflectionHelpers.GetAllValuesAndDescriptions<AuthenticationType>();
-			SelectedAuthenticationType = AuthenticationTypes.Any() 
-				? AuthenticationTypes.First().Key : 0;
-		}
 
 		public IList<KeyValuePair<int, string>> AuthenticationTypes { get; set; }
 

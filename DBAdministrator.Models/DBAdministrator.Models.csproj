@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2EA01960-F893-4F19-926D-1BCC0787CB03}</ProjectGuid>
+    <ProjectGuid>{8FC6580E-D87D-4E68-88D6-B787495EE1F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Business.Interfaces</RootNamespace>
-    <AssemblyName>Business.Interfaces</AssemblyName>
+    <RootNamespace>DBAdministrator.Models</RootNamespace>
+    <AssemblyName>DBAdministrator.Models</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,14 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDataBaseAccessService.cs" />
+    <Compile Include="AuthenticationViewModel.cs" />
+    <Compile Include="Enums\AuthenticationType.cs" />
+    <Compile Include="Helpers\ReflectionHelpers.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="NotifyPropertyChangedBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DBAdministrator.Models\DBAdministrator.Models.csproj">
-      <Project>{8fc6580e-d87d-4e68-88d6-b787495ee1f2}</Project>
-      <Name>DBAdministrator.Models</Name>
-    </ProjectReference>
+    <Compile Include="StatusBarViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

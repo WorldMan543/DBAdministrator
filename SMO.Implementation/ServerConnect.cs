@@ -33,8 +33,6 @@ namespace SMO.Implementation
 
 		public void Connect(string serverName)
 		{
-			//try
-			//{
 			_serverConnection = new ServerConnection(serverName)
 			{
 				SqlExecutionModes = SqlExecutionModes.
@@ -42,15 +40,6 @@ namespace SMO.Implementation
 				LoginSecure = true
 			};
 			Connect();
-			//}
-			//catch (ConnectionFailureException ex)
-			//{
-			//	Debug.WriteLine(ex.Message);
-			//}
-			//catch (SmoException ex)
-			//{
-
-			//}
 		}
 
 		private void Connect()

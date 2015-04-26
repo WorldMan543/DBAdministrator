@@ -31,3 +31,5 @@ E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Business.Interfaces.dll
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Business.Implementation.pdb
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Business.Interfaces.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\DBAdministrator.Models.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\DBAdministrator.Models.pdb

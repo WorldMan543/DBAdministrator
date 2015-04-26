@@ -2,3 +2,6 @@ E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\bin\Debug\Business.Interfaces.pdb
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\obj\Debug\Business.Interfaces.dll
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\obj\Debug\Business.Interfaces.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\bin\Debug\DBAdministrator.Models.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\bin\Debug\DBAdministrator.Models.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\obj\Debug\Business.Interfaces.csprojResolveAssemblyReference.cache

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace DBAdministrator.Enums
+namespace DBAdministrator.Models.Enums
 {
 	
 	public enum AuthenticationType

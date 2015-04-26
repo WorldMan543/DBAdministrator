@@ -7,3 +7,5 @@ E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Implementat
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Implementation\obj\Debug\Business.Implementation.pdb
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Implementation\bin\Debug\SMO.Interfaces.dll
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Implementation\bin\Debug\SMO.Interfaces.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Implementation\bin\Debug\DBAdministrator.Models.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Implementation\bin\Debug\DBAdministrator.Models.pdb

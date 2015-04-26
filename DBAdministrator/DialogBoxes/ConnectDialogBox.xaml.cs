@@ -12,8 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using DBAdministrator.Enums;
 using System.ComponentModel;
+using Business.Interfaces;
 using DBAdministrator.Models;
 
 namespace DBAdministrator.DialogBoxes
@@ -23,23 +23,11 @@ namespace DBAdministrator.DialogBoxes
 	/// </summary>
 	public partial class ConnectDialogBox : Window
 	{
-
 		public AuthenticationViewModel ViewModel { get; private set; }
 
-		public ConnectDialogBox()
+		public ConnectDialogBox(IDataBaseAccessService dataBaseAccessService)
 		{
-			ViewModel = new AuthenticationViewModel();
-			InitializeComponent();
-		}
-
-		public ConnectDialogBox(IEnumerable<string> serversList)
-		{
-			var serversName = serversList as IList<string> ?? serversList.ToList();
-			ViewModel = new AuthenticationViewModel()
-			{
-				ServersName = serversName,
-				ServerName = serversName.FirstOrDefault()
-			};
+			ViewModel = dataBaseAccessService.GetAuthenticationViewModel();
 			InitializeComponent();
 		}
 		

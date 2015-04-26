@@ -30,47 +30,48 @@ namespace DBAdministrator
 	public partial class MainWindow : Window
 	{
 
-		private readonly ServerConnect _server;
 		private readonly IDataBaseAccessService _dataBaseAccessService;
-		public StatusBarViewModel StatusBar { get; private set; }
+
+		public MainWindowViewModel ViewModel { get; set; }
 
 		public MainWindow([Dependency] IDataBaseAccessService dataBaseAccessService)
 		{
 			_dataBaseAccessService = dataBaseAccessService;
-			_server = new ServerConnect();
-			StatusBar = new StatusBarViewModel();
+			InitializeViewModel();
 			InitializeComponent();
+		}
+
+		private void InitializeViewModel()
+		{
+			ViewModel = new MainWindowViewModel()
+			{
+				StatusBar = new StatusBarViewModel()
+			};
 		}
 
 		private void EnableSqlHighlighting()
 		{
 			using (var stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("DBAdministrator.Resources.SQL.xshd"))
 			{
-				if (stream != null)
-					using (var reader = new XmlTextReader(stream))
-					{
-						MyAvalonEdit.SyntaxHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
-					}
+				if (stream == null) return;
+				using (var reader = new XmlTextReader(stream))
+				{
+					MyAvalonEdit.SyntaxHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
+				}
 			}
-		}
-
-		private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-		{
-			_server.GetDatabases();
 		}
 
 		private void ConnectMenuItem_OnClick(object sender, RoutedEventArgs e)
 		{
-			var serversList = _server.GetServersList();
-			var dlg = new ConnectDialogBox(serversList)
+			var dlg = new ConnectDialogBox(_dataBaseAccessService)
 			{
 				Owner = this
 			};
 			dlg.ShowDialog();
 			if (dlg.DialogResult != null && dlg.DialogResult.Value)
 			{
-				_server.Connect(dlg.ViewModel.ServerName);
-				StatusBar.ServerName = dlg.ViewModel.ServerName;
+				_dataBaseAccessService.Connect(dlg.ViewModel);
+				ViewModel.StatusBar.ServerName = dlg.ViewModel.ServerName;
 			}
 		}
 

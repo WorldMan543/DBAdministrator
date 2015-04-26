@@ -88,9 +88,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\WindowHelpers.cs" />
-    <Compile Include="Models\AuthenticationViewModel.cs" />
-    <Compile Include="Models\NotifyPropertyChangedBase.cs" />
-    <Compile Include="Models\StatusBarViewModel.cs" />
     <Compile Include="Validators\EmptyFiledValidationRule.cs" />
     <Page Include="DialogBoxes\ConnectDialogBox.xaml">
       <SubType>Designer</SubType>
@@ -107,8 +104,6 @@
     <Compile Include="DialogBoxes\ConnectDialogBox.xaml.cs">
       <DependentUpon>ConnectDialogBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Enums\AuthenticationType.cs" />
-    <Compile Include="Helpers\ReflectionHelpers.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -151,6 +146,10 @@
     <ProjectReference Include="..\Business.Interfaces\Business.Interfaces.csproj">
       <Project>{2ea01960-f893-4f19-926d-1bcc0787cb03}</Project>
       <Name>Business.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBAdministrator.Models\DBAdministrator.Models.csproj">
+      <Project>{8fc6580e-d87d-4e68-88d6-b787495ee1f2}</Project>
+      <Name>DBAdministrator.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\SMO.Implementation\SMO.Implementation.csproj">
       <Project>{4ed151ca-ff9f-4381-92dd-4b3017d0aedb}</Project>

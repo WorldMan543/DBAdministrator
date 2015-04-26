@@ -33,8 +33,7 @@
 				<ComboBox ItemsSource="{Binding ViewModel.AuthenticationTypes}"
 						SelectedValue="{Binding ViewModel.SelectedAuthenticationType}"
 						DisplayMemberPath="Value"
-						SelectedValuePath="Key"
-						IsEditable="true">
+						SelectedValuePath="Key">
 				</ComboBox>	
 			</DockPanel>
 			<DockPanel>
