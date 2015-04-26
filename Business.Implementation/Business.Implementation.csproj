@@ -47,6 +47,10 @@
       <Project>{2ea01960-f893-4f19-926d-1bcc0787cb03}</Project>
       <Name>Business.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SMO.Interfaces\SMO.Interfaces.csproj">
+      <Project>{38109650-859d-46e6-9e70-dc7b37ab3100}</Project>
+      <Name>SMO.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

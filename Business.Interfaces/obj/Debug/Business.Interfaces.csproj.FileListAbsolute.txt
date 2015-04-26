@@ -1,0 +1,4 @@
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\bin\Debug\Business.Interfaces.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\bin\Debug\Business.Interfaces.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\obj\Debug\Business.Interfaces.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\obj\Debug\Business.Interfaces.pdb

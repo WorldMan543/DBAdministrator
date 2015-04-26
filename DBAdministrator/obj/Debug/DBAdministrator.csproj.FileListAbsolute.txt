@@ -21,3 +21,13 @@ E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DialogBoxes\ConnectDialogBox.g.cs
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\GeneratedInternalTypeHelper.g.cs
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DBAdministrator_MarkupCompile.lref
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Microsoft.Practices.Unity.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Microsoft.Practices.Unity.xml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Business.Implementation.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Business.Interfaces.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Business.Implementation.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Business.Interfaces.pdb

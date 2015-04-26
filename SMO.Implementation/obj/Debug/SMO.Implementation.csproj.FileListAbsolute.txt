@@ -3,3 +3,5 @@ E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\b
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\obj\Debug\SMO.Implementation.csprojResolveAssemblyReference.cache
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\obj\Debug\SMO.Implementation.dll
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\obj\Debug\SMO.Implementation.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\bin\Debug\SMO.Interfaces.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\bin\Debug\SMO.Interfaces.pdb

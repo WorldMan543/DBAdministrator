@@ -15,10 +15,12 @@ using System.Windows.Shapes;
 using SMO.Implementation;
 using System.IO;
 using System.Xml;
+using Business.Interfaces;
 using DBAdministrator.DialogBoxes;
 using DBAdministrator.Models;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
+using Microsoft.Practices.Unity;
 
 namespace DBAdministrator
 {
@@ -29,10 +31,12 @@ namespace DBAdministrator
 	{
 
 		private readonly ServerConnect _server;
+		private readonly IDataBaseAccessService _dataBaseAccessService;
 		public StatusBarViewModel StatusBar { get; private set; }
 
-		public MainWindow()
+		public MainWindow([Dependency] IDataBaseAccessService dataBaseAccessService)
 		{
+			_dataBaseAccessService = dataBaseAccessService;
 			_server = new ServerConnect();
 			StatusBar = new StatusBarViewModel();
 			InitializeComponent();

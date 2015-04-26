@@ -11,10 +11,11 @@ using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer;
 using System.Diagnostics;
 using System.Security;
+using SMO.Interfaces;
 
 namespace SMO.Implementation
 {
-	public class ServerConnect
+	public class ServerConnect : IServerConnect
 	{
 		private ServerConnection _serverConnection;
 		private Server _server;
