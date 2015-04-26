@@ -1,0 +1,70 @@
+﻿<Window x:Class="DBAdministrator.DialogBoxes.ConnectDialogBox"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:validators="clr-namespace:DBAdministrator.Validators"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d"
+		Title="ConnectDialogBox" Height="300" Width="300" 
+		Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"
+		DataContext="{Binding RelativeSource={RelativeSource Self}}">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<StackPanel Grid.Row="0">
+			<DockPanel>
+				<Label>Server name:</Label>
+				<ComboBox ItemsSource="{Binding ViewModel.ServersName}"
+						SelectedValue="{Binding ViewModel.ServerName}"
+						IsEditable="true">
+					<ComboBox.Text >
+						<Binding Path="ViewModel.ServerName" UpdateSourceTrigger="PropertyChanged" >
+							<Binding.ValidationRules>
+								<validators:EmptyFiledValidationRule/>
+							</Binding.ValidationRules>
+						</Binding>
+					</ComboBox.Text>
+				</ComboBox>
+			</DockPanel>
+			<DockPanel>
+				<Label>Authentication:</Label>
+				<ComboBox ItemsSource="{Binding ViewModel.AuthenticationTypes}"
+						SelectedValue="{Binding ViewModel.SelectedAuthenticationType}"
+						DisplayMemberPath="Value"
+						SelectedValuePath="Key"
+						IsEditable="true">
+				</ComboBox>	
+			</DockPanel>
+			<DockPanel>
+				<Label>User name:</Label>
+				<TextBox>
+					<TextBox.Text >
+						<Binding Path="ViewModel.UserName" UpdateSourceTrigger="PropertyChanged" >
+							<Binding.ValidationRules>
+								<validators:EmptyFiledValidationRule/>
+							</Binding.ValidationRules>
+						</Binding>
+					</TextBox.Text>
+				</TextBox>
+			</DockPanel>
+			<DockPanel>
+				<Label>Password:</Label>
+				<TextBox>
+					<TextBox.Text >
+						<Binding Path="ViewModel.Password" UpdateSourceTrigger="PropertyChanged" >
+							<Binding.ValidationRules>
+								<validators:EmptyFiledValidationRule/>
+							</Binding.ValidationRules>
+						</Binding>
+					</TextBox.Text>
+				</TextBox>
+			</DockPanel>
+		</StackPanel>
+		<DockPanel VerticalAlignment="Bottom" Grid.Row="1">
+			<Button Name="ConnectBottom" Click="ConnectBottom_OnClick">Connect</Button>
+			<Button Name="CancelBottom" IsCancel="True">Cancel</Button>
+		</DockPanel>
+	</Grid>
+</Window>

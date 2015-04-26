@@ -10,63 +10,66 @@ using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.SqlServer;
 using System.Diagnostics;
+using System.Security;
 
 namespace SMO.Implementation
 {
 	public class ServerConnect
 	{
-		private ServerConnection ServerConn;
-		private Server SqlServerSelection;
-		private Boolean ErrorFlag;
-		
-		public void Connect(string serverName)
-		{
-			try
-			{
-				ServerConn = new ServerConnection();
-				ServerConn.ServerInstance = serverName;
-				ServerConn.SqlExecutionModes = SqlExecutionModes.
-						ExecuteAndCaptureSql;
-				ServerConn.LoginSecure = true;
-				ServerConn.Connect();
-				SqlServerSelection = new Server(ServerConn);
-				ErrorFlag = true;
-			}
-			catch (ConnectionFailureException ex)
-			{
-				Debug.WriteLine(ex.Message);
-				ErrorFlag = true;
-			}
-			catch (SmoException ex)
-			{
-				Debug.WriteLine(ex.Message);
-				ErrorFlag = true;
-			}
+		private ServerConnection _serverConnection;
+		private Server _server;
 
+		public void Connect(string serverName, string userName, SecureString password)
+		{
+			_serverConnection = new ServerConnection(serverName, userName, password)
+			{
+				SqlExecutionModes = SqlExecutionModes.
+					ExecuteAndCaptureSql,
+				LoginSecure = true
+			};
+			Connect();
 		}
 
-		public void GetServerList()
+		public void Connect(string serverName)
 		{
-			List<object> servers = new List<object>();
-			DataTable dt = SmoApplication.EnumAvailableSqlServers(false);
-			if (dt.Rows.Count > 0)
+			//try
+			//{
+			_serverConnection = new ServerConnection(serverName)
 			{
-				foreach (DataRow dr in dt.Rows)
-				{
-					servers.Add(dr["Name"]);
-				}
-				ErrorFlag = true;
-			}
-			else
-			{
-				ErrorFlag = true;
-			}
+				SqlExecutionModes = SqlExecutionModes.
+					ExecuteAndCaptureSql,
+				LoginSecure = true
+			};
+			Connect();
+			//}
+			//catch (ConnectionFailureException ex)
+			//{
+			//	Debug.WriteLine(ex.Message);
+			//}
+			//catch (SmoException ex)
+			//{
+
+			//}
+		}
+
+		private void Connect()
+		{
+			_serverConnection.Connect();
+			_server = new Server(_serverConnection);
+		}
+
+		public IList<string> GetServersList()
+		{
+			var dataTable = SmoApplication.EnumAvailableSqlServers(false);
+			var result = dataTable.Rows.Count > 0 
+				? dataTable.Rows.Cast<DataRow>().Select(dr => dr["Name"]).Cast<string>()
+				: Enumerable.Empty<string>();
+			return result.ToList();
 		}
 
 		public void GetDatabases()
 		{
-			var dd = SqlServerSelection.Databases;
-			ErrorFlag = true;
+			var dd = _server.Databases;
 		}
 
 		

@@ -17,3 +17,7 @@ E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\SMO.Interfaces.pdb
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\ICSharpCode.AvalonEdit.dll
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\ICSharpCode.AvalonEdit.xml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DialogBoxes\ConnectDialogBox.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DialogBoxes\ConnectDialogBox.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DBAdministrator_MarkupCompile.lref
