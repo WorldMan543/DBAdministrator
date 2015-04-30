@@ -21,9 +21,13 @@ using DBAdministrator.Models;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using Microsoft.Practices.Unity;
+using System.Collections.ObjectModel;
+using System.Net.NetworkInformation;
+using DBAdministrator.Models.TreeView;
 
 namespace DBAdministrator
 {
+
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
@@ -56,7 +60,7 @@ namespace DBAdministrator
 				if (stream == null) return;
 				using (var reader = new XmlTextReader(stream))
 				{
-					MyAvalonEdit.SyntaxHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
+					//MyAvalonEdit.SyntaxHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
 				}
 			}
 		}
@@ -72,6 +76,11 @@ namespace DBAdministrator
 			{
 				_dataBaseAccessService.Connect(dlg.ViewModel);
 				ViewModel.StatusBar.ServerName = dlg.ViewModel.ServerName;
+				ViewModel.ServerStruct.Clear();
+				ViewModel.ServerStruct.Add(new ServerStructViewModel()
+				{
+					ServerName = dlg.ViewModel.ServerName
+				});
 			}
 		}
 
@@ -79,5 +88,53 @@ namespace DBAdministrator
 		{
 			EnableSqlHighlighting();
 		}
+
+		private void MenuItem_OnClick(object sender, RoutedEventArgs e)
+		{
+			var tree = _dataBaseAccessService.GetDatabaseTree();
+			tree.ServerName = ViewModel.ServerStruct[0].ServerName;
+			ViewModel.ServerStruct.Clear();
+			ViewModel.ServerStruct.Add(tree);
+		}
+
+		private void DeleteStoredProcedure_OnClick(object sender, RoutedEventArgs e)
+		{
+			var model = (StoredProcedureStructViewModel)((MenuItem)sender).DataContext;
+			_dataBaseAccessService.DeleteStoredProcedure(model.Database, model.ProcedureName);
+		}
+
+		private void DeleteTable_OnClick(object sender, RoutedEventArgs e)
+		{
+			var model = (TableStructViewModel)((MenuItem)sender).DataContext;
+			string messageBoxText = "Do you want to save changes?";
+			string caption = "Word Processor";
+			MessageBoxButton button = MessageBoxButton.OKCancel;
+			MessageBoxImage icon = MessageBoxImage.Warning;
+			var result = MessageBox.Show(messageBoxText, caption, button, icon);
+			if (result.HasFlag(MessageBoxResult.OK))
+			{
+				_dataBaseAccessService.DeleteTable(model.Database, model.TableName);
+			}
+		}
+
+		private void DeleteDatabaseRole_OnClick(object sender, RoutedEventArgs e)
+		{
+			var model = (RoleStructViewModel)((MenuItem)sender).DataContext;
+			_dataBaseAccessService.DeleteDatabaseRole(model.Database, model.RoleName);
+		}
+
+		private void DeleteDatabaseUser_OnClick(object sender, RoutedEventArgs e)
+		{
+			var model = (UserStructViewModel)((MenuItem)sender).DataContext;
+			_dataBaseAccessService.DeleteDatabaseUser(model.Database, model.UserName);
+		}
+
+		private void DeleteDatabase_OnClick(object sender, RoutedEventArgs e)
+		{
+			var model = (DatabaseStructViewModel)((MenuItem)sender).DataContext;
+			_dataBaseAccessService.DeleteDatabase(model.DatabaseName);
+		}
+
+		
 	}
 }

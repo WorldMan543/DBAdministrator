@@ -20,6 +20,8 @@ namespace SMO.Implementation
 		private ServerConnection _serverConnection;
 		private Server _server;
 
+		#region Connect
+
 		public void Connect(string serverName, string userName, SecureString password)
 		{
 			_serverConnection = new ServerConnection(serverName, userName, password)
@@ -48,23 +50,97 @@ namespace SMO.Implementation
 			_server = new Server(_serverConnection);
 		}
 
+		#endregion
+
+		#region GetLists
+
 		public IList<string> GetServersList()
 		{
 			var dataTable = SmoApplication.EnumAvailableSqlServers(false);
-			var result = dataTable.Rows.Count > 0 
+			var result = dataTable.Rows.Count > 0
 				? dataTable.Rows.Cast<DataRow>().Select(dr => dr["Name"]).Cast<string>()
 				: Enumerable.Empty<string>();
 			return result.ToList();
 		}
 
-		public void GetDatabases()
+		public IList<Database> GetDatabaseList()
 		{
-			var dd = _server.Databases;
+			var databases = _server.Databases;
+			return databases.Cast<Database>().ToList();
 		}
 
-		
+		public IList<Table> GetTablesList(string database)
+		{
+			var tables = _server.Databases[database].Tables;
+			return tables.Cast<Table>().ToList();
+		}
+
+		public IList<StoredProcedure> GetStoredProceduresList(string database)
+		{
+			var storedProcedures = _server.Databases[database].StoredProcedures;
+			return storedProcedures.Cast<StoredProcedure>().ToList();
+		}
+
+		public IList<ServerRole> GetServerRolesList()
+		{
+			var roles = _server.Roles;
+			return roles.Cast<ServerRole>().ToList();
+		}
+
+		public IList<DatabaseRole> GetDatabaseRolesList(string database)
+		{
+			var roles = _server.Databases[database].Roles;
+			return roles.Cast<DatabaseRole>().ToList();
+		}
+
+		public IList<User> GetDatabasUsersList(string database)
+		{
+			var users = _server.Databases[database].Users;
+			return users.Cast<User>().ToList();
+		}
+
+		#endregion
+
+		#region Delete
+
+		public void DeleteStoredProcedure(string databaseName, string procedureName)
+		{
+			var database = _server.Databases[databaseName];
+			var procedure = database.StoredProcedures[procedureName];
+			procedure.Drop();
+		}
+
+		public void DeleteTable(string databaseName, string tableName)
+		{
+			var database = _server.Databases[databaseName];
+			var table = database.Tables[tableName];
+			table.Drop();
+		}
+
+		public void DeleteDatabaseRole(string databaseName, string roleName)
+		{
+			var database = _server.Databases[databaseName];
+			var role = database.Roles[roleName];
+			role.Drop();
+		}
+
+		public void DeleteDatabaseUser(string databaseName, string userName)
+		{
+			var database = _server.Databases[databaseName];
+			var user = database.Users[userName];
+			user.Drop();
+		}
+
+		public void DeleteDatabase(string databaseName)
+		{
+			var database = _server.Databases[databaseName];
+			database.Drop();
+		}
+
+		#endregion
+
+
 
 		
-
 	}
 }

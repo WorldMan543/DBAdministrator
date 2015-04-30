@@ -40,12 +40,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthenticationViewModel.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="TreeView\DatabaseStructViewModel.cs" />
+    <Compile Include="DatabaseViewModel.cs" />
     <Compile Include="Enums\AuthenticationType.cs" />
     <Compile Include="Helpers\ReflectionHelpers.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="NotifyPropertyChangedBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TreeView\RoleStructViewModel.cs" />
+    <Compile Include="TreeView\ServerStructViewModel.cs" />
     <Compile Include="StatusBarViewModel.cs" />
+    <Compile Include="TreeView\StoredProcedureStructViewModel.cs" />
+    <Compile Include="TreeView\TableStructViewModel.cs" />
+    <Compile Include="TreeView\UserStructViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

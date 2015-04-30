@@ -87,6 +87,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\CustomMultiValueConvertor.cs" />
     <Compile Include="Helpers\WindowHelpers.cs" />
     <Compile Include="Validators\EmptyFiledValidationRule.cs" />
     <Page Include="DialogBoxes\ConnectDialogBox.xaml">
