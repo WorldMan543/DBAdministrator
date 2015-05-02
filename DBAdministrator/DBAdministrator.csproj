@@ -89,6 +89,27 @@
     </ApplicationDefinition>
     <Compile Include="Converters\CustomMultiValueConvertor.cs" />
     <Compile Include="Helpers\WindowHelpers.cs" />
+    <Compile Include="Pages\DatabaseRolesListPage.xaml.cs">
+      <DependentUpon>DatabaseRolesListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DatabasesListPage.xaml.cs">
+      <DependentUpon>DatabasesListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DatabaseUsersListPage.xaml.cs">
+      <DependentUpon>DatabaseUsersListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LoginsListPage.xaml.cs">
+      <DependentUpon>LoginsListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ServerRolesListPage.xaml.cs">
+      <DependentUpon>ServerRolesListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StoredProceduresListPage.xaml.cs">
+      <DependentUpon>StoredProceduresListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TablesListPage.xaml.cs">
+      <DependentUpon>TablesListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Validators\EmptyFiledValidationRule.cs" />
     <Page Include="DialogBoxes\ConnectDialogBox.xaml">
       <SubType>Designer</SubType>
@@ -109,6 +130,34 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\DatabaseRolesListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DatabasesListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DatabaseUsersListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LoginsListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ServerRolesListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StoredProceduresListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TablesListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

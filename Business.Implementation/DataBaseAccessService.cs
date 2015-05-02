@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SMO.Interfaces;
 using DBAdministrator.Models;
+using DBAdministrator.Models.Enums;
 using DBAdministrator.Models.Helpers;
 using DBAdministrator.Models.TreeView;
 using Microsoft.SqlServer.Management.Smo;
@@ -51,10 +52,13 @@ namespace Business.Implementation
 		{
 			var databases = _serverConnect.GetDatabaseList();
 			var serverRoles = _serverConnect.GetServerRolesList();
+			var serverLogins = _serverConnect.GetLoginsList();
 			return new ServerStructViewModel()
 			{
+				Logins = new ObservableCollection<UserStructViewModel>(
+					serverLogins.Select(u => new UserStructViewModel() { UserName = u.Name })),
 				Roles = new ObservableCollection<RoleStructViewModel>(
-					serverRoles.Select(r => new RoleStructViewModel() { RoleName = r.Name, Database = r.Parent.Name})),
+					serverRoles.Select(r => new RoleStructViewModel() { RoleName = r.Name })),
 				Databases = new ObservableCollection<DatabaseStructViewModel>(
 					databases.Select(d => new DatabaseStructViewModel()
 					{
@@ -88,22 +92,7 @@ namespace Business.Implementation
 
 		private IList<User> GetDatabasUsersList(string database)
 		{
-			return _serverConnect.GetDatabasUsersList(database);
-		}
-
-		#endregion
-
-
-		#region GetInfo
-
-		public IList<DatabaseViewModel> GetDatabaseInfoList()
-		{
-			var databases = _serverConnect.GetDatabaseList();
-			return databases.Select(d => new DatabaseViewModel()
-			{
-				DatabaseName = d.Name,
-				Size = d.Size
-			}).ToList();
+			return _serverConnect.GetDatabaseUsersList(database);
 		}
 
 		#endregion
@@ -137,5 +126,96 @@ namespace Business.Implementation
 		}
 
 		#endregion
+
+		#region GetInfo
+
+		public IList<DatabaseViewModel> GetDatabaseInfoList()
+		{
+			var databases = _serverConnect.GetDatabaseList();
+			return databases.Select(d => new DatabaseViewModel()
+			{
+				DatabaseName = d.Name,
+				Size = d.Size
+			}).ToList();
+		}
+
+		public IList<TableViewModel> GetTableInfoList(string database)
+		{
+			var tables = _serverConnect.GetTablesList(database);
+			return tables.Select(t => new TableViewModel()
+			{
+				TableName = t.Name,
+				CreateDate = t.CreateDate,
+				RowsCount = t.RowCount,
+				Owner = t.Owner,
+				Type = ReflectionHelpers.GetCustomDescription(t.IsSystemObject 
+					? TableType.System : TableType.User)
+			}).ToList();
+		}
+
+
+		public IList<StoredProcedureViewModel> GetStoredProcedureInfoList(string database)
+		{
+			var procedures = _serverConnect.GetStoredProceduresList(database);
+			return procedures.Select(p => new StoredProcedureViewModel()
+			{
+				ProcedureName = p.Name,
+				CreateDate = p.CreateDate,
+				Owner = p.Owner,
+				Type = ReflectionHelpers.GetCustomDescription(p.IsSystemObject
+					? ProcedureType.System : ProcedureType.User)
+			}).ToList();
+		}
+
+		#endregion
+
+		public IList<UserViewModel> GetUserInfoList(string database)
+		{
+			var users = _serverConnect.GetDatabaseUsersList(database);
+			return users.Select(u => new UserViewModel()
+			{
+				Name = u.Name,
+				Permit = u.HasDBAccess
+			}).ToList();
+		}
+
+		public IList<RoleViewModel> GetRoleInfoList(string database)
+		{
+			var roles = _serverConnect.GetDatabaseRolesList(database);
+			return roles.Select(r => new RoleViewModel()
+			{
+				Name = r.Name,
+				CreateDate = r.CreateDate,
+ 				DateLastModified = r.DateLastModified,
+				Owner = r.Owner
+			}).ToList();
+		}
+
+		public IList<RoleViewModel> GetRoleInfoList()
+		{
+			var roles = _serverConnect.GetServerRolesList();
+			return roles.Select(r => new RoleViewModel()
+			{
+				Name = r.Name,
+				CreateDate = r.DateCreated,
+				DateLastModified = r.DateModified,
+				Owner = r.Owner,
+
+			}).ToList();
+		}
+
+
+		public IList<LoginViewModel> GetLoginInfoList()
+		{
+			var users = _serverConnect.GetLoginsList();
+			return users.Select(u => new LoginViewModel()
+			{
+				Name = u.Name,
+				DefaultDatabase = u.DefaultDatabase,
+				Language = u.Language,
+				LoginType = ReflectionHelpers.GetCustomDescription((DBAdministrator.Models.Enums.LoginType)((int)u.LoginType)),
+				ServerAccess = ReflectionHelpers.GetCustomDescription((ServerAccessType)((int)u.WindowsLoginAccessType))
+			}).ToList();
+		}
 	}
 }

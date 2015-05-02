@@ -6,10 +6,9 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:treeView="clr-namespace:DBAdministrator.Models.TreeView;assembly=DBAdministrator.Models"
 		xmlns:converters="clr-namespace:DBAdministrator.Converters"
-		xmlns:generic="clr-namespace:System.Collections.Generic;assembly=mscorlib"
 		mc:Ignorable="d" 
 		x:Class="DBAdministrator.MainWindow"
-        Title="MainWindow" Height="350" Width="525"
+        Title="MainWindow" Height="453" Width="855"
 		ContentRendered="MainWindow_OnContentRendered"
 		DataContext="{Binding RelativeSource={RelativeSource Self}}"
 		Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
@@ -22,7 +21,7 @@
 				<MenuItem Header="Connect" HorizontalAlignment="Left" Width="139.506666666667" Name="ConnectMenuItem" Click="ConnectMenuItem_OnClick"/>
 			</MenuItem>
 			<MenuItem Header="Database" Height="24" Click="MenuItem_OnClick">
-				</MenuItem>
+			</MenuItem>
 		</Menu>
 		<StatusBar DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Height="25">
 			<StatusBarItem>
@@ -30,31 +29,37 @@
 			</StatusBarItem>
 		</StatusBar>
 		<Grid DockPanel.Dock="Top">
-			<TreeView ItemsSource="{Binding ViewModel.ServerStruct}" >
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"></ColumnDefinition>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<TreeView ItemsSource="{Binding ViewModel.ServerStruct}" Grid.Column="0" >
 				<TreeView.Resources >
-					<HierarchicalDataTemplate DataType="{x:Type treeView:ServerStructViewModel}" >
+					<HierarchicalDataTemplate DataType="{x:Type treeView:ServerStructViewModel}">
 						<HierarchicalDataTemplate.ItemsSource>
 							<MultiBinding Converter="{StaticResource CustomMultiValueConvertor}">
 								<Binding Path="Databases" />
 								<Binding Path="Roles" />
+								<Binding Path="Logins" />
 							</MultiBinding>
 						</HierarchicalDataTemplate.ItemsSource>
-						<TextBlock Text="{Binding ServerName}" />
+						<TextBlock Text="{Binding ServerName}"/>
 					</HierarchicalDataTemplate>
 					<HierarchicalDataTemplate DataType="{x:Type treeView:DatabaseStructViewModel[]}" ItemsSource="{Binding Path=.}">
-						<TextBlock Text="Databases"/>
+						<TextBlock Text="Databases" MouseLeftButtonDown="OpenDatabaseList_OnMouseLeftButtonDown"/>
 					</HierarchicalDataTemplate>
 					<HierarchicalDataTemplate DataType="{x:Type treeView:RoleStructViewModel[]}" ItemsSource="{Binding Path=.}">
-						<TextBlock Text="Roles"/>
+						<TextBlock Text="Roles" MouseLeftButtonDown="OpenRolesList_OnMouseLeftButtonDown"/>
 					</HierarchicalDataTemplate>
 					<HierarchicalDataTemplate DataType="{x:Type treeView:TableStructViewModel[]}" ItemsSource="{Binding Path=.}">
-						<TextBlock Text="Tables"/>
+						<TextBlock Text="Tables" MouseLeftButtonDown="OpenTablesList_OnMouseLeftButtonDown"/>
 					</HierarchicalDataTemplate>
 					<HierarchicalDataTemplate DataType="{x:Type treeView:StoredProcedureStructViewModel[]}" ItemsSource="{Binding Path=.}">
-						<TextBlock Text="Procedures"/>
+						<TextBlock Text="Procedures" MouseLeftButtonDown="OpenProceduresList_OnMouseLeftButtonDown"/>
 					</HierarchicalDataTemplate>
 					<HierarchicalDataTemplate DataType="{x:Type treeView:UserStructViewModel[]}" ItemsSource="{Binding Path=.}">
-						<TextBlock Text="Users"/>
+						<TextBlock Text="Users" MouseLeftButtonDown="OpenUsersList_OnMouseLeftButtonDown"/>
 					</HierarchicalDataTemplate>
 					<HierarchicalDataTemplate DataType="{x:Type treeView:DatabaseStructViewModel}">
 						<HierarchicalDataTemplate.ItemsSource>
@@ -111,6 +116,12 @@
 					</DataTemplate>
 				</TreeView.Resources>
 			</TreeView>
+			<GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="5"
+                      VerticalAlignment="Stretch" HorizontalAlignment="Center"></GridSplitter>
+			<Frame Grid.Column="2" Name="Frame">
+				
+			</Frame>
+			
 
 
 			<!--<DataGrid Grid.Column="1"

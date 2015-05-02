@@ -14,7 +14,8 @@ namespace SMO.Interfaces
 		IList<StoredProcedure> GetStoredProceduresList(string database);
 		IList<ServerRole> GetServerRolesList();
 		IList<DatabaseRole> GetDatabaseRolesList(string database);
-		IList<User> GetDatabasUsersList(string database);
+		IList<User> GetDatabaseUsersList(string database);
+		IList<Login> GetLoginsList();
 
 		void DeleteStoredProcedure(string databaseName, string procedureName);
 

@@ -41,6 +41,14 @@
   <ItemGroup>
     <Compile Include="AuthenticationViewModel.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Enums\LoginType.cs" />
+    <Compile Include="Enums\ProcedureType.cs" />
+    <Compile Include="Enums\ServerAccessType.cs" />
+    <Compile Include="Enums\TableType.cs" />
+    <Compile Include="LoginViewModel.cs" />
+    <Compile Include="RoleViewModel.cs" />
+    <Compile Include="StoredProcedureViewModel.cs" />
+    <Compile Include="TableViewModel.cs" />
     <Compile Include="TreeView\DatabaseStructViewModel.cs" />
     <Compile Include="DatabaseViewModel.cs" />
     <Compile Include="Enums\AuthenticationType.cs" />
@@ -54,6 +62,7 @@
     <Compile Include="TreeView\StoredProcedureStructViewModel.cs" />
     <Compile Include="TreeView\TableStructViewModel.cs" />
     <Compile Include="TreeView\UserStructViewModel.cs" />
+    <Compile Include="UserViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -24,13 +24,13 @@ namespace DBAdministrator.Models.TreeView
 		public ServerStructViewModel()
 		{
 			Databases = new ObservableCollection<DatabaseStructViewModel>();
-			Users = new ObservableCollection<UserStructViewModel>();
+			Logins = new ObservableCollection<UserStructViewModel>();
 			Roles = new ObservableCollection<RoleStructViewModel>();
 		}
 
 		public ObservableCollection<DatabaseStructViewModel> Databases { get; set; }
 
-		public ObservableCollection<UserStructViewModel> Users { get; set; }
+		public ObservableCollection<UserStructViewModel> Logins { get; set; }
 
 		public ObservableCollection<RoleStructViewModel> Roles { get; set; }
 	}

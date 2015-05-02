@@ -93,10 +93,17 @@ namespace SMO.Implementation
 			return roles.Cast<DatabaseRole>().ToList();
 		}
 
-		public IList<User> GetDatabasUsersList(string database)
+		public IList<User> GetDatabaseUsersList(string database)
 		{
 			var users = _server.Databases[database].Users;
 			return users.Cast<User>().ToList();
+		}
+
+
+		public IList<Login> GetLoginsList()
+		{
+			var logins = _server.Logins;
+			return logins.Cast<Login>().ToList();
 		}
 
 		#endregion
@@ -141,6 +148,8 @@ namespace SMO.Implementation
 
 
 
-		
+
+
+
 	}
 }

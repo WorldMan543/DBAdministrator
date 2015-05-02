@@ -33,3 +33,17 @@ E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\Business.Interfaces.pdb
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\DBAdministrator.Models.dll
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\bin\Debug\DBAdministrator.Models.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\DatabasesListPage.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\DatabasesListPage.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\DatabaseRolesListPage.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\DatabaseUsersListPage.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\LoginsListPage.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\ServerRolesListPage.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\StoredProceduresListPage.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\TablesListPage.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\DatabaseRolesListPage.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\DatabaseUsersListPage.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\LoginsListPage.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\ServerRolesListPage.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\StoredProceduresListPage.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\TablesListPage.g.cs

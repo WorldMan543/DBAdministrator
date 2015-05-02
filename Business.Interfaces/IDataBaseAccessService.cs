@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using DBAdministrator.Models;
 using System.Net.Security;
 using System.Security;
@@ -17,12 +18,6 @@ namespace Business.Interfaces
 
 		ServerStructViewModel GetDatabaseTree();
 
-		#region GetInfo
-
-		IList<DatabaseViewModel> GetDatabaseInfoList();
-
-		#endregion
-
 		#region Delete
 
 		void DeleteStoredProcedure(string databaseName, string procedureName);
@@ -36,6 +31,24 @@ namespace Business.Interfaces
 		void DeleteDatabase(string databaseName);
 
 		#endregion 
+
+		
+		#region GetInfo
+		IList<DatabaseViewModel> GetDatabaseInfoList();
+
+		IList<TableViewModel> GetTableInfoList(string database);
+
+		IList<StoredProcedureViewModel> GetStoredProcedureInfoList(string database);
+
+		IList<UserViewModel> GetUserInfoList(string database);
+
+		IList<LoginViewModel> GetLoginInfoList();
+
+		IList<RoleViewModel> GetRoleInfoList(string database);
+
+		IList<RoleViewModel> GetRoleInfoList();
+
+		#endregion
 
 
 

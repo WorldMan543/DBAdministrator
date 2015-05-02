@@ -24,6 +24,7 @@ using Microsoft.Practices.Unity;
 using System.Collections.ObjectModel;
 using System.Net.NetworkInformation;
 using DBAdministrator.Models.TreeView;
+using DBAdministrator.Pages;
 
 namespace DBAdministrator
 {
@@ -135,6 +136,45 @@ namespace DBAdministrator
 			_dataBaseAccessService.DeleteDatabase(model.DatabaseName);
 		}
 
-		
+		private void OpenDatabaseList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.ClickCount != 2) return;
+			Frame.Navigate(new DatabasesListPage(_dataBaseAccessService));
+		}
+
+		private void OpenRolesList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.ClickCount != 2) return;
+			var model = ((RoleStructViewModel[])((TextBlock)sender).DataContext).First();
+			var page = !string.IsNullOrEmpty(model.Database) 
+				? (object)new DatabaseRolesListPage(_dataBaseAccessService, model.Database)
+				: new ServerRolesListPage(_dataBaseAccessService);
+			Frame.Navigate(page);
+		}
+
+		private void OpenTablesList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.ClickCount != 2) return;
+			var model = ((TableStructViewModel[])((TextBlock)sender).DataContext).First();
+			Frame.Navigate(new TablesListPage(_dataBaseAccessService, model.Database));
+		}
+
+		private void OpenProceduresList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.ClickCount != 2) return;
+			var model = ((StoredProcedureStructViewModel[])((TextBlock)sender).DataContext).First();
+			Frame.Navigate(new StoredProceduresListPage(_dataBaseAccessService, model.Database));
+		}
+
+		private void OpenUsersList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.ClickCount != 2) return;
+			var model = ((UserStructViewModel[])((TextBlock)sender).DataContext).First();
+			var page = !string.IsNullOrEmpty(model.Database)
+				? (object)new DatabaseUsersListPage(_dataBaseAccessService, model.Database)
+				: new LoginsListPage(_dataBaseAccessService);
+			Frame.Navigate(page);
+		}
+
 	}
 }
