@@ -47,3 +47,11 @@ E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\ServerRolesListPage.g.cs
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\StoredProceduresListPage.g.cs
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\TablesListPage.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DialogBoxes\CreateDatabaseDialogBox.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DialogBoxes\CreateDatabaseDialogBox.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\SQLEditorPage.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\SQLEditorPage.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DialogBoxes\CreateTableDialogBox.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DialogBoxes\CreateTableDialogBox.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\EditTablePage.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\EditTablePage.g.cs

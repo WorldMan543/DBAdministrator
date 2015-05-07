@@ -9,7 +9,6 @@
 		mc:Ignorable="d" 
 		x:Class="DBAdministrator.MainWindow"
         Title="MainWindow" Height="453" Width="855"
-		ContentRendered="MainWindow_OnContentRendered"
 		DataContext="{Binding RelativeSource={RelativeSource Self}}"
 		Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
 	<Window.Resources>
@@ -20,8 +19,8 @@
 			<MenuItem Header="Database" Height="24">
 				<MenuItem Header="Connect" HorizontalAlignment="Left" Width="139.506666666667" Name="ConnectMenuItem" Click="ConnectMenuItem_OnClick"/>
 			</MenuItem>
-			<MenuItem Header="Database" Height="24" Click="MenuItem_OnClick">
-			</MenuItem>
+			<MenuItem Header="Database" Height="24" Click="MenuItem_OnClick"/>
+			<MenuItem Header="Editor" Height="24" Click="OpenEditor_OnClick"/>
 		</Menu>
 		<StatusBar DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Height="25">
 			<StatusBarItem>
@@ -47,13 +46,25 @@
 						<TextBlock Text="{Binding ServerName}"/>
 					</HierarchicalDataTemplate>
 					<HierarchicalDataTemplate DataType="{x:Type treeView:DatabaseStructViewModel[]}" ItemsSource="{Binding Path=.}">
-						<TextBlock Text="Databases" MouseLeftButtonDown="OpenDatabaseList_OnMouseLeftButtonDown"/>
+						<TextBlock Text="Databases" MouseLeftButtonDown="OpenDatabaseList_OnMouseLeftButtonDown">
+							<TextBlock.ContextMenu>
+								<ContextMenu>
+									<MenuItem Header="Add" Click="CreateDatabase_OnClick"></MenuItem>
+								</ContextMenu>
+							</TextBlock.ContextMenu>
+						</TextBlock>
 					</HierarchicalDataTemplate>
 					<HierarchicalDataTemplate DataType="{x:Type treeView:RoleStructViewModel[]}" ItemsSource="{Binding Path=.}">
 						<TextBlock Text="Roles" MouseLeftButtonDown="OpenRolesList_OnMouseLeftButtonDown"/>
 					</HierarchicalDataTemplate>
 					<HierarchicalDataTemplate DataType="{x:Type treeView:TableStructViewModel[]}" ItemsSource="{Binding Path=.}">
-						<TextBlock Text="Tables" MouseLeftButtonDown="OpenTablesList_OnMouseLeftButtonDown"/>
+						<TextBlock Text="Tables" MouseLeftButtonDown="OpenTablesList_OnMouseLeftButtonDown">
+							<TextBlock.ContextMenu>
+								<ContextMenu>
+									<MenuItem Header="Add" Click="CreateTable_OnClick"></MenuItem>
+								</ContextMenu>
+							</TextBlock.ContextMenu>
+						</TextBlock>
 					</HierarchicalDataTemplate>
 					<HierarchicalDataTemplate DataType="{x:Type treeView:StoredProcedureStructViewModel[]}" ItemsSource="{Binding Path=.}">
 						<TextBlock Text="Procedures" MouseLeftButtonDown="OpenProceduresList_OnMouseLeftButtonDown"/>
@@ -92,6 +103,7 @@
 							<TextBlock.ContextMenu>
 								<ContextMenu>
 									<MenuItem Header="Delete" Click="DeleteTable_OnClick"></MenuItem>
+									<MenuItem Header="Rename" Click="RenameTable_OnClick"></MenuItem>
 								</ContextMenu>
 							</TextBlock.ContextMenu>
 						</TextBlock>
@@ -117,32 +129,8 @@
 				</TreeView.Resources>
 			</TreeView>
 			<GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="5"
-                      VerticalAlignment="Stretch" HorizontalAlignment="Center"></GridSplitter>
-			<Frame Grid.Column="2" Name="Frame">
-				
-			</Frame>
-			
-
-
-			<!--<DataGrid Grid.Column="1"
-						AutoGenerateColumns="False" 
-          Height="200" 
-          HorizontalAlignment="Left" 
-          Name="dataGrid1" 
-          VerticalAlignment="Top" >
-				<DataGrid.Columns >
-					<DataGridTextColumn Binding="{Binding Path=A}" MinWidth="50" />
-					<DataGridTextColumn Binding="{Binding Path=B}" MinWidth="50" />
-					<DataGridTextColumn Binding="{Binding Path=C}" MinWidth="50" />
-				</DataGrid.Columns>
-			</DataGrid>-->
-			<!--<avalonEdit:TextEditor Grid.Column="1" 
-				xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"  
-				Name="MyAvalonEdit"
-				FontFamily="Consolas"
-				FontSize="10pt" 
-				ShowLineNumbers="True" 
-				LineNumbersForeground="#FF2B91AF" />-->
+					VerticalAlignment="Stretch" HorizontalAlignment="Center"></GridSplitter>
+			<Frame Grid.Column="2" Name="Frame"/>
 		</Grid>
 	</DockPanel>
 </Window>

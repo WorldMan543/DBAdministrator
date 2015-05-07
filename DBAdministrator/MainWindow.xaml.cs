@@ -44,6 +44,7 @@ namespace DBAdministrator
 			_dataBaseAccessService = dataBaseAccessService;
 			InitializeViewModel();
 			InitializeComponent();
+			
 		}
 
 		private void InitializeViewModel()
@@ -52,18 +53,6 @@ namespace DBAdministrator
 			{
 				StatusBar = new StatusBarViewModel()
 			};
-		}
-
-		private void EnableSqlHighlighting()
-		{
-			using (var stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("DBAdministrator.Resources.SQL.xshd"))
-			{
-				if (stream == null) return;
-				using (var reader = new XmlTextReader(stream))
-				{
-					//MyAvalonEdit.SyntaxHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
-				}
-			}
 		}
 
 		private void ConnectMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -85,17 +74,17 @@ namespace DBAdministrator
 			}
 		}
 
-		private void MainWindow_OnContentRendered(object sender, EventArgs e)
-		{
-			EnableSqlHighlighting();
-		}
-
 		private void MenuItem_OnClick(object sender, RoutedEventArgs e)
 		{
 			var tree = _dataBaseAccessService.GetDatabaseTree();
 			tree.ServerName = ViewModel.ServerStruct[0].ServerName;
 			ViewModel.ServerStruct.Clear();
 			ViewModel.ServerStruct.Add(tree);
+		}
+
+		private void OpenEditor_OnClick(object sender, RoutedEventArgs e)
+		{
+			Frame.Navigate(new SQLEditorPage(_dataBaseAccessService));
 		}
 
 		private void DeleteStoredProcedure_OnClick(object sender, RoutedEventArgs e)
@@ -175,6 +164,35 @@ namespace DBAdministrator
 				: new LoginsListPage(_dataBaseAccessService);
 			Frame.Navigate(page);
 		}
+
+		private void CreateDatabase_OnClick(object sender, RoutedEventArgs e)
+		{
+			var dialog = new CreateDatabaseDialogBox(_dataBaseAccessService);
+			dialog.ShowDialog();
+			if (dialog.DialogResult != null && dialog.DialogResult.Value)
+			{
+				Frame.Navigate(new TablesListPage(_dataBaseAccessService, dialog.DatabaseName));
+			}
+		}
+
+		private void CreateTable_OnClick(object sender, RoutedEventArgs e)
+		{
+			var model = ((TableStructViewModel[])((MenuItem)sender).DataContext).First();
+			var dialog = new CreateTableDialogBox(_dataBaseAccessService, model.Database);
+			dialog.ShowDialog();
+			if (dialog.DialogResult != null && dialog.DialogResult.Value)
+			{
+				//Frame.Navigate(new TablesListPage(_dataBaseAccessService, dialog.Table));
+			}
+		}
+
+		private void RenameTable_OnClick(object sender, RoutedEventArgs e)
+		{
+			var model = (TableStructViewModel)((MenuItem)sender).DataContext;
+			var dialog = new CreateTableDialogBox(_dataBaseAccessService, model.Database, model.TableName);
+			dialog.ShowDialog();
+		}
+		
 
 	}
 }

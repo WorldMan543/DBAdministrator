@@ -18,27 +18,24 @@ using DBAdministrator.Models;
 namespace DBAdministrator.Pages
 {
 	/// <summary>
-	/// Interaction logic for TablesListPage.xaml
+	/// Interaction logic for EditTablePage.xaml
 	/// </summary>
-	public partial class TablesListPage : Page
+	public partial class EditTablePage : Page
 	{
 		private readonly IDataBaseAccessService _dataBaseAccessService;
-		private readonly string _database;
-		public IList<TableViewModel> Models { get; set; }
 
-		public TablesListPage(IDataBaseAccessService dataBaseAccessService, string database)
+		public IList<TableInfoViewModel> ViewModel { get; set; } 
+
+		public EditTablePage(IDataBaseAccessService dataBaseAccessService, string databaseName, string tableName)
 		{
-			_database = database;
 			_dataBaseAccessService = dataBaseAccessService;
-			Models = dataBaseAccessService.GetTableInfoList(database);
+			ViewModel = _dataBaseAccessService.GetTableInfo(databaseName, tableName);
 			InitializeComponent();
 		}
 
-		private void EditTable_OnClick(object sender, RoutedEventArgs e)
+		private void OnChecked(object sender, RoutedEventArgs e)
 		{
-			if (TablesList.SelectedItems.Count == 0) return;
-			var item = (TableViewModel)TablesList.SelectedItems[0];
-			NavigationService.Navigate(new EditTablePage(_dataBaseAccessService, _database, item.TableName));
+
 		}
 	}
 }

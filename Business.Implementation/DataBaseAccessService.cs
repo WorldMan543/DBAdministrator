@@ -2,7 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using SMO.Interfaces;
@@ -21,6 +25,9 @@ namespace Business.Implementation
 
 		public DataBaseAccessService(IServerConnect serverConnect)
 		{
+			var type = typeof(Microsoft.SqlServer.Management.Smo.DataType);
+			var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Static).ToList();
+			properties.ForEach(p => Debug.WriteLine("{0} = {1}", p.Name, p.GetValue(null)));
 			_serverConnect = serverConnect;
 		}
 
@@ -167,8 +174,6 @@ namespace Business.Implementation
 			}).ToList();
 		}
 
-		#endregion
-
 		public IList<UserViewModel> GetUserInfoList(string database)
 		{
 			var users = _serverConnect.GetDatabaseUsersList(database);
@@ -186,7 +191,7 @@ namespace Business.Implementation
 			{
 				Name = r.Name,
 				CreateDate = r.CreateDate,
- 				DateLastModified = r.DateLastModified,
+				DateLastModified = r.DateLastModified,
 				Owner = r.Owner
 			}).ToList();
 		}
@@ -215,6 +220,64 @@ namespace Business.Implementation
 				Language = u.Language,
 				LoginType = ReflectionHelpers.GetCustomDescription((DBAdministrator.Models.Enums.LoginType)((int)u.LoginType)),
 				ServerAccess = ReflectionHelpers.GetCustomDescription((ServerAccessType)((int)u.WindowsLoginAccessType))
+			}).ToList();
+		}
+
+		#endregion
+
+
+		public void CreateDatabase(string database)
+		{
+			_serverConnect.CreateDatabase(database);
+		}
+
+		public void CreateTable(string databaseName, string tableName)
+		{
+			_serverConnect.CreateTable(databaseName, tableName);
+		}
+
+
+		public IList<DataGridViewModel> ExecuteQuery(string query, string databaseName)
+		{
+			var tables = _serverConnect.ExecuteQuery(query, databaseName);
+			var result = new List<DataGridViewModel>(tables.Count);
+			foreach (DataTable table in tables)
+			{
+				var rows = new List<object>(table.Rows.Count);
+				var columns = table.Columns.Cast<DataColumn>().Select(c => c.ColumnName).ToList();
+				foreach (var row in table.Rows.Cast<DataRow>())
+				{
+					var rowResult = new ExpandoObject() as IDictionary<string, object>;
+					columns.ForEach(c => rowResult.Add(c, row[c].ToString()));
+					rows.Add(rowResult);
+				}
+				result.Add(new DataGridViewModel()
+				{
+					Columns = columns.ToList(),
+					Rows = rows
+				});
+			}
+			return result;
+		}
+
+		public void RenameTable(string database, string oldName, string newName)
+		{
+			_serverConnect.RenameTable(database, oldName, newName);
+		}
+
+
+		public IList<TableInfoViewModel> GetTableInfo(string database, string tableName)
+		{
+			var table = _serverConnect.GetTable(database, tableName);
+			return table.Columns.Cast<Column>().Select(c => new TableInfoViewModel
+			{
+				Name = c.Name,
+				Identity = c.Identity,
+				Nullable = c.Nullable,
+				InPrimaryKey = c.InPrimaryKey,
+				DataType = c.DataType.Name,
+				MaxLength = c.DataType.MaximumLength,
+				Default = c.DefaultConstraint != null ? c.DefaultConstraint.Text : null
 			}).ToList();
 		}
 	}

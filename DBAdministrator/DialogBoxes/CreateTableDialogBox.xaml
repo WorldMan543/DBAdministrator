@@ -1,0 +1,25 @@
+﻿<Window x:Class="DBAdministrator.DialogBoxes.CreateTableDialogBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:validators="clr-namespace:DBAdministrator.Validators"
+        Title="CreateTableDialogBox" Height="300" Width="300"
+		DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+		<DockPanel VerticalAlignment="Top">
+			<Label>Table name:</Label>
+			<TextBox>
+				<TextBox.Text >
+					<Binding Path="TableName" UpdateSourceTrigger="PropertyChanged" >
+						<Binding.ValidationRules>
+							<validators:EmptyFiledValidationRule/>
+						</Binding.ValidationRules>
+					</Binding>
+				</TextBox.Text>
+			</TextBox>
+		</DockPanel>
+		<DockPanel VerticalAlignment="Bottom" >
+			<Button Name="ConnectBottom" Click="CreateTable_OnClick">Connect</Button>
+			<Button Name="CancelBottom" IsCancel="True">Cancel</Button>
+		</DockPanel>
+	</Grid>
+</Window>

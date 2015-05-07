@@ -1,5 +1,6 @@
 ﻿using Microsoft.SqlServer.Management.Smo;
 using System.Collections.Generic;
+using System.Data;
 using System.Security;
 
 namespace SMO.Interfaces
@@ -8,6 +9,9 @@ namespace SMO.Interfaces
 	{
 		void Connect(string serverName);
 		void Connect(string serverName, string userName, SecureString password);
+
+		#region List
+
 		IList<string> GetServersList();
 		IList<Database> GetDatabaseList();
 		IList<Table> GetTablesList(string database);
@@ -17,6 +21,9 @@ namespace SMO.Interfaces
 		IList<User> GetDatabaseUsersList(string database);
 		IList<Login> GetLoginsList();
 
+		#endregion
+
+		#region Delete
 		void DeleteStoredProcedure(string databaseName, string procedureName);
 
 		void DeleteTable(string databaseName, string tableName);
@@ -26,6 +33,21 @@ namespace SMO.Interfaces
 		void DeleteDatabaseUser(string databaseName, string userName);
 
 		void DeleteDatabase(string databaseName);
+		#endregion
+
+		#region Create
+
+		void CreateDatabase(string database);
+
+		void CreateTable(string database, string tableName);
+
+		#endregion
+
+		Table GetTable(string database, string tableName);
+
+		void RenameTable(string database, string oldName, string newName);
+
+		DataTableCollection ExecuteQuery(string query, string databaseName = "AdventureWorks2014");
 
 	}
 }

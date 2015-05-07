@@ -49,8 +49,19 @@ namespace Business.Interfaces
 		IList<RoleViewModel> GetRoleInfoList();
 
 		#endregion
+		#region Create
 
+		void CreateDatabase(string database);
 
+		void CreateTable(string databaseName, string tableName);
+
+		#endregion
+
+		void RenameTable(string database, string oldName, string newName);
+
+		IList<DataGridViewModel> ExecuteQuery(string query, string databaseName);
+
+		IList<TableInfoViewModel> GetTableInfo(string database, string tableName);
 
 	}
 }

@@ -146,10 +146,45 @@ namespace SMO.Implementation
 
 		#endregion
 
+		#region Create
+
+		public void CreateDatabase(string database)
+		{
+			var newDatabase = new Database(_server, database);
+			newDatabase.Create();
+		}
+
+		public void CreateTable(string databaseName, string tableName)
+		{
+			var database = _server.Databases[databaseName];
+			var table = new Table(database, tableName);
+			var column = new Column(table, "ID", DataType.Int);
+			table.Columns.Add(column);
+			table.Create();
+		}
+
+		#endregion
+
+		public DataTableCollection ExecuteQuery(string query, string databaseName = "AdventureWorks2014")
+		{
+			var database = _server.Databases[databaseName];
+			var result = database.ExecuteWithResults(query);
+			return result.Tables;
+		}
 
 
+		public void RenameTable(string databaseName, string oldName, string newName)
+		{
+			var database = _server.Databases[databaseName];
+			var table = database.Tables[oldName];
+			table.Rename(newName);
+		}
 
 
-
+		public Table GetTable(string databaseName, string tableName)
+		{
+			var database = _server.Databases[databaseName];
+			return database.Tables[tableName];
+		}
 	}
 }

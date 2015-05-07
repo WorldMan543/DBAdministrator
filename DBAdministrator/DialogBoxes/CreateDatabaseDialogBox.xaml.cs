@@ -1,5 +1,4 @@
-﻿using DBAdministrator.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,30 +11,31 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.ComponentModel;
 using Business.Interfaces;
-using DBAdministrator.Models;
+using DBAdministrator.Helpers;
 
 namespace DBAdministrator.DialogBoxes
 {
 	/// <summary>
-	/// Interaction logic for ConnectDialogBox.xaml
+	/// Interaction logic for CreateDatabaseDialogBox.xaml
 	/// </summary>
-	public partial class ConnectDialogBox : Window
+	public partial class CreateDatabaseDialogBox : Window
 	{
-		public AuthenticationViewModel ViewModel { get; private set; }
 
-		public ConnectDialogBox(IDataBaseAccessService dataBaseAccessService)
+		private readonly IDataBaseAccessService _dataBaseAccessService;
+		public string DatabaseName { get; set; }
+
+		public CreateDatabaseDialogBox(IDataBaseAccessService dataBaseAccessService)
 		{
-			ViewModel = dataBaseAccessService.GetAuthenticationViewModel();
+			_dataBaseAccessService = dataBaseAccessService;
 			InitializeComponent();
 		}
-		
-		private void ConnectBottom_OnClick(object sender, RoutedEventArgs e)
+
+		private void CreateDatabase_OnClick(object sender, RoutedEventArgs e)
 		{
 			if (!this.IsValid()) return;
+			_dataBaseAccessService.CreateDatabase(DatabaseName);
 			DialogResult = true;
 		}
-
 	}
 }

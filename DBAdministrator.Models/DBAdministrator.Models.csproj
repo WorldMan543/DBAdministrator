@@ -31,7 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,6 +43,8 @@
   <ItemGroup>
     <Compile Include="AuthenticationViewModel.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="DataGridViewModel.cs" />
+    <Compile Include="Enums\DataType.cs" />
     <Compile Include="Enums\LoginType.cs" />
     <Compile Include="Enums\ProcedureType.cs" />
     <Compile Include="Enums\ServerAccessType.cs" />
@@ -48,6 +52,7 @@
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="RoleViewModel.cs" />
     <Compile Include="StoredProcedureViewModel.cs" />
+    <Compile Include="TableInfoViewModel.cs" />
     <Compile Include="TableViewModel.cs" />
     <Compile Include="TreeView\DatabaseStructViewModel.cs" />
     <Compile Include="DatabaseViewModel.cs" />

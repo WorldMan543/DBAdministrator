@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using Business.Implementation;
 using Business.Interfaces;
 using Microsoft.Practices.Unity;
@@ -26,6 +27,11 @@ namespace DBAdministrator
 
 			var mainWindow = container.Resolve<MainWindow>();
 			mainWindow.Show();
+		}
+
+		void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+		{
+			e.Handled = true;
 		}
 	}
 }

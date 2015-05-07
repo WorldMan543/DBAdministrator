@@ -88,6 +88,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\CustomMultiValueConvertor.cs" />
+    <Compile Include="DialogBoxes\CreateDatabaseDialogBox.xaml.cs">
+      <DependentUpon>CreateDatabaseDialogBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\CreateTableDialogBox.xaml.cs">
+      <DependentUpon>CreateTableDialogBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\WindowHelpers.cs" />
     <Compile Include="Pages\DatabaseRolesListPage.xaml.cs">
       <DependentUpon>DatabaseRolesListPage.xaml</DependentUpon>
@@ -98,11 +104,17 @@
     <Compile Include="Pages\DatabaseUsersListPage.xaml.cs">
       <DependentUpon>DatabaseUsersListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EditTablePage.xaml.cs">
+      <DependentUpon>EditTablePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LoginsListPage.xaml.cs">
       <DependentUpon>LoginsListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ServerRolesListPage.xaml.cs">
       <DependentUpon>ServerRolesListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SQLEditorPage.xaml.cs">
+      <DependentUpon>SQLEditorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StoredProceduresListPage.xaml.cs">
       <DependentUpon>StoredProceduresListPage.xaml</DependentUpon>
@@ -112,6 +124,14 @@
     </Compile>
     <Compile Include="Validators\EmptyFiledValidationRule.cs" />
     <Page Include="DialogBoxes\ConnectDialogBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogBoxes\CreateDatabaseDialogBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogBoxes\CreateTableDialogBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,11 +162,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\EditTablePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\LoginsListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ServerRolesListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SQLEditorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,7 +255,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
