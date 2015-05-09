@@ -23,7 +23,7 @@
 			<End>\*/</End>
 		</Span>
 
-		<Keywords fontWeight="bold" foreground="Blue" >
+		<Keywords fontWeight="bold" foreground="Green" >
 			<Word>ABORT</Word>
 			<Word>BETWEEN</Word>
 			<Word>CRASH</Word>

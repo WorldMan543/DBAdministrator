@@ -26,7 +26,8 @@
 			FontFamily="Consolas"
 			FontSize="10pt" 
 			ShowLineNumbers="True" 
-			LineNumbersForeground="#FF2B91AF"/>
+			LineNumbersForeground="#FF2B91AF"
+							   Foreground="Azure"/>
 
 	</DockPanel>
 </Page>

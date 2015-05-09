@@ -25,6 +25,7 @@ using System.Collections.ObjectModel;
 using System.Net.NetworkInformation;
 using DBAdministrator.Models.TreeView;
 using DBAdministrator.Pages;
+using FirstFloor.ModernUI.Windows.Controls;
 
 namespace DBAdministrator
 {
@@ -32,15 +33,20 @@ namespace DBAdministrator
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MainWindow : ModernWindow
 	{
 
 		private readonly IDataBaseAccessService _dataBaseAccessService;
 
-		public MainWindowViewModel ViewModel { get; set; }
+		public MainWindowViewModel ViewModel
+		{
+			get { return (MainWindowViewModel)DataContext; }
+			set { DataContext = value; }
+		}
 
 		public MainWindow([Dependency] IDataBaseAccessService dataBaseAccessService)
 		{
+			//DataContext = ViewModel;
 			_dataBaseAccessService = dataBaseAccessService;
 			InitializeViewModel();
 			InitializeComponent();

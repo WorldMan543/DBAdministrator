@@ -1,30 +1,35 @@
-﻿<Window
+﻿<mui:ModernWindow
 		xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:mui="http://firstfloorsoftware.com/ModernUI"
 		xmlns:treeView="clr-namespace:DBAdministrator.Models.TreeView;assembly=DBAdministrator.Models"
 		xmlns:converters="clr-namespace:DBAdministrator.Converters"
 		mc:Ignorable="d" 
 		x:Class="DBAdministrator.MainWindow"
         Title="MainWindow" Height="453" Width="855"
-		DataContext="{Binding RelativeSource={RelativeSource Self}}"
-		Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
-	<Window.Resources>
+		Style="{StaticResource BlankWindow}"
+		
+		
+	>
+	<!--DataContext="{Binding RelativeSource={RelativeSource Self}}"-->
+	<!--Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"-->
+	<mui:ModernWindow.Resources>
 		<converters:CustomMultiValueConvertor x:Key="CustomMultiValueConvertor"/>
-	</Window.Resources>
+	</mui:ModernWindow.Resources>
 	<DockPanel>
-		<Menu Height="Auto" DockPanel.Dock="Top">
+		<Menu Height="Auto" DockPanel.Dock="Top" Background="#FF252526">
 			<MenuItem Header="Database" Height="24">
 				<MenuItem Header="Connect" HorizontalAlignment="Left" Width="139.506666666667" Name="ConnectMenuItem" Click="ConnectMenuItem_OnClick"/>
 			</MenuItem>
 			<MenuItem Header="Database" Height="24" Click="MenuItem_OnClick"/>
 			<MenuItem Header="Editor" Height="24" Click="OpenEditor_OnClick"/>
 		</Menu>
-		<StatusBar DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Height="25">
+		<StatusBar DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Height="25" Background="#FF252526" Foreground="AntiqueWhite">
 			<StatusBarItem>
-				<TextBlock Text="{Binding ViewModel.StatusBar.ServerName }"/>
+				<TextBlock Text="{Binding StatusBar.ServerName }"/>
 			</StatusBarItem>
 		</StatusBar>
 		<Grid DockPanel.Dock="Top">
@@ -33,7 +38,7 @@
 				<ColumnDefinition Width="Auto"></ColumnDefinition>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
-			<TreeView ItemsSource="{Binding ViewModel.ServerStruct}" Grid.Column="0" >
+			<TreeView ItemsSource="{Binding ServerStruct}" Grid.Column="0" >
 				<TreeView.Resources >
 					<HierarchicalDataTemplate DataType="{x:Type treeView:ServerStructViewModel}">
 						<HierarchicalDataTemplate.ItemsSource>
@@ -133,4 +138,4 @@
 			<Frame Grid.Column="2" Name="Frame"/>
 		</Grid>
 	</DockPanel>
-</Window>
+</mui:ModernWindow>
