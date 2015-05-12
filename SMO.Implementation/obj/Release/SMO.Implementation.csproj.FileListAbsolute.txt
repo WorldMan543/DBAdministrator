@@ -1,0 +1,7 @@
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\bin\Release\SMO.Implementation.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\bin\Release\SMO.Implementation.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\bin\Release\SMO.Interfaces.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\bin\Release\SMO.Interfaces.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\obj\Release\SMO.Implementation.csprojResolveAssemblyReference.cache
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\obj\Release\SMO.Implementation.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\SMO.Implementation\obj\Release\SMO.Implementation.pdb

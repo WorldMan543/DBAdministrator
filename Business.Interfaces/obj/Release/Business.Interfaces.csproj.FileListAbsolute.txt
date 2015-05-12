@@ -1,0 +1,7 @@
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\bin\Release\Business.Interfaces.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\bin\Release\Business.Interfaces.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\bin\Release\DBAdministrator.Models.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\bin\Release\DBAdministrator.Models.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\obj\Release\Business.Interfaces.csprojResolveAssemblyReference.cache
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\obj\Release\Business.Interfaces.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\Business.Interfaces\obj\Release\Business.Interfaces.pdb

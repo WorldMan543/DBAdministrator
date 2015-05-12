@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<!-- Select a Product Configuration -->
+		<InstallShieldProductConfiguration>Express</InstallShieldProductConfiguration>
+		<!-- Select a Visual Studio Configuration / InstallShield Release -->
+		<Configuration>Debug</Configuration>
+		<InstallShieldRelease>$(Configuration)</InstallShieldRelease>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- The InstallShieldProject item selects the project to build -->
+		<InstallShieldProject Include="$(MSBuildProjectDirectory)\$(MSBuildProjectName).isl"/>
+		<!-- The InstallShieldReleaseFlags sets Release Flags -->
+		<!--<InstallShieldReleaseFlags Include=""/>-->
+		<!-- The InstallShieldMergeModulePath specifies what directories are
+		searched for Merge Modules -->
+		<!--<InstallShieldMergeModulePath Include=""/>-->
+	</ItemGroup>
+	<ItemGroup>
+		<!-- The ProjectReference items refer to any Visual Studio solutions you want to automatically probe for Project Output Groups.  -->
+	</ItemGroup>
+	<ItemGroup>
+		<!-- The TaggedOutputs items allow you to explicitly add extra files to output groups. Each item must include both Name and OutputGroup, as well as TargetPath metadata values. -->
+		<!--<TaggedOutputs Include="C:\My Test Exe.exe">
+			<Name>My Test Project</Name>
+			<OutputGroup>Primary output</OutputGroup>
+			<TargetPath>My Test Exe.exe</TargetPath>
+		</TaggedOutputs> -->
+	</ItemGroup>
+	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2013Limited\InstallShield.targets"/>
+	<ItemGroup>
+		<ProjectReference Include="..\Business.Implementation\Business.Implementation.csproj">
+			<Name>Business.Implementation</Name>
+			<Project>{D97F77B1-22C2-413E-BE4D-4B434F3E2253}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\Business.Interfaces\Business.Interfaces.csproj">
+			<Name>Business.Interfaces</Name>
+			<Project>{2EA01960-F893-4F19-926D-1BCC0787CB03}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\DBAdministrator\DBAdministrator.csproj">
+			<Name>DBAdministrator</Name>
+			<Project>{F819DC90-4A8F-47DD-96FE-255D76B519DF}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\DBAdministrator.Models\DBAdministrator.Models.csproj">
+			<Name>DBAdministrator.Models</Name>
+			<Project>{8FC6580E-D87D-4E68-88D6-B787495EE1F2}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\SMO.Implementation\SMO.Implementation.csproj">
+			<Name>SMO.Implementation</Name>
+			<Project>{4ED151CA-FF9F-4381-92DD-4B3017D0AEDB}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\SMO.Interfaces\SMO.Interfaces.csproj">
+			<Name>SMO.Interfaces</Name>
+			<Project>{38109650-859D-46E6-9E70-DC7B37AB3100}</Project>
+		</ProjectReference>
+	</ItemGroup>
+</Project>

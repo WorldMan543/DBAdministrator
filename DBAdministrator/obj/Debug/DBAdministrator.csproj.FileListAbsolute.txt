@@ -55,3 +55,8 @@ E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DialogBoxes\CreateTableDialogBox.baml
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\EditTablePage.baml
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\EditTablePage.g.cs
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Themes\Brushes.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Themes\Core.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Themes\Icons.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\App.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Themes\Core.g.cs

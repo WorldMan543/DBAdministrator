@@ -1,0 +1,5 @@
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator.Models\bin\Release\DBAdministrator.Models.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator.Models\bin\Release\DBAdministrator.Models.pdb
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator.Models\obj\Release\DBAdministrator.Models.csprojResolveAssemblyReference.cache
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator.Models\obj\Release\DBAdministrator.Models.dll
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator.Models\obj\Release\DBAdministrator.Models.pdb
