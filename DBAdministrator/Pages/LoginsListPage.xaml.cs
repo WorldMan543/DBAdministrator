@@ -23,9 +23,9 @@ namespace DBAdministrator.Pages
 	public partial class LoginsListPage : Page
 	{
 		public IList<LoginViewModel> Models { get; set; }
-		public LoginsListPage(IDataBaseAccessService dataBaseAccessService)
+		public LoginsListPage(IServerUserAccessService serverUserAccessService)
 		{
-			Models = dataBaseAccessService.GetLoginInfoList();
+			Models = serverUserAccessService.GetLoginInfoList();
 			InitializeComponent();
 		}
 	}

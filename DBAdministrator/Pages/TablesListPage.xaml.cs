@@ -22,15 +22,15 @@ namespace DBAdministrator.Pages
 	/// </summary>
 	public partial class TablesListPage : Page
 	{
-		private readonly IDataBaseAccessService _dataBaseAccessService;
+		private readonly ITableAccessService _tableAccessService;
 		private readonly string _database;
 		public IList<TableViewModel> Models { get; set; }
 
-		public TablesListPage(IDataBaseAccessService dataBaseAccessService, string database)
+		public TablesListPage(ITableAccessService tableAccessService, string database)
 		{
 			_database = database;
-			_dataBaseAccessService = dataBaseAccessService;
-			Models = dataBaseAccessService.GetTableInfoList(database);
+			_tableAccessService = tableAccessService;
+			Models = tableAccessService.GetTableInfoList(database);
 			InitializeComponent();
 		}
 
@@ -38,7 +38,7 @@ namespace DBAdministrator.Pages
 		{
 			if (TablesList.SelectedItems.Count == 0) return;
 			var item = (TableViewModel)TablesList.SelectedItems[0];
-			NavigationService.Navigate(new EditTablePage(_dataBaseAccessService, _database, item.TableName));
+			NavigationService.Navigate(new EditTablePage(_tableAccessService, _database, item.TableName));
 		}
 	}
 }

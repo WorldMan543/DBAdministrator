@@ -24,9 +24,9 @@ namespace DBAdministrator.Pages
 	public partial class StoredProceduresListPage : Page
 	{
 		public IList<StoredProcedureViewModel> Models { get; set; }
-		public StoredProceduresListPage(IDataBaseAccessService dataBaseAccessService, string database)
+		public StoredProceduresListPage(IStoredProcedureAccessService storedProcedureAccessService, string database)
 		{
-			Models = dataBaseAccessService.GetStoredProcedureInfoList(database);
+			Models = storedProcedureAccessService.GetStoredProcedureInfoList(database);
 			InitializeComponent();
 		}
 	}

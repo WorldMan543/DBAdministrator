@@ -51,6 +51,7 @@
     <Compile Include="Enums\TableType.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="RoleViewModel.cs" />
+    <Compile Include="ServerRoleViewModel.cs" />
     <Compile Include="StoredProcedureViewModel.cs" />
     <Compile Include="TableInfoViewModel.cs" />
     <Compile Include="TableViewModel.cs" />

@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Business.Implementation.BaseAccessService">
+    <Position X="14.25" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgBBAAAAAAAIAIAAAAAAAMAAIAAAABAAAAAAAAAIAAA=</HashCode>
+      <FileName>BaseAccessService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Business.Implementation.DatabaseAccessService">
+    <Position X="11.5" Y="10.75" Width="2" />
+    <InheritanceLine Type="Business.Implementation.BaseAccessService" ManuallyRouted="true">
+      <Path>
+        <Point X="15.375" Y="7.786" />
+        <Point X="15.375" Y="7.34" />
+        <Point X="14.09" Y="7.34" />
+        <Point X="14.09" Y="10.236" />
+        <Point X="12.5" Y="10.236" />
+        <Point X="12.5" Y="10.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAEAAAAEAAAAAACAAAAAAA=</HashCode>
+      <FileName>DatabaseAccessService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="databases" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Business.Implementation.DatabaseRoleAccessService">
+    <Position X="17" Y="7.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAICAAAAAAAAAACABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseRoleAccessService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="roles" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Business.Implementation.DatabaseUserAccessService">
+    <Position X="11.5" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAABAQAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAgA=</HashCode>
+      <FileName>DatabaseUserAccessService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="users" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Business.Implementation.ServerRoleAccessService">
+    <Position X="11.75" Y="7.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServerRoleAccessService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="roles" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Business.Implementation.ServerUserAccessService">
+    <Position X="17" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAIAA=</HashCode>
+      <FileName>ServerUserAccessService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="users" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Business.Implementation.StoredProcedureAccessService">
+    <Position X="14.25" Y="7.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ACAAJAAAAAAAAAIAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StoredProcedureAccessService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="storedProcedures" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Business.Implementation.TableAccessService">
+    <Position X="17" Y="10.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACABIBAAAAAAAAAAAEAAAAAAAAAAACCA=</HashCode>
+      <FileName>TableAccessService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="tables" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DBAdministrator.Models.UserViewModel">
+    <Position X="9" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DBAdministrator.Models.StoredProcedureViewModel">
+    <Position X="14.25" Y="10.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DBAdministrator.Models.DatabaseViewModel">
+    <Position X="9" Y="10.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DBAdministrator.Models.ServerRoleViewModel">
+    <Position X="9" Y="7.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DBAdministrator.Models.TableViewModel">
+    <Position X="19.75" Y="10.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DBAdministrator.Models.RoleViewModel">
+    <Position X="20" Y="7.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DBAdministrator.Models.LoginViewModel">
+    <Position X="20" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

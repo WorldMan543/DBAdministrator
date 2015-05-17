@@ -9,13 +9,18 @@ using System.Collections.Specialized;
 
 namespace Business.Interfaces
 {
-	public interface IDatabaseAccessService : IAccessService
+	public interface IDatabaseRoleAccessService : IAccessService
 	{
-		void DeleteDatabase(string databaseName);
+		
+		void DeleteDatabaseRole(string databaseName, string roleName);
 
-		IList<DatabaseViewModel> GetDatabaseInfoList();
+		IList<RoleViewModel> GetRoleInfoList(string database);
 
-		void CreateDatabase(string database);
+		//To do
+		void CreateDatabaseRole();
+
+		//To do
+		void EditDatabaseRole();
 
 	}
 }

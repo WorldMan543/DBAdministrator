@@ -23,9 +23,9 @@ namespace DBAdministrator.Pages
 	public partial class DatabaseUsersListPage : Page
 	{
 		public IList<UserViewModel> Models { get; set; }
-		public DatabaseUsersListPage(IDataBaseAccessService dataBaseAccessService, string database)
+		public DatabaseUsersListPage(IDatabaseUserAccessService databaseUserAccessService, string database)
 		{
-			Models = dataBaseAccessService.GetUserInfoList(database);
+			Models = databaseUserAccessService.GetUserInfoList(database);
 			InitializeComponent();
 		}
 	}

@@ -22,8 +22,15 @@ namespace DBAdministrator
 		protected override void OnStartup(StartupEventArgs e)
 		{
 			IUnityContainer container = new UnityContainer();
-			container.RegisterType<IDataBaseAccessService, DataBaseAccessService>();
+			container.RegisterType<IDatabaseAccessService, DatabaseAccessService>();
+			container.RegisterType<IDatabaseRoleAccessService, DatabaseRoleAccessService>();
+			container.RegisterType<IDatabaseUserAccessService, DatabaseUserAccessService>();
+			container.RegisterType<IServerRoleAccessService, ServerRoleAccessService>();
+			container.RegisterType<IServerUserAccessService, ServerUserAccessService>();
+			container.RegisterType<ITableAccessService, TableAccessService>();
+			container.RegisterType<IStoredProcedureAccessService, StoredProcedureAccessService>();
 			container.RegisterType<IServerConnect, ServerConnect>();
+
 
 			var mainWindow = container.Resolve<MainWindow>();
 			mainWindow.Show();

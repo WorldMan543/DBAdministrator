@@ -35,16 +35,34 @@ namespace DBAdministrator
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private readonly IDataBaseAccessService _dataBaseAccessService;
+		private readonly IDatabaseAccessService _databaseAccessService;
+		private readonly IDatabaseRoleAccessService _databaseRoleAccessService;
+		private readonly IDatabaseUserAccessService _databaseUserAccessService;
+		private readonly IServerRoleAccessService _serverRoleAccessService;
+		private readonly IServerUserAccessService _serverUserAccessService;
+		private readonly ITableAccessService _tableAccessService;
+		private readonly IStoredProcedureAccessService _storedProcedureAccessService;
+
 
 		public MainWindowViewModel ViewModel { get; set; }
 
-		public MainWindow([Dependency] IDataBaseAccessService dataBaseAccessService)
+		public MainWindow([Dependency] IDatabaseAccessService dataBaseAccessService,
+			[Dependency] IDatabaseRoleAccessService databaseRoleAccessService,
+			[Dependency] IDatabaseUserAccessService databaseUserAccessService,
+			[Dependency] IServerRoleAccessService serverRoleAccessService,
+			[Dependency] IServerUserAccessService serverUserAccessService,
+			[Dependency] ITableAccessService tableAccessService,
+			[Dependency] IStoredProcedureAccessService storedProcedureAccessService)
 		{
-			_dataBaseAccessService = dataBaseAccessService;
+			_databaseAccessService = dataBaseAccessService;
+			_databaseRoleAccessService = databaseRoleAccessService;
+			_databaseUserAccessService = databaseUserAccessService;
+			_serverRoleAccessService = serverRoleAccessService;
+			_serverUserAccessService = serverUserAccessService;
+			_tableAccessService = tableAccessService;
+			_storedProcedureAccessService = storedProcedureAccessService;
 			InitializeViewModel();
 			InitializeComponent();
-			
 		}
 
 		private void InitializeViewModel()
@@ -57,14 +75,14 @@ namespace DBAdministrator
 
 		private void ConnectMenuItem_OnClick(object sender, RoutedEventArgs e)
 		{
-			var dlg = new ConnectDialogBox(_dataBaseAccessService)
+			var dlg = new ConnectDialogBox(_databaseAccessService)
 			{
 				Owner = this
 			};
 			dlg.ShowDialog();
 			if (dlg.DialogResult.HasValue && dlg.DialogResult.Value)
 			{
-				_dataBaseAccessService.Connect(dlg.ViewModel);
+				_databaseAccessService.Connect(dlg.ViewModel);
 				ViewModel.StatusBar.ServerName = dlg.ViewModel.ServerName;
 				ViewModel.ServerStruct.Clear();
 				ViewModel.ServerStruct.Add(new ServerStructViewModel()
@@ -76,7 +94,7 @@ namespace DBAdministrator
 
 		private void MenuItem_OnClick(object sender, RoutedEventArgs e)
 		{
-			var tree = _dataBaseAccessService.GetDatabaseTree();
+			var tree = _databaseAccessService.GetDatabaseTree();
 			tree.ServerName = ViewModel.ServerStruct[0].ServerName;
 			ViewModel.ServerStruct.Clear();
 			ViewModel.ServerStruct.Add(tree);
@@ -84,13 +102,13 @@ namespace DBAdministrator
 
 		private void OpenEditor_OnClick(object sender, RoutedEventArgs e)
 		{
-			Frame.Navigate(new SQLEditorPage(_dataBaseAccessService));
+			Frame.Navigate(new SQLEditorPage(_databaseAccessService));
 		}
 
 		private void DeleteStoredProcedure_OnClick(object sender, RoutedEventArgs e)
 		{
 			var model = (StoredProcedureStructViewModel)((MenuItem)sender).DataContext;
-			_dataBaseAccessService.DeleteStoredProcedure(model.Database, model.ProcedureName);
+			_storedProcedureAccessService.DeleteStoredProcedure(model.Database, model.ProcedureName);
 		}
 
 		private void DeleteTable_OnClick(object sender, RoutedEventArgs e)
@@ -103,32 +121,32 @@ namespace DBAdministrator
 			var result = MessageBox.Show(messageBoxText, caption, button, icon);
 			if (result.HasFlag(MessageBoxResult.OK))
 			{
-				_dataBaseAccessService.DeleteTable(model.Database, model.TableName);
+				_tableAccessService.DeleteTable(model.Database, model.TableName);
 			}
 		}
 
 		private void DeleteDatabaseRole_OnClick(object sender, RoutedEventArgs e)
 		{
 			var model = (RoleStructViewModel)((MenuItem)sender).DataContext;
-			_dataBaseAccessService.DeleteDatabaseRole(model.Database, model.RoleName);
+			_databaseRoleAccessService.DeleteDatabaseRole(model.Database, model.RoleName);
 		}
 
 		private void DeleteDatabaseUser_OnClick(object sender, RoutedEventArgs e)
 		{
 			var model = (UserStructViewModel)((MenuItem)sender).DataContext;
-			_dataBaseAccessService.DeleteDatabaseUser(model.Database, model.UserName);
+			_databaseUserAccessService.DeleteDatabaseUser(model.Database, model.UserName);
 		}
 
 		private void DeleteDatabase_OnClick(object sender, RoutedEventArgs e)
 		{
 			var model = (DatabaseStructViewModel)((MenuItem)sender).DataContext;
-			_dataBaseAccessService.DeleteDatabase(model.DatabaseName);
+			_databaseAccessService.DeleteDatabase(model.DatabaseName);
 		}
 
 		private void OpenDatabaseList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			if (e.ClickCount != 2) return;
-			Frame.Navigate(new DatabasesListPage(_dataBaseAccessService));
+			Frame.Navigate(new DatabasesListPage(_databaseAccessService));
 		}
 
 		private void OpenRolesList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -136,8 +154,8 @@ namespace DBAdministrator
 			if (e.ClickCount != 2) return;
 			var model = ((RoleStructViewModel[])((TextBlock)sender).DataContext).First();
 			var page = !string.IsNullOrEmpty(model.Database) 
-				? (object)new DatabaseRolesListPage(_dataBaseAccessService, model.Database)
-				: new ServerRolesListPage(_dataBaseAccessService);
+				? (object)new DatabaseRolesListPage(_databaseRoleAccessService, model.Database)
+				: new ServerRolesListPage(_serverRoleAccessService);
 			Frame.Navigate(page);
 		}
 
@@ -145,14 +163,14 @@ namespace DBAdministrator
 		{
 			if (e.ClickCount != 2) return;
 			var model = ((TableStructViewModel[])((TextBlock)sender).DataContext).First();
-			Frame.Navigate(new TablesListPage(_dataBaseAccessService, model.Database));
+			Frame.Navigate(new TablesListPage(_tableAccessService, model.Database));
 		}
 
 		private void OpenProceduresList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			if (e.ClickCount != 2) return;
 			var model = ((StoredProcedureStructViewModel[])((TextBlock)sender).DataContext).First();
-			Frame.Navigate(new StoredProceduresListPage(_dataBaseAccessService, model.Database));
+			Frame.Navigate(new StoredProceduresListPage(_storedProcedureAccessService, model.Database));
 		}
 
 		private void OpenUsersList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -160,43 +178,43 @@ namespace DBAdministrator
 			if (e.ClickCount != 2) return;
 			var model = ((UserStructViewModel[])((TextBlock)sender).DataContext).First();
 			var page = !string.IsNullOrEmpty(model.Database)
-				? (object)new DatabaseUsersListPage(_dataBaseAccessService, model.Database)
-				: new LoginsListPage(_dataBaseAccessService);
+				? (object)new DatabaseUsersListPage(_databaseUserAccessService, model.Database)
+				: new LoginsListPage(_serverUserAccessService);
 			Frame.Navigate(page);
 		}
 
 		private void CreateDatabase_OnClick(object sender, RoutedEventArgs e)
 		{
-			var dialog = new CreateDatabaseDialogBox(_dataBaseAccessService);
+			var dialog = new CreateDatabaseDialogBox(_databaseAccessService);
 			dialog.ShowDialog();
 			if (dialog.DialogResult != null && dialog.DialogResult.Value)
 			{
-				Frame.Navigate(new TablesListPage(_dataBaseAccessService, dialog.DatabaseName));
+				Frame.Navigate(new TablesListPage(_tableAccessService, dialog.DatabaseName));
 			}
 		}
 
 		private void CreateTable_OnClick(object sender, RoutedEventArgs e)
 		{
 			var model = ((TableStructViewModel[])((MenuItem)sender).DataContext).First();
-			var dialog = new CreateTableDialogBox(_dataBaseAccessService, model.Database);
+			var dialog = new CreateTableDialogBox(_tableAccessService, model.Database);
 			dialog.ShowDialog();
 			if (dialog.DialogResult != null && dialog.DialogResult.Value)
 			{
-				//Frame.Navigate(new TablesListPage(_dataBaseAccessService, dialog.Table));
+				Frame.Navigate(new TablesListPage(_tableAccessService, dialog.TableName));
 			}
 		}
 
 		private void RenameTable_OnClick(object sender, RoutedEventArgs e)
 		{
 			var model = (TableStructViewModel)((MenuItem)sender).DataContext;
-			var dialog = new CreateTableDialogBox(_dataBaseAccessService, model.Database, model.TableName);
+			var dialog = new CreateTableDialogBox(_tableAccessService, model.Database, model.TableName);
 			dialog.ShowDialog();
 		}
 
 		private void ExportDatabase_OnClick(object sender, RoutedEventArgs e)
 		{
 			var names = ViewModel.ServerStruct.First().Databases.Select(d => d.DatabaseName).ToList();
-			var dlg = new ExportDatabaseDialogBox(_dataBaseAccessService, names)
+			var dlg = new ExportDatabaseDialogBox(_databaseAccessService, names)
 			{
 				Owner = this
 			};

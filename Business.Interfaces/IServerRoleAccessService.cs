@@ -9,13 +9,12 @@ using System.Collections.Specialized;
 
 namespace Business.Interfaces
 {
-	public interface IDatabaseAccessService : IAccessService
+	public interface IServerRoleAccessService : IAccessService
 	{
-		void DeleteDatabase(string databaseName);
+		
+		IList<RoleViewModel> GetRoleInfoList();
 
-		IList<DatabaseViewModel> GetDatabaseInfoList();
 
-		void CreateDatabase(string database);
 
 	}
 }

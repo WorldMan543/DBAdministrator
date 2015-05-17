@@ -22,10 +22,10 @@ namespace DBAdministrator.DialogBoxes
 	public partial class CreateDatabaseDialogBox : Window
 	{
 
-		private readonly IDataBaseAccessService _dataBaseAccessService;
+		private readonly IDatabaseAccessService _dataBaseAccessService;
 		public string DatabaseName { get; set; }
 
-		public CreateDatabaseDialogBox(IDataBaseAccessService dataBaseAccessService)
+		public CreateDatabaseDialogBox(IDatabaseAccessService dataBaseAccessService)
 		{
 			_dataBaseAccessService = dataBaseAccessService;
 			InitializeComponent();

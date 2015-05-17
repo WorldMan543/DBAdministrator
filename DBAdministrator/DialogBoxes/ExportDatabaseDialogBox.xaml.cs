@@ -24,7 +24,7 @@ namespace DBAdministrator.DialogBoxes
 	/// </summary>
 	public partial class ExportDatabaseDialogBox : Window
 	{
-		private readonly IDataBaseAccessService _dataBaseAccessService;
+		private readonly IDatabaseAccessService _dataBaseAccessService;
 
 		public string DatabaseName { get; set; }
 		public ObservableCollection<string> DatabasesName { get; set; } 
@@ -33,7 +33,7 @@ namespace DBAdministrator.DialogBoxes
 		public bool IncludeStoredProcedures { get; set; }
 		public bool IncludeDescriptiveComments { get; set; }
 
-		public ExportDatabaseDialogBox(IDataBaseAccessService dataBaseAccessService,
+		public ExportDatabaseDialogBox(IDatabaseAccessService dataBaseAccessService,
 			IList<string> databasesName)
 		{
 			_dataBaseAccessService = dataBaseAccessService;

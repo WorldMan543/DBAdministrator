@@ -9,13 +9,18 @@ using System.Collections.Specialized;
 
 namespace Business.Interfaces
 {
-	public interface IDatabaseAccessService : IAccessService
+	public interface IStoredProcedureAccessService : IAccessService
 	{
-		void DeleteDatabase(string databaseName);
 
-		IList<DatabaseViewModel> GetDatabaseInfoList();
+		void DeleteStoredProcedure(string databaseName, string procedureName);
 
-		void CreateDatabase(string database);
+		IList<StoredProcedureViewModel> GetStoredProcedureInfoList(string database);
+
+		//To do
+		void CreateStoredProcedure();
+
+		//To do
+		void EditStoredProcedure();
 
 	}
 }

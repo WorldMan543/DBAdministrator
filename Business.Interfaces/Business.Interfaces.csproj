@@ -39,7 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDataBaseAccessService.cs" />
+    <Compile Include="IAccessService.cs" />
+    <Compile Include="IDatabaseRoleAccessService.cs" />
+    <Compile Include="IDatabaseUserAccessService.cs" />
+    <Compile Include="IServerRoleAccessService.cs" />
+    <Compile Include="IServerUserAccessService.cs" />
+    <Compile Include="ITableAccessService.cs" />
+    <Compile Include="IStoredProcedureAccessService.cs" />
+    <Compile Include="IDatabaseAccessService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

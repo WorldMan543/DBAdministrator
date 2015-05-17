@@ -28,9 +28,9 @@ namespace DBAdministrator.Pages
 	/// </summary>
 	public partial class SQLEditorPage : Page
 	{
-		private readonly IDataBaseAccessService _dataBaseAccessService;
+		private readonly IDatabaseAccessService _dataBaseAccessService;
 
-		public SQLEditorPage(IDataBaseAccessService dataBaseAccessService)
+		public SQLEditorPage(IDatabaseAccessService dataBaseAccessService)
 		{
 			_dataBaseAccessService = dataBaseAccessService;
 			InitializeComponent();

@@ -23,9 +23,9 @@ namespace DBAdministrator.Pages
 	public partial class ServerRolesListPage : Page
 	{
 		public IList<RoleViewModel> Models { get; set; }
-		public ServerRolesListPage(IDataBaseAccessService dataBaseAccessService)
+		public ServerRolesListPage(IServerRoleAccessService serverRoleAccessService)
 		{
-			Models = dataBaseAccessService.GetRoleInfoList();
+			Models = serverRoleAccessService.GetRoleInfoList();
 			InitializeComponent();
 		}
 	}

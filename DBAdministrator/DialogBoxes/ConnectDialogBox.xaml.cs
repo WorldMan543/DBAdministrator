@@ -25,7 +25,7 @@ namespace DBAdministrator.DialogBoxes
 	{
 		public AuthenticationViewModel ViewModel { get; private set; }
 
-		public ConnectDialogBox(IDataBaseAccessService dataBaseAccessService)
+		public ConnectDialogBox(IDatabaseAccessService dataBaseAccessService)
 		{
 			ViewModel = dataBaseAccessService.GetAuthenticationViewModel();
 			InitializeComponent();

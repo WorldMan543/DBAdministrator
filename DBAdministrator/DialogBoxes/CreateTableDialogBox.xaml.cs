@@ -22,23 +22,23 @@ namespace DBAdministrator.DialogBoxes
 	public partial class CreateTableDialogBox : Window
 	{
 
-		private readonly IDataBaseAccessService _dataBaseAccessService;
+		private readonly ITableAccessService _tableAccessService;
 		private readonly string _database;
 		private readonly string _oldName;
 
 		public string TableName { get; set; }
-		public CreateTableDialogBox(IDataBaseAccessService dataBaseAccessService, string database)
+		public CreateTableDialogBox(ITableAccessService tableAccessService, string database)
 		{
 			_database = database;
-			_dataBaseAccessService = dataBaseAccessService;
+			_tableAccessService = tableAccessService;
 			InitializeComponent();
 		}
 
-		public CreateTableDialogBox(IDataBaseAccessService dataBaseAccessService, string database, string oldName)
+		public CreateTableDialogBox(ITableAccessService tableAccessService, string database, string oldName)
 		{
 			_database = database;
 			TableName = _oldName = oldName;
-			_dataBaseAccessService = dataBaseAccessService;
+			_tableAccessService = tableAccessService;
 			InitializeComponent();
 		}
 
@@ -47,11 +47,11 @@ namespace DBAdministrator.DialogBoxes
 			if (!this.IsValid()) return;
 			if (string.IsNullOrWhiteSpace(_oldName))
 			{
-				_dataBaseAccessService.CreateTable(_database, TableName);
+				_tableAccessService.CreateTable(_database, TableName);
 			}
 			else
 			{
-				_dataBaseAccessService.RenameTable(_database, _oldName, TableName);
+				_tableAccessService.RenameTable(_database, _oldName, TableName);
 			}
 			DialogResult = true;
 		}

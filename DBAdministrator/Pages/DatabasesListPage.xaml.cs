@@ -24,10 +24,10 @@ namespace DBAdministrator.Pages
 	/// </summary>
 	public partial class DatabasesListPage : Page
 	{
-		private readonly IDataBaseAccessService _dataBaseAccessService;
+		private readonly IDatabaseAccessService _dataBaseAccessService;
 		public IList<DatabaseViewModel> Models { get; set; }
 
-		public DatabasesListPage(IDataBaseAccessService dataBaseAccessService)
+		public DatabasesListPage(IDatabaseAccessService dataBaseAccessService)
 		{
 			_dataBaseAccessService = dataBaseAccessService;
 			Models = _dataBaseAccessService.GetDatabaseInfoList();

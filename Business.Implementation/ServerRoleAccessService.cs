@@ -20,33 +20,26 @@ using System.Collections.Specialized;
 
 namespace Business.Implementation
 {
-	public class DatabaseAccessService : BaseAccessService, IDatabaseAccessService
+	public class ServerRoleAccessService : BaseAccessService, IServerRoleAccessService
 	{
-		protected ICollection<DatabaseViewModel> databases;
+		protected ICollection<ServerRoleViewModel> roles;
 
-		public DatabaseAccessService(IServerConnect serverConnect)
+		public ServerRoleAccessService(IServerConnect serverConnect)
 			: base(serverConnect)
 		{
 		}
 
-		public void DeleteDatabase(string databaseName)
+		public IList<RoleViewModel> GetRoleInfoList()
 		{
-			_serverConnect.DeleteDatabase(databaseName);
-		}
-
-		public IList<DatabaseViewModel> GetDatabaseInfoList()
-		{
-			var databases = _serverConnect.GetDatabaseList();
-			return databases.Select(d => new DatabaseViewModel()
+			var roles = _serverConnect.GetServerRolesList();
+			return roles.Select(r => new RoleViewModel()
 			{
-				DatabaseName = d.Name,
-				Size = d.Size
-			}).ToList();
-		}
+				Name = r.Name,
+				CreateDate = r.DateCreated,
+				DateLastModified = r.DateModified,
+				Owner = r.Owner,
 
-		public void CreateDatabase(string database)
-		{
-			_serverConnect.CreateDatabase(database);
+			}).ToList();
 		}
 
 	}

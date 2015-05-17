@@ -22,14 +22,14 @@ namespace DBAdministrator.Pages
 	/// </summary>
 	public partial class EditTablePage : Page
 	{
-		private readonly IDataBaseAccessService _dataBaseAccessService;
+		private readonly ITableAccessService _tableAccessService;
 
 		public IList<TableInfoViewModel> ViewModel { get; set; } 
 
-		public EditTablePage(IDataBaseAccessService dataBaseAccessService, string databaseName, string tableName)
+		public EditTablePage(ITableAccessService tableAccessService, string databaseName, string tableName)
 		{
-			_dataBaseAccessService = dataBaseAccessService;
-			ViewModel = _dataBaseAccessService.GetTableInfo(databaseName, tableName);
+			_tableAccessService = tableAccessService;
+			ViewModel = _tableAccessService.GetTableSchema(databaseName, tableName);
 			InitializeComponent();
 		}
 

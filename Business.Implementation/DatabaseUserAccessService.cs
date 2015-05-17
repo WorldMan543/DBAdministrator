@@ -20,34 +20,37 @@ using System.Collections.Specialized;
 
 namespace Business.Implementation
 {
-	public class DatabaseAccessService : BaseAccessService, IDatabaseAccessService
+	public class DatabaseUserAccessService : BaseAccessService, IDatabaseUserAccessService
 	{
-		protected ICollection<DatabaseViewModel> databases;
-
-		public DatabaseAccessService(IServerConnect serverConnect)
+		protected ICollection<UserViewModel> users;
+		public DatabaseUserAccessService(IServerConnect serverConnect)
 			: base(serverConnect)
 		{
 		}
 
-		public void DeleteDatabase(string databaseName)
+		public void DeleteDatabaseUser(string databaseName, string userName)
 		{
-			_serverConnect.DeleteDatabase(databaseName);
+			_serverConnect.DeleteDatabaseUser(databaseName, userName);
 		}
 
-		public IList<DatabaseViewModel> GetDatabaseInfoList()
+		public IList<UserViewModel> GetUserInfoList(string database)
 		{
-			var databases = _serverConnect.GetDatabaseList();
-			return databases.Select(d => new DatabaseViewModel()
+			var users = _serverConnect.GetDatabaseUsersList(database);
+			return users.Select(u => new UserViewModel()
 			{
-				DatabaseName = d.Name,
-				Size = d.Size
+				Name = u.Name,
+				Permit = u.HasDBAccess
 			}).ToList();
 		}
 
-		public void CreateDatabase(string database)
+		public void CreateUser()
 		{
-			_serverConnect.CreateDatabase(database);
+			throw new System.NotImplementedException();
 		}
 
+		public void EditUser()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }
