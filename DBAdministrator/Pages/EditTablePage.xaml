@@ -20,8 +20,6 @@
 				<DataGridCheckBoxColumn Header="Identity" Binding="{Binding Identity}" />
 				<DataGridTextColumn Header="Name" Binding="{Binding Name}" />
 				<DataGridTextColumn Header="Data Type" Binding="{Binding DataType}" />
-				<!--<DataGridTextColumn Header="Size" Binding="{Binding MaxLength}" />
-				<DataGridTextColumn Header="Default" Binding="{Binding Default}" />-->
 				<DataGridCheckBoxColumn Header="Nullable" Binding="{Binding Nullable}" />
 			</DataGrid.Columns>
 		</DataGrid>

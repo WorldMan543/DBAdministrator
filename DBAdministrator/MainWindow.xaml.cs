@@ -25,6 +25,7 @@ using System.Collections.ObjectModel;
 using System.Net.NetworkInformation;
 using DBAdministrator.Models.TreeView;
 using DBAdministrator.Pages;
+using Microsoft.Win32;
 
 namespace DBAdministrator
 {
@@ -34,7 +35,6 @@ namespace DBAdministrator
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-
 		private readonly IDataBaseAccessService _dataBaseAccessService;
 
 		public MainWindowViewModel ViewModel { get; set; }
@@ -62,7 +62,7 @@ namespace DBAdministrator
 				Owner = this
 			};
 			dlg.ShowDialog();
-			if (dlg.DialogResult != null && dlg.DialogResult.Value)
+			if (dlg.DialogResult.HasValue && dlg.DialogResult.Value)
 			{
 				_dataBaseAccessService.Connect(dlg.ViewModel);
 				ViewModel.StatusBar.ServerName = dlg.ViewModel.ServerName;
@@ -192,7 +192,16 @@ namespace DBAdministrator
 			var dialog = new CreateTableDialogBox(_dataBaseAccessService, model.Database, model.TableName);
 			dialog.ShowDialog();
 		}
-		
+
+		private void ExportDatabase_OnClick(object sender, RoutedEventArgs e)
+		{
+			var names = ViewModel.ServerStruct.First().Databases.Select(d => d.DatabaseName).ToList();
+			var dlg = new ExportDatabaseDialogBox(_dataBaseAccessService, names)
+			{
+				Owner = this
+			};
+			dlg.ShowDialog();
+		}
 
 	}
 }

@@ -7,17 +7,23 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	  DataContext="{Binding RelativeSource={RelativeSource Self}}"
 	Title="StoredProceduresListPage">
-
-    <Grid>
-		<ListView ItemsSource="{Binding Models}" Margin="15">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding ProcedureName}" />
-					<GridViewColumn Header="Owner" Width="120" DisplayMemberBinding="{Binding Owner}" />
-					<GridViewColumn Header="Create Date" Width="120" DisplayMemberBinding="{Binding CreateDate}" />
-					<GridViewColumn Header="Type" Width="120" DisplayMemberBinding="{Binding Type}" />
-				</GridView>
-			</ListView.View>
-		</ListView>
+	<Grid Margin="15">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<Button Content="Create" Height="25" Width="80" Margin="0 0 0 0"/>
+			<Button Content="Edit" Height="25" Width="80" Margin="10 0 0 0" />
+			<Button Content="Delete" Height="25" Width="80" Margin="10 0 0 0"/>
+		</StackPanel >
+		<DataGrid IsReadOnly="True" ItemsSource="{Binding Models}" AutoGenerateColumns="False" Grid.Row="1">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Procedure Name" Binding="{Binding ProcedureName}" />
+				<DataGridTextColumn Header="Owner" Binding="{Binding Owner}" />
+				<DataGridTextColumn Header="Create Date" Binding="{Binding CreateDate}" />
+				<DataGridTextColumn Header="Type" Binding="{Binding Type}" />
+			</DataGrid.Columns>
+		</DataGrid>
 	</Grid>
 </Page>

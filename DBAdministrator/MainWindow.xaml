@@ -1,14 +1,14 @@
 ﻿<Window
 		xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:treeView="clr-namespace:DBAdministrator.Models.TreeView;assembly=DBAdministrator.Models"
 		xmlns:converters="clr-namespace:DBAdministrator.Converters"
 		mc:Ignorable="d" 
 		x:Class="DBAdministrator.MainWindow"
-        Title="MainWindow" Height="453" Width="855"
+		Title="Mssql Administrator" Height="453" Width="855"
 		DataContext="{Binding RelativeSource={RelativeSource Self}}"
 		Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
 	<Window.Resources>
@@ -19,8 +19,9 @@
 			<MenuItem Header="Database" Height="24">
 				<MenuItem Header="Connect" HorizontalAlignment="Left" Width="139.506666666667" Name="ConnectMenuItem" Click="ConnectMenuItem_OnClick"/>
 			</MenuItem>
-			<MenuItem Header="Database" Height="24" Click="MenuItem_OnClick"/>
 			<MenuItem Header="Editor" Height="24" Click="OpenEditor_OnClick"/>
+			<MenuItem Header="Export" Height="24" Click="ExportDatabase_OnClick"/>
+			<MenuItem Header="Import" Height="24" Click="MenuItem_OnClick"/>
 		</Menu>
 		<StatusBar DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Height="25">
 			<StatusBarItem>
@@ -29,7 +30,7 @@
 		</StatusBar>
 		<Grid DockPanel.Dock="Top">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="200"/>
 				<ColumnDefinition Width="Auto"></ColumnDefinition>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>

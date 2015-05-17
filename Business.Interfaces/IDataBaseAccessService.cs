@@ -5,6 +5,7 @@ using DBAdministrator.Models;
 using System.Net.Security;
 using System.Security;
 using DBAdministrator.Models.TreeView;
+using System.Collections.Specialized;
 
 namespace Business.Interfaces
 {
@@ -62,6 +63,11 @@ namespace Business.Interfaces
 		IList<DataGridViewModel> ExecuteQuery(string query, string databaseName);
 
 		IList<TableInfoViewModel> GetTableInfo(string database, string tableName);
+
+		StringCollection ExportData(string databaseName, bool includeTables,
+			bool includeTablesData, bool includeStoredProcedures,
+			bool includeDescriptiveComments);
+
 
 	}
 }

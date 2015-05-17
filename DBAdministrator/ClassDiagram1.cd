@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DBAdministrator.App">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.MainWindow" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIADAgEAAACABAAAACAAAgQEQIKAACAEAAAAgAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Converters.CustomMultiValueConvertor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\CustomMultiValueConvertor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DBAdministrator.DialogBoxes.ConnectDialogBox" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>DialogBoxes\ConnectDialogBox.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.DialogBoxes.CreateDatabaseDialogBox" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>DialogBoxes\CreateDatabaseDialogBox.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.DialogBoxes.CreateTableDialogBox" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAAEAAAAAAAAAAAAAAAAAAAAAAQAAAAAAQAAAAA=</HashCode>
+      <FileName>DialogBoxes\CreateTableDialogBox.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Helpers.WindowHelpers" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\WindowHelpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Pages.DatabaseRolesListPage" Collapsed="true">
+    <Position X="3.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Pages\DatabaseRolesListPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Pages.DatabasesListPage" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Pages\DatabasesListPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Pages.DatabaseUsersListPage" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Pages\DatabaseUsersListPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Pages.EditTablePage" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Pages\EditTablePage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Pages.LoginsListPage" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Pages\LoginsListPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Pages.ServerRolesListPage" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Pages\ServerRolesListPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Pages.SQLEditorPage" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAEAAAQAAAAAAAAAAAAAABAAAAAAAEQAAAAAAA=</HashCode>
+      <FileName>Pages\SQLEditorPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Pages.StoredProceduresListPage" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Pages\StoredProceduresListPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Pages.TablesListPage" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAABAAAAAAAAAAAAAQAAAgAAAAAAAA=</HashCode>
+      <FileName>Pages\TablesListPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Properties.Resources" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAQAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Properties.Settings" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBAdministrator.Validators.EmptyFiledValidationRule" Collapsed="true">
+    <Position X="8" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validators\EmptyFiledValidationRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -12,6 +12,7 @@ using Microsoft.SqlServer;
 using System.Diagnostics;
 using System.Security;
 using SMO.Interfaces;
+using System.Collections.Specialized;
 
 namespace SMO.Implementation
 {
@@ -165,7 +166,7 @@ namespace SMO.Implementation
 
 		#endregion
 
-		public DataTableCollection ExecuteQuery(string query, string databaseName = "AdventureWorks2014")
+		public DataTableCollection ExecuteQuery(string query, string databaseName = "ReportServer")
 		{
 			var database = _server.Databases[databaseName];
 			var result = database.ExecuteWithResults(query);
@@ -186,5 +187,52 @@ namespace SMO.Implementation
 			var database = _server.Databases[databaseName];
 			return database.Tables[tableName];
 		}
+
+		public StringCollection ExportData(string databaseName, bool includeTables,
+			bool includeTablesData, bool includeStoredProcedures,
+			bool includeDescriptiveComments)
+		{
+			ScriptingOptions options = new ScriptingOptions();
+			options.ScriptData = includeTablesData;
+			options.ScriptDrops = false;
+			options.EnforceScriptingOptions = true;
+			options.ScriptSchema = true;
+			options.IncludeHeaders = includeDescriptiveComments;
+			options.AppendToFile = true;
+			options.Indexes = true;
+			options.WithDependencies = true;
+			options.IncludeDatabaseContext = true;
+
+			Database myDatabase = _server.Databases[databaseName];
+			var DBScripts = myDatabase.Script();
+
+			if (includeTables)
+			{
+				foreach (Table table in myDatabase.Tables)
+				{
+					var tableScripts = table.EnumScript(options);
+					DBScripts.AddRange(tableScripts.ToArray());
+				}
+			}
+
+			if (includeStoredProcedures)
+			{
+				foreach (StoredProcedure procedure in myDatabase.StoredProcedures)
+				{
+					try
+					{
+						StringCollection procedureScripts = procedure.Script();
+						string[] arr = new string[procedureScripts.Count];
+						procedureScripts.CopyTo(arr, 0);
+						DBScripts.AddRange(arr);
+					}
+					catch (Exception) { }
+				}
+			}
+
+			return DBScripts;
+
+		}
+
 	}
 }

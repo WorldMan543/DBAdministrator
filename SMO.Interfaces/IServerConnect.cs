@@ -1,5 +1,6 @@
 ﻿using Microsoft.SqlServer.Management.Smo;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Security;
 
@@ -48,6 +49,11 @@ namespace SMO.Interfaces
 		void RenameTable(string database, string oldName, string newName);
 
 		DataTableCollection ExecuteQuery(string query, string databaseName = "AdventureWorks2014");
+
+		StringCollection ExportData(string databaseName, bool includeTables,
+			bool includeTablesData, bool includeStoredProcedures,
+			bool includeDescriptiveComments);
+
 
 	}
 }

@@ -16,6 +16,7 @@ using DBAdministrator.Models.Helpers;
 using DBAdministrator.Models.TreeView;
 using Microsoft.SqlServer.Management.Smo;
 using AuthenticationType = DBAdministrator.Models.Enums.AuthenticationType;
+using System.Collections.Specialized;
 
 namespace Business.Implementation
 {
@@ -280,5 +281,14 @@ namespace Business.Implementation
 				Default = c.DefaultConstraint != null ? c.DefaultConstraint.Text : null
 			}).ToList();
 		}
+
+		public StringCollection ExportData(string databaseName, bool includeTables,
+			bool includeTablesData, bool includeStoredProcedures,
+			bool includeDescriptiveComments)
+		{
+			return _serverConnect.ExportData(databaseName, includeTables, includeTablesData,
+				includeStoredProcedures, includeDescriptiveComments);
+		}
+
 	}
 }

@@ -9,20 +9,25 @@
 		DataContext="{Binding RelativeSource={RelativeSource Self}}">
 	<Grid Margin="15">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="37*"/>
-			<RowDefinition Height="233*"/>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
-		<Button Content="Edit" Grid.Row="0" Click="EditTable_OnClick"/>
-		<ListView ItemsSource="{Binding Models}" Grid.Row="1" Name="TablesList">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding TableName}" />
-					<GridViewColumn Header="Owner" Width="120" DisplayMemberBinding="{Binding Owner}" />
-					<GridViewColumn Header="Table Type" Width="120" DisplayMemberBinding="{Binding Type}" />
-					<GridViewColumn Header="Create Date" Width="120" DisplayMemberBinding="{Binding CreateDate}" />
-					<GridViewColumn Header="Row Count" Width="120" DisplayMemberBinding="{Binding RowsCount}" />
-				</GridView>
-			</ListView.View>
-		</ListView>
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<Button Content="Create" Height="25" Width="80" Margin="0 0 0 0"/>
+			<Button Content="Edit" Height="25" Width="80" Margin="10 0 0 0" Click="EditTable_OnClick"/>
+			<Button Content="Rename" Height="25" Width="80" Margin="10 0 0 0"/>
+			<Button Content="Delete" Height="25" Width="80" Margin="10 0 0 0"/>
+		</StackPanel >
+		<DataGrid Name="TablesList" IsReadOnly="True" ItemsSource="{Binding Models}" AutoGenerateColumns="False" Grid.Row="1"
+					SelectionMode="Single">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Table Name" Binding="{Binding TableName}" />
+				<DataGridTextColumn Header="Owner" Binding="{Binding Owner}" />
+				<DataGridTextColumn Header="Table Type" Binding="{Binding Type}" />
+				<DataGridTextColumn Header="Create Date" Binding="{Binding CreateDate}" />
+				<DataGridTextColumn Header="Row Count" Binding="{Binding RowsCount}" />
+			</DataGrid.Columns>
+		</DataGrid>
 	</Grid>
+	
 </Page>
