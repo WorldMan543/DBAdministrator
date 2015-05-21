@@ -11,6 +11,8 @@ namespace SMO.Interfaces
 		void Connect(string serverName);
 		void Connect(string serverName, string userName, SecureString password);
 
+		void Disconnect();
+
 		#region List
 
 		IList<string> GetServersList();
@@ -53,6 +55,8 @@ namespace SMO.Interfaces
 		StringCollection ExportData(string databaseName, bool includeTables,
 			bool includeTablesData, bool includeStoredProcedures,
 			bool includeDescriptiveComments);
+
+		string GetAlterStoredProcedure(string database, string procedure, string schema);
 
 
 	}

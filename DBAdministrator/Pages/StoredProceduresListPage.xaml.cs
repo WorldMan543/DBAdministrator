@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using Business.Interfaces;
 using DBAdministrator.Models;
 using DBAdministrator.Models.TreeView;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Reflection;
 
 namespace DBAdministrator.Pages
 {
@@ -23,11 +26,50 @@ namespace DBAdministrator.Pages
 	/// </summary>
 	public partial class StoredProceduresListPage : Page
 	{
-		public IList<StoredProcedureViewModel> Models { get; set; }
-		public StoredProceduresListPage(IStoredProcedureAccessService storedProcedureAccessService, string database)
+		private readonly IDatabaseAccessService _dataBaseAccessService;
+		private readonly IStoredProcedureAccessService _storedProcedureAccessService;
+		private readonly string _database;
+
+		private IList<StoredProcedureViewModel> _originalModels;
+		public ObservableCollection<StoredProcedureViewModel> Models { get; set; }
+		public StoredProceduresListPage(IStoredProcedureAccessService storedProcedureAccessService, IDatabaseAccessService dataBaseAccessService, string database)
 		{
-			Models = storedProcedureAccessService.GetStoredProcedureInfoList(database);
+			_storedProcedureAccessService = storedProcedureAccessService;
+			_dataBaseAccessService = dataBaseAccessService;
+			_database = database;
+			_originalModels = storedProcedureAccessService.GetStoredProcedureInfoList(database);
+			Models = new ObservableCollection<StoredProcedureViewModel>(_originalModels);
 			InitializeComponent();
+		}
+
+		private void Search_Click(object sender, RoutedEventArgs e)
+		{
+			var d = _originalModels.Where(p => p.ProcedureName.Contains(SearchValue.Text)).ToList();
+			Models.Clear();
+			d.ForEach(Models.Add);
+		}
+
+		private void Create_Click(object sender, RoutedEventArgs e)
+		{
+			string query = string.Empty;
+			using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("DBAdministrator.Resources.CreateProcedure.sql"))
+			{
+				if (stream == null) return;
+				using (var reader = new StreamReader(stream))
+				{
+					query = reader.ReadToEnd();
+				}
+			}
+			NavigationService.Navigate(new SQLEditorPage(_dataBaseAccessService, query, _database));
+		}
+
+		private void Edit_Click(object sender, RoutedEventArgs e)
+		{
+			if (ProcedureList.SelectedItems.Count == 0) return;
+			var item = (StoredProcedureViewModel)ProcedureList.SelectedItems[0];
+			var query = _storedProcedureAccessService.GetAlterStoredProcedure(_database, item.ProcedureName,
+				item.Owner);
+			NavigationService.Navigate(new SQLEditorPage(_dataBaseAccessService, query, _database));
 		}
 	}
 }

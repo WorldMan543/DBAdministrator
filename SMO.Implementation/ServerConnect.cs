@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Security;
 using SMO.Interfaces;
 using System.Collections.Specialized;
+using System.Text.RegularExpressions;
 
 namespace SMO.Implementation
 {
@@ -29,7 +30,8 @@ namespace SMO.Implementation
 			{
 				SqlExecutionModes = SqlExecutionModes.
 					ExecuteAndCaptureSql,
-				LoginSecure = true
+				LoginSecure = true,
+				AutoDisconnectMode = AutoDisconnectMode.NoAutoDisconnect
 			};
 			Connect();
 		}
@@ -40,7 +42,8 @@ namespace SMO.Implementation
 			{
 				SqlExecutionModes = SqlExecutionModes.
 					ExecuteAndCaptureSql,
-				LoginSecure = true
+				LoginSecure = true,
+				AutoDisconnectMode = AutoDisconnectMode.NoAutoDisconnect
 			};
 			Connect();
 		}
@@ -49,6 +52,12 @@ namespace SMO.Implementation
 		{
 			_serverConnection.Connect();
 			_server = new Server(_serverConnection);
+		}
+
+		public void Disconnect()
+		{
+			_serverConnection.Disconnect();
+			_server.ConnectionContext.Disconnect();
 		}
 
 		#endregion
@@ -166,7 +175,7 @@ namespace SMO.Implementation
 
 		#endregion
 
-		public DataTableCollection ExecuteQuery(string query, string databaseName = "ReportServer")
+		public DataTableCollection ExecuteQuery(string query, string databaseName)
 		{
 			var database = _server.Databases[databaseName];
 			var result = database.ExecuteWithResults(query);
@@ -232,6 +241,16 @@ namespace SMO.Implementation
 
 			return DBScripts;
 
+		}
+
+		public string GetAlterStoredProcedure(string databaseName, string procedureName, string schema)
+		{
+			var database = _server.Databases[databaseName];
+			var procedure = database.StoredProcedures[procedureName, schema];
+			var procedureScripts = procedure.Script();
+			if (procedureScripts.Count == 0) return string.Empty;
+			var createScript = procedureScripts[procedureScripts.Count - 1];
+			return Regex.Replace(createScript, "create procedure", "alter procedure", RegexOptions.IgnoreCase);
 		}
 
 	}

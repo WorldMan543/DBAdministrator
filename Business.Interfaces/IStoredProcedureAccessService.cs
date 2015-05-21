@@ -16,11 +16,7 @@ namespace Business.Interfaces
 
 		IList<StoredProcedureViewModel> GetStoredProcedureInfoList(string database);
 
-		//To do
-		void CreateStoredProcedure();
-
-		//To do
-		void EditStoredProcedure();
+		string GetAlterStoredProcedure(string database, string procedureName, string schema);
 
 	}
 }

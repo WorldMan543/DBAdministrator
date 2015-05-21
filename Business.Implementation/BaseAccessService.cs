@@ -49,6 +49,11 @@ namespace Business.Implementation
 			_serverConnect.Connect(authenticationModel.ServerName);
 		}
 
+		public void Disconnect()
+		{
+			_serverConnect.Disconnect();
+		}
+
 		public ServerStructViewModel GetDatabaseTree()
 		{
 			var databases = _serverConnect.GetDatabaseList();
@@ -114,7 +119,7 @@ namespace Business.Implementation
 
 		private IList<StoredProcedure> GetStoredProceduresList(string database)
 		{
-			return _serverConnect.GetStoredProceduresList(database);
+			return _serverConnect.GetStoredProceduresList(database).ToList();
 		}
 
 		private IList<DatabaseRole> GetDatabaseRolesList(string database)

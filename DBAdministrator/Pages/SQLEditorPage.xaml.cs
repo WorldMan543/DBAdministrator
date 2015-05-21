@@ -20,6 +20,7 @@ using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using Microsoft.Practices.ObjectBuilder2;
 using Microsoft.Win32;
+using System.Collections.ObjectModel;
 
 namespace DBAdministrator.Pages
 {
@@ -29,11 +30,24 @@ namespace DBAdministrator.Pages
 	public partial class SQLEditorPage : Page
 	{
 		private readonly IDatabaseAccessService _dataBaseAccessService;
+		public string DatabaseName { get; set; }
+		public ObservableCollection<string> DatabasesName { get; set; } 
 
 		public SQLEditorPage(IDatabaseAccessService dataBaseAccessService)
 		{
 			_dataBaseAccessService = dataBaseAccessService;
+			DatabasesName = new ObservableCollection<string>(_dataBaseAccessService.GetDatabaseList());
+			DatabaseName = DatabasesName.FirstOrDefault();
 			InitializeComponent();
+		}
+
+		public SQLEditorPage(IDatabaseAccessService dataBaseAccessService, string query, string databaseName)
+		{
+			_dataBaseAccessService = dataBaseAccessService;
+			DatabasesName = new ObservableCollection<string>(_dataBaseAccessService.GetDatabaseList());
+			DatabaseName = DatabasesName.Contains(databaseName) ? databaseName : DatabasesName.FirstOrDefault();
+			InitializeComponent(); 
+			Editor.Text = query;
 		}
 
 		private void EnableSqlHighlighting()
@@ -84,7 +98,7 @@ namespace DBAdministrator.Pages
 
 		private void ExecuteQuery_OnClick(object sender, RoutedEventArgs e)
 		{
-			var viewModels = _dataBaseAccessService.ExecuteQuery(Editor.Text, "AdventureWorks2014");
+			var viewModels = _dataBaseAccessService.ExecuteQuery(Editor.Text, DatabaseName);
 			foreach (var viewModel in viewModels)
 			{
 				var item = new TabItem {Header = "Request 1"};

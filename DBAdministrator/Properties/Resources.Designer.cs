@@ -61,6 +61,25 @@ namespace DBAdministrator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SET ANSI_NULLS ON
+        ///SET QUOTED_IDENTIFIER ON
+        ///-- =============================================
+        ///-- Author:		&lt;Author,,Name&gt;
+        ///-- Create date: &lt;Create Date,,&gt;
+        ///-- Description:	&lt;Description,,&gt;
+        ///-- =============================================
+        ///CREATE PROCEDURE &lt;Procedure_Name, sysname, ProcedureName&gt; 
+        ///	-- Add the parameters for the stored procedure here
+        ///	&lt;@Param1, sysname, @p1&gt; &lt;Datatype_For_Param1, , int&gt; = &lt;Default_Value_For_Param1, , 0&gt;, 
+        ///	&lt;@Param2, sysname, @p2&gt; &lt;Datatype_For_Param2, , int&gt; = &lt;Default_Val [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string CreateProcedure {
+            get {
+                return ResourceManager.GetString("CreateProcedure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] SQL {

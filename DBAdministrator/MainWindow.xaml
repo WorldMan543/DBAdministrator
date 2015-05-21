@@ -18,10 +18,11 @@
 		<Menu Height="Auto" DockPanel.Dock="Top">
 			<MenuItem Header="Database" Height="24">
 				<MenuItem Header="Connect" HorizontalAlignment="Left" Width="139.506666666667" Name="ConnectMenuItem" Click="ConnectMenuItem_OnClick"/>
+				<MenuItem Header="Logout" HorizontalAlignment="Left" Width="139.506666666667" Name="LogoutMenuItem" Click="LogoutMenuItem_Click"/>
 			</MenuItem>
 			<MenuItem Header="Editor" Height="24" Click="OpenEditor_OnClick"/>
 			<MenuItem Header="Export" Height="24" Click="ExportDatabase_OnClick"/>
-			<MenuItem Header="Import" Height="24" Click="MenuItem_OnClick"/>
+			<!--<MenuItem Header="Import" Height="24" Click="MenuItem_OnClick"/>-->
 		</Menu>
 		<StatusBar DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Height="25">
 			<StatusBarItem>
@@ -134,7 +135,10 @@
 			</TreeView>
 			<GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="5"
 					VerticalAlignment="Stretch" HorizontalAlignment="Center" Background="{DynamicResource BackgroundHoverSubmenu}" />
-			<Frame Grid.Column="2" Name="Frame"/>
+			<Grid Grid.Column="2" Name="Grid">
+				<Frame Name="Frame"/>
+			</Grid>
+			
 		</Grid>
 	</DockPanel>
 </Window>

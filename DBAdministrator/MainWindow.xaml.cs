@@ -42,7 +42,7 @@ namespace DBAdministrator
 		private readonly IServerUserAccessService _serverUserAccessService;
 		private readonly ITableAccessService _tableAccessService;
 		private readonly IStoredProcedureAccessService _storedProcedureAccessService;
-
+		private bool isConnected = false;
 
 		public MainWindowViewModel ViewModel { get; set; }
 
@@ -89,7 +89,16 @@ namespace DBAdministrator
 				{
 					ServerName = dlg.ViewModel.ServerName
 				});
+				var tree = _databaseAccessService.GetDatabaseTree();
+				tree.ServerName = ViewModel.ServerStruct[0].ServerName;
+				ViewModel.ServerStruct.Clear();
+				ViewModel.ServerStruct.Add(tree);
+				Frame = new Frame();
+				Grid.Children.Clear();
+				Grid.Children.Add(Frame);
+				isConnected = true;
 			}
+
 		}
 
 		private void MenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -102,6 +111,7 @@ namespace DBAdministrator
 
 		private void OpenEditor_OnClick(object sender, RoutedEventArgs e)
 		{
+			if (!isConnected) return;
 			Frame.Navigate(new SQLEditorPage(_databaseAccessService));
 		}
 
@@ -170,7 +180,7 @@ namespace DBAdministrator
 		{
 			if (e.ClickCount != 2) return;
 			var model = ((StoredProcedureStructViewModel[])((TextBlock)sender).DataContext).First();
-			Frame.Navigate(new StoredProceduresListPage(_storedProcedureAccessService, model.Database));
+			Frame.Navigate(new StoredProceduresListPage(_storedProcedureAccessService, _databaseAccessService, model.Database));
 		}
 
 		private void OpenUsersList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -213,12 +223,25 @@ namespace DBAdministrator
 
 		private void ExportDatabase_OnClick(object sender, RoutedEventArgs e)
 		{
+			if (!isConnected) return;
 			var names = ViewModel.ServerStruct.First().Databases.Select(d => d.DatabaseName).ToList();
 			var dlg = new ExportDatabaseDialogBox(_databaseAccessService, names)
 			{
 				Owner = this
 			};
 			dlg.ShowDialog();
+		}
+
+		private void LogoutMenuItem_Click(object sender, RoutedEventArgs e)
+		{
+			if (!isConnected) return;
+			_databaseAccessService.Disconnect();
+			isConnected = false;
+			Frame = new Frame();
+			Grid.Children.Clear();
+			Grid.Children.Add(Frame);
+			ViewModel.StatusBar.ServerName = string.Empty;
+			ViewModel.ServerStruct.Clear();
 		}
 
 	}

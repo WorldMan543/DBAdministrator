@@ -38,7 +38,7 @@ namespace Business.Implementation
 		public IList<StoredProcedureViewModel> GetStoredProcedureInfoList(string database)
 		{
 			var procedures = _serverConnect.GetStoredProceduresList(database);
-			return procedures.Select(p => new StoredProcedureViewModel()
+			return procedures.AsQueryable().Select(p => new StoredProcedureViewModel()
 			{
 				ProcedureName = p.Name,
 				CreateDate = p.CreateDate,
@@ -48,17 +48,10 @@ namespace Business.Implementation
 			}).ToList();
 		}
 
-
-
-		public void EditStoredProcedure()
+		public string GetAlterStoredProcedure(string database, string procedureName, string schema)
 		{
-			throw new NotImplementedException();
+			return _serverConnect.GetAlterStoredProcedure(database, procedureName, schema);
 		}
 
-
-		public void CreateStoredProcedure()
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

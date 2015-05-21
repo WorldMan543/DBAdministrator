@@ -13,6 +13,8 @@ namespace Business.Interfaces
 	{
 		void Connect(AuthenticationViewModel authenticationModel);
 
+		void Disconnect();
+
 		AuthenticationViewModel GetAuthenticationViewModel();
 
 		ServerStructViewModel GetDatabaseTree();

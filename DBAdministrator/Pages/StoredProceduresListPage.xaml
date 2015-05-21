@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="225" d:DesignWidth="640"
 	  DataContext="{Binding RelativeSource={RelativeSource Self}}"
 	Title="StoredProceduresListPage">
 	<Grid Margin="15">
@@ -13,11 +13,13 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<StackPanel Grid.Row="0" Orientation="Horizontal">
-			<Button Content="Create" Height="25" Width="80" Margin="0 0 0 0"/>
-			<Button Content="Edit" Height="25" Width="80" Margin="10 0 0 0" />
+			<Button Content="Search" Height="25" Width="80" Margin="0 0 0 0" Click="Search_Click"/>
+			<TextBox Name="SearchValue" Height="25" Width="162" Margin="10,8,0,7"></TextBox>
+			<Button Content="Create" Height="25" Width="80" Margin="10 0 0 0" Click="Create_Click"/>
+			<Button Content="Edit" Height="25" Width="80" Margin="10 0 0 0" Click="Edit_Click"/>
 			<Button Content="Delete" Height="25" Width="80" Margin="10 0 0 0"/>
 		</StackPanel >
-		<DataGrid IsReadOnly="True" ItemsSource="{Binding Models}" AutoGenerateColumns="False" Grid.Row="1">
+		<DataGrid Name="ProcedureList" IsReadOnly="True" ItemsSource="{Binding Models}" AutoGenerateColumns="False" Grid.Row="1" SelectionMode="Single">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Procedure Name" Binding="{Binding ProcedureName}" />
 				<DataGridTextColumn Header="Owner" Binding="{Binding Owner}" />

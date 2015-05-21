@@ -17,5 +17,7 @@ namespace Business.Interfaces
 
 		void CreateDatabase(string database);
 
+		IList<string> GetDatabaseList();
+
 	}
 }

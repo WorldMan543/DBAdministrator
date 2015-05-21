@@ -34,6 +34,12 @@ namespace Business.Implementation
 			_serverConnect.DeleteDatabase(databaseName);
 		}
 
+		public IList<string> GetDatabaseList()
+		{
+			var databases = _serverConnect.GetDatabaseList();
+			return databases.Select(d => d.Name).ToList();
+		}
+
 		public IList<DatabaseViewModel> GetDatabaseInfoList()
 		{
 			var databases = _serverConnect.GetDatabaseList();

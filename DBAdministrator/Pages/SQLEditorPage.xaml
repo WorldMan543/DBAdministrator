@@ -9,12 +9,17 @@
 	  DataContext="{Binding RelativeSource={RelativeSource Self}}"
 	Title="SQLEditorPage">
 	<DockPanel>
-		<ToolBar DockPanel.Dock="Top" Height="28">
+		<ToolBar DockPanel.Dock="Top" Height="34">
 			<Button Content="Load" Click="LoadQuery_OnClick"/>
 			<Separator/>
 			<Button Content="Save" Click="SaveQuery_OnClick"/>
 			<Separator/>
 			<Button Content="Execute" Click="ExecuteQuery_OnClick"/>
+			<Separator/>
+			<Label Margin="0 2 0 0" Foreground="White">Database: </Label>
+			<ComboBox ItemsSource="{Binding DatabasesName}"
+						SelectedValue="{Binding DatabaseName}"  Width="150">
+			</ComboBox >
 		</ToolBar>
 		<TabControl Name="TabControl1" Height="150" DockPanel.Dock="Bottom">
 			<!--<DataGrid Name="DataGrid1" IsReadOnly="True"/>-->
