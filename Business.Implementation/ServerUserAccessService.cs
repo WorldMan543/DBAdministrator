@@ -17,6 +17,7 @@ using DBAdministrator.Models.TreeView;
 using Microsoft.SqlServer.Management.Smo;
 using AuthenticationType = DBAdministrator.Models.Enums.AuthenticationType;
 using System.Collections.Specialized;
+using System.Security;
 
 namespace Business.Implementation
 {
@@ -28,6 +29,12 @@ namespace Business.Implementation
 		public ServerUserAccessService(IServerConnect serverConnect)
 			: base(serverConnect) 
 		{
+		}
+
+		public IList<string> GetLoginsName()
+		{
+			var logins = _serverConnect.GetLoginsList();
+			return logins.Select(l => l.Name).ToList();
 		}
 
 
@@ -51,9 +58,9 @@ namespace Business.Implementation
 			throw new NotImplementedException();
 		}
 
-		public void CreateServerUser()
+		public void CreateServerUser(int loginType, string loginName, string password)
 		{
-			throw new NotImplementedException();
+			_serverConnect.CreateLogin(loginType, loginName, password);
 		}
 	}
 }

@@ -44,9 +44,9 @@ namespace DBAdministrator.Pages
 
 		private void Search_Click(object sender, RoutedEventArgs e)
 		{
-			var d = _originalModels.Where(p => p.ProcedureName.Contains(SearchValue.Text)).ToList();
+			var results = _originalModels.Where(p => p.ProcedureName.Contains(SearchValue.Text)).ToList();
 			Models.Clear();
-			d.ForEach(Models.Add);
+			results.ForEach(Models.Add);
 		}
 
 		private void Create_Click(object sender, RoutedEventArgs e)

@@ -16,5 +16,7 @@ namespace Business.Interfaces
 
 		IList<UserViewModel> GetUserInfoList(string database);
 
+		void CreateDatabaseUser(string databaseName, string userName, string loginName);
+
 	}
 }

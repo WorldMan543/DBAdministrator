@@ -253,5 +253,31 @@ namespace SMO.Implementation
 			return Regex.Replace(createScript, "create procedure", "alter procedure", RegexOptions.IgnoreCase);
 		}
 
+
+
+		public void CreateLogin(int loginType, string loginName, string password)
+		{
+			var login = new Login(_server, loginName);
+			if (loginType == 0)
+			{
+				login.LoginType = LoginType.WindowsUser;
+				login.Create();
+			}
+			else
+			{
+				login.LoginType = LoginType.SqlLogin;
+				login.Create(password);
+			}
+		}
+
+		public void CreateDatabaseUser(string databaseName, string userName, string loginName)
+		{
+			var database = _server.Databases[databaseName];
+			var user = new User(database, userName)
+			{
+				Login = loginName
+			};
+			user.Create();
+		}
 	}
 }

@@ -94,6 +94,12 @@
     <Compile Include="DialogBoxes\CreateDatabaseDialogBox.xaml.cs">
       <DependentUpon>CreateDatabaseDialogBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogBoxes\CreateDatabaseUser.xaml.cs">
+      <DependentUpon>CreateDatabaseUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\CreateServerUser.xaml.cs">
+      <DependentUpon>CreateServerUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DialogBoxes\CreateTableDialogBox.xaml.cs">
       <DependentUpon>CreateTableDialogBox.xaml</DependentUpon>
     </Compile>
@@ -109,6 +115,9 @@
     </Compile>
     <Compile Include="Pages\DatabaseUsersListPage.xaml.cs">
       <DependentUpon>DatabaseUsersListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditServerRole.xaml.cs">
+      <DependentUpon>EditServerRole.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EditTablePage.xaml.cs">
       <DependentUpon>EditTablePage.xaml</DependentUpon>
@@ -134,6 +143,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DialogBoxes\CreateDatabaseDialogBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogBoxes\CreateDatabaseUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogBoxes\CreateServerUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\DatabaseUsersListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditServerRole.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

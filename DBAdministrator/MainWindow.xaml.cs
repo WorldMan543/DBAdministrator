@@ -188,7 +188,7 @@ namespace DBAdministrator
 			if (e.ClickCount != 2) return;
 			var model = ((UserStructViewModel[])((TextBlock)sender).DataContext).First();
 			var page = !string.IsNullOrEmpty(model.Database)
-				? (object)new DatabaseUsersListPage(_databaseUserAccessService, model.Database)
+				? (object)new DatabaseUsersListPage(_databaseUserAccessService, _serverUserAccessService, model.Database)
 				: new LoginsListPage(_serverUserAccessService);
 			Frame.Navigate(page);
 		}

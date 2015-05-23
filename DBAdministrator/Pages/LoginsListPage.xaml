@@ -7,17 +7,24 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	  DataContext="{Binding RelativeSource={RelativeSource Self}}"
 	Title="LoginsListPage">
-    <Grid>
-		<ListView ItemsSource="{Binding Models}" Margin="15">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
-					<GridViewColumn Header="Default Database" Width="120" DisplayMemberBinding="{Binding DefaultDatabase}" />
-					<GridViewColumn Header="Language" Width="120" DisplayMemberBinding="{Binding Language}" />
-					<GridViewColumn Header="Login Type" Width="120" DisplayMemberBinding="{Binding LoginType}" />
-					<GridViewColumn Header="Server Access" Width="120" DisplayMemberBinding="{Binding ServerAccess}" />
-				</GridView>
-			</ListView.View>
-		</ListView>
+	<Grid Margin="15">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<Button Content="Search" Height="25" Width="80" Margin="0 0 0 0" Click="Search_Click"/>
+			<TextBox Name="SearchValue" Height="25" Width="162" Margin="10,8,0,7"></TextBox>
+			<Button Content="Create" Height="25" Width="80" Margin="10 0 0 0" Click="Create_Click"/>
+		</StackPanel >
+		<DataGrid Name="ProcedureList" IsReadOnly="True" ItemsSource="{Binding Models}" AutoGenerateColumns="False" Grid.Row="1" SelectionMode="Single">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+				<DataGridTextColumn Header="Default Database" Binding="{Binding DefaultDatabase}" />
+				<DataGridTextColumn Header="Language" Binding="{Binding Language}" />
+				<DataGridTextColumn Header="Login Type" Binding="{Binding LoginType}" />
+				<DataGridTextColumn Header="Server Access" Binding="{Binding ServerAccess}" />
+			</DataGrid.Columns>
+		</DataGrid>
 	</Grid>
 </Page>

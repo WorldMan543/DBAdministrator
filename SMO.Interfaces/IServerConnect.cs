@@ -58,6 +58,9 @@ namespace SMO.Interfaces
 
 		string GetAlterStoredProcedure(string database, string procedure, string schema);
 
+		void CreateLogin(int loginType, string loginName, string password);
+
+		void CreateDatabaseUser(string databaseName, string userName, string loginName);
 
 	}
 }

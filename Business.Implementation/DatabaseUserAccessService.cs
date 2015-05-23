@@ -43,9 +43,9 @@ namespace Business.Implementation
 			}).ToList();
 		}
 
-		public void CreateUser()
+		public void CreateDatabaseUser(string databaseName, string userName, string loginName)
 		{
-			throw new System.NotImplementedException();
+			_serverConnect.CreateDatabaseUser(databaseName, userName, loginName);
 		}
 
 		public void EditUser()

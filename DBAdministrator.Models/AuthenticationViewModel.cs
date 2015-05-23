@@ -7,7 +7,7 @@ namespace DBAdministrator.Models
 	{
 		private string _serverName;
 		private string _userName;
-		private SecureString _password;
+		private string _password;
 
 		public IList<KeyValuePair<int, string>> AuthenticationTypes { get; set; }
 
@@ -27,7 +27,7 @@ namespace DBAdministrator.Models
 			set { _userName = value; NotifyPropertyChanged("UserName"); }
 		}
 
-		public SecureString Password
+		public string Password
 		{
 			get { return _password; }
 			set { _password = value; NotifyPropertyChanged("Password"); }

@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Business.Interfaces;
 using DBAdministrator.Models;
+using System.Collections.ObjectModel;
+using DBAdministrator.DialogBoxes;
 
 namespace DBAdministrator.Pages
 {
@@ -22,11 +24,32 @@ namespace DBAdministrator.Pages
 	/// </summary>
 	public partial class LoginsListPage : Page
 	{
-		public IList<LoginViewModel> Models { get; set; }
+		private readonly IServerUserAccessService _serverUserAccessService;
+
+		private IList<LoginViewModel> _originalModels;
+		public ObservableCollection<LoginViewModel> Models { get; set; }
 		public LoginsListPage(IServerUserAccessService serverUserAccessService)
 		{
-			Models = serverUserAccessService.GetLoginInfoList();
+			_serverUserAccessService = serverUserAccessService;
+			_originalModels = serverUserAccessService.GetLoginInfoList();
+			Models = new ObservableCollection<LoginViewModel>(_originalModels);
 			InitializeComponent();
+		}
+
+		private void Search_Click(object sender, RoutedEventArgs e)
+		{
+			var results = _originalModels.Where(p => p.Name.Contains(SearchValue.Text)).ToList();
+			Models.Clear();
+			results.ForEach(Models.Add);
+		}
+
+		private void Create_Click(object sender, RoutedEventArgs e)
+		{
+			var dlg = new CreateServerUser(_serverUserAccessService);
+			dlg.ShowDialog();
+			if (dlg.DialogResult.HasValue && dlg.DialogResult.Value)
+			{
+			}
 		}
 	}
 }

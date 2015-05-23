@@ -16,7 +16,9 @@ namespace Business.Interfaces
 
 		void EditServerUser();
 
-		void CreateServerUser();
+		void CreateServerUser(int loginType, string loginName, string password);
+
+		IList<string> GetLoginsName();
 
 	}
 }
