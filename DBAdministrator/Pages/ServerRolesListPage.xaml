@@ -7,17 +7,23 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	  DataContext="{Binding RelativeSource={RelativeSource Self}}"
 	Title="ServerRolesListPage">
-
-    <Grid>
-		<ListView ItemsSource="{Binding Models}" Margin="15">
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
-					<GridViewColumn Header="Owner" Width="120" DisplayMemberBinding="{Binding Owner}" />
-					<GridViewColumn Header="Create Date" Width="120" DisplayMemberBinding="{Binding CreateDate}" />
-					<GridViewColumn Header="Date Last Modified" Width="120" DisplayMemberBinding="{Binding DateLastModified}" />
-				</GridView>
-			</ListView.View>
-		</ListView>
+	<Grid Margin="15">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<Button Content="Search" Height="25" Width="80" Margin="0 0 0 0" Click="Search_Click"/>
+			<TextBox Name="SearchValue" Height="25" Width="162" Margin="10,8,0,7"></TextBox>
+			<Button Content="Edit" Height="25" Width="80" Margin="10 0 0 0" Click="Edit_Click"/>
+		</StackPanel >
+		<DataGrid Name="RolesList" IsReadOnly="True" ItemsSource="{Binding Models}" AutoGenerateColumns="False" Grid.Row="1" SelectionMode="Single">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+				<DataGridTextColumn Header="Owner" Binding="{Binding Owner}" />
+				<DataGridTextColumn Header="Create Date" Binding="{Binding CreateDate}" />
+				<DataGridTextColumn Header="Date Last Modified" Binding="{Binding DateLastModified}" />
+			</DataGrid.Columns>
+		</DataGrid>
 	</Grid>
 </Page>

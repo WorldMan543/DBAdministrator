@@ -62,5 +62,7 @@ namespace SMO.Interfaces
 
 		void CreateDatabaseUser(string databaseName, string userName, string loginName);
 
+		void UpdateRole(string roleName, IEnumerable<string> loginsWithRole, IEnumerable<string> loginsWithoutRole);
+
 	}
 }

@@ -5,9 +5,36 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-	Title="EditServerRole">
-
-    <Grid>
-        
-    </Grid>
+		DataContext="{Binding RelativeSource={RelativeSource Self}}"
+		Title="Edit Server Role">
+	<Grid Margin="0 5 0 0">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="25"/>
+			<RowDefinition Height="25"/>
+			<RowDefinition Height="23*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Button Content="Save" Grid.ColumnSpan="2" Width="100" Margin="12 0 0 0" HorizontalAlignment="Left" Click="Button_Click"/>
+		<Label Foreground="White" Margin="8 0 0 0" Grid.Row="1">Users with role:</Label>
+		<ListBox Grid.Column="0" Margin="10 0 10 10" AllowDrop="True" ItemsSource="{Binding UsersWithRole}"
+				 PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown" Drop="ListBox_Drop" Grid.Row="2">
+			<ListBox.ItemContainerStyle>
+				<Style TargetType="ListBoxItem">
+					<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+				</Style>
+			</ListBox.ItemContainerStyle>
+		</ListBox>
+		<Label Foreground="White" Margin="8 0 0 0" Grid.Column="1" Grid.Row="1">Users without role:</Label>
+		<ListBox Grid.Column="1" Margin="10 0 10 10" AllowDrop="True" ItemsSource="{Binding UsersWithoutRole}"
+				 PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown" Drop="ListBox_Drop" Grid.Row="2">
+			<ListBox.ItemContainerStyle>
+				<Style TargetType="ListBoxItem">
+					<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+				</Style>
+			</ListBox.ItemContainerStyle>
+		</ListBox>
+	</Grid>
 </Page>

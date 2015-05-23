@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Business.Interfaces;
 using DBAdministrator.Models;
+using System.Collections.ObjectModel;
 
 namespace DBAdministrator.Pages
 {
@@ -22,11 +23,29 @@ namespace DBAdministrator.Pages
 	/// </summary>
 	public partial class ServerRolesListPage : Page
 	{
-		public IList<RoleViewModel> Models { get; set; }
+		private IList<RoleViewModel> _originalModels;
+		private IServerRoleAccessService _serverRoleAccessService;
+		public ObservableCollection<RoleViewModel> Models { get; set; }
 		public ServerRolesListPage(IServerRoleAccessService serverRoleAccessService)
 		{
-			Models = serverRoleAccessService.GetRoleInfoList();
+			_serverRoleAccessService = serverRoleAccessService;
+			_originalModels = serverRoleAccessService.GetRoleInfoList();
+			Models = new ObservableCollection<RoleViewModel>(_originalModels);
 			InitializeComponent();
+		}
+
+		private void Search_Click(object sender, RoutedEventArgs e)
+		{
+			var results = _originalModels.Where(p => p.Name.Contains(SearchValue.Text)).ToList();
+			Models.Clear();
+			results.ForEach(Models.Add);
+		}
+
+		private void Edit_Click(object sender, RoutedEventArgs e)
+		{
+			if (RolesList.SelectedItems.Count == 0) return;
+			var item = (RoleViewModel)RolesList.SelectedItems[0];
+			NavigationService.Navigate(new EditServerRole(_serverRoleAccessService, item.Name));
 		}
 	}
 }

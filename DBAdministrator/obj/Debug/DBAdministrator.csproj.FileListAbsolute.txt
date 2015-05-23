@@ -66,3 +66,5 @@ E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DialogBoxes\CreateServerUser.baml
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DialogBoxes\CreateDatabaseUser.g.cs
 E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\DialogBoxes\CreateDatabaseUser.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\EditServerRole.baml
+E:\BSUIR\5 курс\Диплом\Прога\DBAdministrator\DBAdministrator\obj\Debug\Pages\EditServerRole.g.cs

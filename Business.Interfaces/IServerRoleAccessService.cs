@@ -14,6 +14,9 @@ namespace Business.Interfaces
 		
 		IList<RoleViewModel> GetRoleInfoList();
 
+		IDictionary<string, bool> GetLoginsRoleInfo(string roleName);
+
+		void UpdateRole(string roleName, IEnumerable<string> loginsWithRole, IEnumerable<string> loginsWithoutRole);
 
 
 	}

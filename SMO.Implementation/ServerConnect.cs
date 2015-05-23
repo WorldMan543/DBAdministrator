@@ -279,5 +279,12 @@ namespace SMO.Implementation
 			};
 			user.Create();
 		}
+
+		public void UpdateRole(string roleName, IEnumerable<string> loginsWithRole, IEnumerable<string> loginsWithoutRole)
+		{
+			var role = _server.Roles[roleName];
+			loginsWithRole.ToList().ForEach(role.AddMember);
+			loginsWithoutRole.ToList().ForEach(role.DropMember);
+		}
 	}
 }

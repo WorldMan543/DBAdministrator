@@ -42,5 +42,16 @@ namespace Business.Implementation
 			}).ToList();
 		}
 
+		public IDictionary<string, bool> GetLoginsRoleInfo(string roleName)
+		{
+			var logins = _serverConnect.GetLoginsList();
+			return logins.ToDictionary<Login, string, bool>(l => l.Name, l => l.IsMember(roleName));
+		}
+
+		public void UpdateRole(string roleName, IEnumerable<string> loginsWithRole, IEnumerable<string> loginsWithoutRole)
+		{
+			_serverConnect.UpdateRole(roleName, loginsWithRole, loginsWithoutRole);
+		}
+
 	}
 }
