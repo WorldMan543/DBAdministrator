@@ -1,6 +1,8 @@
 ﻿<Application x:Class="DBAdministrator.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 DispatcherUnhandledException="App_DispatcherUnhandledException"
+			 xml:lang="en-US">
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>

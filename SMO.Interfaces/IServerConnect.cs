@@ -9,7 +9,7 @@ namespace SMO.Interfaces
 	public interface IServerConnect
 	{
 		void Connect(string serverName);
-		void Connect(string serverName, string userName, SecureString password);
+		void Connect(string serverName, string userName, string password);
 
 		void Disconnect();
 

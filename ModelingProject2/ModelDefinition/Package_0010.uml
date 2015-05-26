@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel"
+  dslVersion="1.0.0.0"
+  Id="8c211b5c-6e26-4b88-89ae-ffe6b7307e09"
+  name="Primary Use Cases" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <useCase
+        Id="a1afb848-1f30-4dcc-ae1e-9c8372813310"
+        name="Авторизация"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="d60714a5-0029-4fe5-a035-33be2fa9307d"
+        name="Администрировани хранимых процедур"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="bc692f9c-f442-46ae-b959-a74c5113ac83"
+        name="Администрирование полей таблиц"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="145a0879-935a-4a34-8637-da1cb933c322"
+        name="Администрирование пользовательской системы базы данных"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c2adcf20-bbb1-492c-999f-883b420d7caa"
+        name="Администрирование пользовательской системы сервера"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="ee668ff5-1d57-44be-8eb5-91ec40620771"
+        name="Администрирование ролевой системы базы данных"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="a77f9648-ff6d-48cd-a52f-d004773f0946"
+        name="Администрирование ролевой системы сервера"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="13036783-9e06-49f0-a6d6-79dff8c0f3ed"
+        name="Администрирование таблиц"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="e37620ee-9f93-4253-8167-0dde9f245f1e"
+        name="Выход из системы"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="e7945666-5a88-4806-a3db-affac7e33ea1"
+        name="Настройка безовасности сервера"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="7ea16466-6b3e-4c4f-b09b-3785206a8c45">
+            <useCaseMoniker
+              Id="c2adcf20-bbb1-492c-999f-883b420d7caa"
+              LastKnownName="Администрирование пользовательской системы сервера"
+              LastKnownLocation="Package_0010.uml" />
+          </include>
+          <include
+            Id="50c7ccce-ebff-447c-b554-c16187190749">
+            <useCaseMoniker
+              Id="a77f9648-ff6d-48cd-a52f-d004773f0946"
+              LastKnownName="Администрирование ролевой системы сервера"
+              LastKnownLocation="Package_0010.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <interaction
+        Id="740151ac-5af9-4b6f-9b5e-ddc5a32912a3"
+        name="EA_Interaction1"
+        collapseFragmentsFlag="false"
+        isActiveClass="false"
+        isAbstract="false"
+        isLeaf="false"
+        isReentrant="false">
+        <lifelines>
+          <lifeline
+            Id="796b64dd-4c6a-4eca-8856-0a509ca323f8"
+            name="Object1"
+            isActor="false"
+            lifelineDisplayName="Object1" />
+        </lifelines>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c1a04d80-d1c1-459c-a049-364776636fe0"
+        name="Настройка безопасности базы данных"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="ea77cbba-bf6c-4242-9bcf-19cce616e5cf">
+            <useCaseMoniker
+              Id="145a0879-935a-4a34-8637-da1cb933c322"
+              LastKnownName="Администрирование пользовательской системы базы данных"
+              LastKnownLocation="Package_0010.uml" />
+          </include>
+          <include
+            Id="04d5e30a-c68e-423e-ae89-4a893e6c2705">
+            <useCaseMoniker
+              Id="ee668ff5-1d57-44be-8eb5-91ec40620771"
+              LastKnownName="Администрирование ролевой системы базы данных"
+              LastKnownLocation="Package_0010.uml" />
+          </include>
+        </additions>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

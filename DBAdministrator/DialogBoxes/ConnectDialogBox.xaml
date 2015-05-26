@@ -9,60 +9,60 @@
 		Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"
 		DataContext="{Binding RelativeSource={RelativeSource Self}}"
 		ResizeMode="NoResize">
-
-		<StackPanel Margin="0 15 0 0">
-			<DockPanel Margin="0 5 0 5">
-				<Label Margin="10 0 0 0">Server name:</Label>
-				<ComboBox ItemsSource="{Binding ViewModel.ServersName}"
+	<StackPanel Margin="0 15 0 0">
+		<DockPanel Margin="0 5 0 5">
+			<Label Margin="10 0 0 0">Server name:</Label>
+			<ComboBox ItemsSource="{Binding ViewModel.ServersName}"
 						SelectedValue="{Binding ViewModel.ServerName}"
 						IsEditable="true"
 						Margin="20 0 20 0">
-					<ComboBox.Text >
-						<Binding Path="ViewModel.ServerName" UpdateSourceTrigger="PropertyChanged" >
-							<Binding.ValidationRules>
-								<validators:EmptyFiledValidationRule/>
-							</Binding.ValidationRules>
-						</Binding>
-					</ComboBox.Text>
-				</ComboBox>
-			</DockPanel>
-			<DockPanel Margin="0 5 0 5">
-				<Label Margin="10 0 0 0">Authentication:</Label>
-				<ComboBox ItemsSource="{Binding ViewModel.AuthenticationTypes}"
+				<ComboBox.Text >
+					<Binding Path="ViewModel.ServerName" UpdateSourceTrigger="PropertyChanged" >
+						<Binding.ValidationRules>
+							<validators:EmptyFiledValidationRule/>
+						</Binding.ValidationRules>
+					</Binding>
+				</ComboBox.Text>
+			</ComboBox>
+		</DockPanel>
+		<DockPanel Margin="0 5 0 5">
+			<Label Margin="10 0 0 0">Authentication:</Label>
+			<ComboBox ItemsSource="{Binding ViewModel.AuthenticationTypes}"
 						SelectedValue="{Binding ViewModel.SelectedAuthenticationType}"
 						DisplayMemberPath="Value"
 						SelectedValuePath="Key"
-						Margin="8 0 20 0">
-				</ComboBox>
-			</DockPanel>
-			<DockPanel Margin="0 5 0 5">
-				<Label Margin="10 3 0 0">User name:</Label>
-				<TextBox Margin="30 0 21 0">
-					<TextBox.Text >
-						<Binding Path="ViewModel.UserName" UpdateSourceTrigger="PropertyChanged" >
-							<Binding.ValidationRules>
-								<validators:EmptyFiledValidationRule/>
-							</Binding.ValidationRules>
-						</Binding>
-					</TextBox.Text>
-				</TextBox>
-			</DockPanel>
-			<DockPanel Margin="0 5 0 5">
-				<Label Margin="10 0 0 0">Password:</Label>
-			<PasswordBox Margin="36 0 21 0">
-				<!--<PasswordBox.Password >
-						--><!--<Binding Path="ViewModel.Password" UpdateSourceTrigger="PropertyChanged" >
-							<Binding.ValidationRules>
-								<validators:EmptyFiledValidationRule/>
-							</Binding.ValidationRules>
-						</Binding>--><!--
-					</PasswordBox.Password>-->
-				</PasswordBox>
-			</DockPanel>
-			<DockPanel Margin="0 5 0 5">
-				<Button Name="ConnectBottom" Click="ConnectBottom_OnClick" Margin="45 0 0 0" Height="25" Width="100">Connect</Button>
-				<Button Name="CancelBottom" IsCancel="True" Margin="0 0 5 0" Height="25" Width="100">Cancel</Button>
-			</DockPanel>
-		</StackPanel>
+						Margin="8 0 20 0"
+						SelectionChanged="ComboBox_SelectionChanged">
+			</ComboBox>
+		</DockPanel>
+		<DockPanel Margin="0 5 0 5">
+			<Label Margin="10 3 0 0">User name:</Label>
+			<TextBox Margin="30 0 21 0" Name="UserName" IsEnabled="False">
+				<TextBox.Text >
+					<Binding Path="ViewModel.UserName" UpdateSourceTrigger="PropertyChanged" >
+						<Binding.ValidationRules>
+							<validators:EmptyFiledValidationRule/>
+						</Binding.ValidationRules>
+					</Binding>
+				</TextBox.Text>
+			</TextBox>
+		</DockPanel>
+		<DockPanel Margin="0 5 0 5">
+			<Label Margin="10 0 0 0">Password:</Label>
+			<TextBox Margin="36 0 21 0" Name="Password" IsEnabled="False">
+				<TextBox.Text >
+					<Binding Path="ViewModel.Password" UpdateSourceTrigger="PropertyChanged" >
+						<Binding.ValidationRules>
+							<validators:EmptyFiledValidationRule/>
+						</Binding.ValidationRules>
+					</Binding>
+				</TextBox.Text>
+			</TextBox>
 
+		</DockPanel>
+		<DockPanel Margin="0 5 0 5">
+			<Button Name="ConnectBottom" Click="ConnectBottom_OnClick" Margin="45 0 0 0" Height="25" Width="100">Connect</Button>
+			<Button Name="CancelBottom" IsCancel="True" Margin="0 0 5 0" Height="25" Width="100">Cancel</Button>
+		</DockPanel>
+	</StackPanel>
 </Window>

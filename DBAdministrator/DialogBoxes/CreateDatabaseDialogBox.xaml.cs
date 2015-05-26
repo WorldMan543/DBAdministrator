@@ -37,5 +37,10 @@ namespace DBAdministrator.DialogBoxes
 			_dataBaseAccessService.CreateDatabase(DatabaseName);
 			DialogResult = true;
 		}
+
+		private void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+			Database.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+		}
 	}
 }

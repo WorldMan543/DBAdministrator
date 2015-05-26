@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Business.Interfaces;
 using DBAdministrator.Models;
+using System.Collections.ObjectModel;
 
 namespace DBAdministrator.Pages
 {
@@ -23,14 +24,23 @@ namespace DBAdministrator.Pages
 	public partial class EditTablePage : Page
 	{
 		private readonly ITableAccessService _tableAccessService;
+		private string _tableName;
+		private string _databaseName;
 
-		public IList<TableInfoViewModel> ViewModel { get; set; } 
+		public ObservableCollection<TableInfoViewModel> ViewModel { get; set; } 
 
 		public EditTablePage(ITableAccessService tableAccessService, string databaseName, string tableName)
 		{
 			_tableAccessService = tableAccessService;
-			ViewModel = _tableAccessService.GetTableSchema(databaseName, tableName);
+			_databaseName = databaseName;
+			_tableName = tableName;
+			ViewModel = new ObservableCollection<TableInfoViewModel>(_tableAccessService.GetTableSchema(databaseName, tableName));
 			InitializeComponent();
+		}
+
+		private void Save_Click(object sender, RoutedEventArgs e)
+		{
+			_tableAccessService.EditTable(ViewModel, _tableName, _databaseName);
 		}
 
 		private void OnChecked(object sender, RoutedEventArgs e)

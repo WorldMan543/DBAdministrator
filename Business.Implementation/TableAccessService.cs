@@ -48,7 +48,6 @@ namespace Business.Implementation
 			}).ToList();
 		}
 
-
 		public void CreateTable(string databaseName, string tableName)
 		{
 			_serverConnect.CreateTable(databaseName, tableName);
@@ -64,21 +63,52 @@ namespace Business.Implementation
 			var table = _serverConnect.GetTable(database, tableName);
 			return table.Columns.Cast<Column>().Select(c => new TableInfoViewModel
 			{
+				ID = c.ID,
 				Name = c.Name,
 				Identity = c.Identity,
 				Nullable = c.Nullable,
 				InPrimaryKey = c.InPrimaryKey,
-				DataType = c.DataType.Name,
+				DataType = c.DataType.SqlDataType,
 				MaxLength = c.DataType.MaximumLength,
 				Default = c.DefaultConstraint != null ? c.DefaultConstraint.Text : null
 			}).ToList();
 		}
 
-
-
-		public void EditTable()
+		public void EditTable(IEnumerable<TableInfoViewModel> tableSchema, string tableName, string databaseName)
 		{
-			throw new NotImplementedException();
+			var table = _serverConnect.GetTable(databaseName, tableName);
+			var oldColumns = table.Columns.Cast<Column>();
+			var updatedColumns = oldColumns.Where(c => tableSchema.Select(s => s.ID).Contains(c.ID)).ToList();
+			var newColumns = tableSchema.Where(s => s.ID == 0);
+			var deletedColumns = oldColumns.Except(updatedColumns).ToList();
+			deletedColumns.ForEach(d => d.Drop());
+			//var transfer = new Transfer(new Database());
+			for(int i = 0; i < updatedColumns.Count(); i++)
+			{
+				if (!updatedColumns[i].InPrimaryKey)
+				{
+					var schema = tableSchema.First(s => s.ID.Equals(updatedColumns[i].ID));
+					//updatedColumn.Identity = schema.Identity;
+					updatedColumns[i].Nullable = schema.Nullable;
+					//updatedColumn.InPrimaryKey = schema.InPrimaryKey;
+					updatedColumns[i].Rename(schema.Name);
+					//updatedColumn.Set Name = schema.Name;
+					updatedColumns[i].DataType = new DataType(schema.DataType);
+					updatedColumns[i].Alter();
+				}
+
+			}
+			foreach (var newColumn in newColumns)
+			{
+				var column = new Column(table, newColumn.Name, new DataType(newColumn.DataType))
+				{
+					//Identity = newColumn.Identity,
+					Nullable = newColumn.Nullable,
+					//InPrimaryKey = newColumn.InPrimaryKey
+				};
+				column.Create();
+			}
 		}
+
 	}
 }

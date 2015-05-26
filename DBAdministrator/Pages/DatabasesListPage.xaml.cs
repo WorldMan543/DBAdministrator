@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Business.Interfaces;
 using DBAdministrator.Models;
 using Microsoft.Practices.Unity;
+using DBAdministrator.DialogBoxes;
 
 namespace DBAdministrator.Pages
 {
@@ -25,13 +26,49 @@ namespace DBAdministrator.Pages
 	public partial class DatabasesListPage : Page
 	{
 		private readonly IDatabaseAccessService _dataBaseAccessService;
-		public IList<DatabaseViewModel> Models { get; set; }
+		private IList<DatabaseViewModel> _originalModels;
+		private ITableAccessService _tableAccessService;
+		public ObservableCollection<DatabaseViewModel> Models { get; set; }
 
-		public DatabasesListPage(IDatabaseAccessService dataBaseAccessService)
+		public DatabasesListPage(IDatabaseAccessService dataBaseAccessService, ITableAccessService tableAccessService)
 		{
 			_dataBaseAccessService = dataBaseAccessService;
-			Models = _dataBaseAccessService.GetDatabaseInfoList();
+			_tableAccessService = tableAccessService;
+			_originalModels = _dataBaseAccessService.GetDatabaseInfoList();
+			Models = new ObservableCollection<DatabaseViewModel>(_originalModels);
 			InitializeComponent();
+		}
+
+		private void Search_Click(object sender, RoutedEventArgs e)
+		{
+			var results = _originalModels.Where(p => p.DatabaseName.Contains(SearchValue.Text)).ToList();
+			Models.Clear();
+			results.ForEach(Models.Add);
+		}
+
+		private void Create_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new CreateDatabaseDialogBox(_dataBaseAccessService);
+			dialog.ShowDialog();
+			if (dialog.DialogResult != null && dialog.DialogResult.Value)
+			{
+				NavigationService.Navigate(new TablesListPage(_tableAccessService, dialog.DatabaseName));
+			}
+		}
+
+		private void Delete_Click(object sender, RoutedEventArgs e)
+		{
+			if (DatabasesList.SelectedItems.Count == 0) return;
+			var item = (DatabaseViewModel)DatabasesList.SelectedItems[0];
+			string messageBoxText = "Do you want to delete database?";
+			string caption = "Delete";
+			MessageBoxButton button = MessageBoxButton.YesNo;
+			MessageBoxImage icon = MessageBoxImage.Warning;
+			var result = MessageBox.Show(messageBoxText, caption, button, icon);
+			if (result == MessageBoxResult.Yes)
+			{
+				_dataBaseAccessService.DeleteDatabase(item.DatabaseName);
+			}
 		}
 	}
 }

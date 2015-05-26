@@ -3,25 +3,15 @@
   <Class Name="Business.Implementation.BaseAccessService">
     <Position X="14.25" Y="4.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AgBBAAAAAAAIAIAAAAAAAMAAIAAAABAAAAAAAAAIAAA=</HashCode>
+      <HashCode>AAQBAAAAAAAAAIAAAAAAAMAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>BaseAccessService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Business.Implementation.DatabaseAccessService">
     <Position X="11.5" Y="10.75" Width="2" />
-    <InheritanceLine Type="Business.Implementation.BaseAccessService" ManuallyRouted="true">
-      <Path>
-        <Point X="15.375" Y="7.786" />
-        <Point X="15.375" Y="7.34" />
-        <Point X="14.09" Y="7.34" />
-        <Point X="14.09" Y="10.236" />
-        <Point X="12.5" Y="10.236" />
-        <Point X="12.5" Y="10.75" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAABAAAAAAAAEAAAAEAAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAABAAABAAAAAAAAEAAAAEAAAAAACAAAAAAA=</HashCode>
       <FileName>DatabaseAccessService.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -43,7 +33,7 @@
   <Class Name="Business.Implementation.DatabaseUserAccessService">
     <Position X="11.5" Y="4.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>IAAAAAABAQAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAgA=</HashCode>
+      <HashCode>IAAAAAABAAAAAAAAAAAAQAAAAAAAEAAAAAAAAAAAAgA=</HashCode>
       <FileName>DatabaseUserAccessService.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -54,7 +44,7 @@
   <Class Name="Business.Implementation.ServerRoleAccessService">
     <Position X="11.75" Y="7.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAACABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAQAAQAAAAAAAAAAAACABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ServerRoleAccessService.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -65,7 +55,7 @@
   <Class Name="Business.Implementation.ServerUserAccessService">
     <Position X="17" Y="4.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>IAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAIAA=</HashCode>
+      <HashCode>IAAAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAIAA=</HashCode>
       <FileName>ServerUserAccessService.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -76,7 +66,7 @@
   <Class Name="Business.Implementation.StoredProcedureAccessService">
     <Position X="14.25" Y="7.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>ACAAJAAAAAAAAAIAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAJAAAAAAAAAAAQAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StoredProcedureAccessService.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>

@@ -10,7 +10,8 @@
 		x:Class="DBAdministrator.MainWindow"
 		Title="Mssql Administrator" Height="453" Width="855"
 		DataContext="{Binding RelativeSource={RelativeSource Self}}"
-		Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+		Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"
+	ContentRendered="Window_ContentRendered">
 	<Window.Resources>
 		<converters:CustomMultiValueConvertor x:Key="CustomMultiValueConvertor"/>
 	</Window.Resources>
@@ -54,7 +55,7 @@
 						<TextBlock Text="Databases" MouseLeftButtonDown="OpenDatabaseList_OnMouseLeftButtonDown">
 							<TextBlock.ContextMenu>
 								<ContextMenu>
-									<MenuItem Header="Add" Click="CreateDatabase_OnClick"></MenuItem>
+									<MenuItem Header="Create" Click="CreateDatabase_OnClick"></MenuItem>
 								</ContextMenu>
 							</TextBlock.ContextMenu>
 						</TextBlock>
@@ -66,7 +67,7 @@
 						<TextBlock Text="Tables" MouseLeftButtonDown="OpenTablesList_OnMouseLeftButtonDown">
 							<TextBlock.ContextMenu>
 								<ContextMenu>
-									<MenuItem Header="Add" Click="CreateTable_OnClick"></MenuItem>
+									<MenuItem Header="Create" Click="CreateTable_OnClick"></MenuItem>
 								</ContextMenu>
 							</TextBlock.ContextMenu>
 						</TextBlock>

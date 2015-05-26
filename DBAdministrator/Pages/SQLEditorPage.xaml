@@ -8,8 +8,15 @@
 	  Loaded="SQLEditorPage_OnLoaded"
 	  DataContext="{Binding RelativeSource={RelativeSource Self}}"
 	Title="SQLEditorPage">
-	<DockPanel>
-		<ToolBar DockPanel.Dock="Top" Height="34">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="34"/>
+			
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<ToolBar Grid.Row="0">
 			<Button Content="Load" Click="LoadQuery_OnClick"/>
 			<Separator/>
 			<Button Content="Save" Click="SaveQuery_OnClick"/>
@@ -21,11 +28,11 @@
 						SelectedValue="{Binding DatabaseName}"  Width="150">
 			</ComboBox >
 		</ToolBar>
-		<TabControl Name="TabControl1" Height="150" DockPanel.Dock="Bottom">
-			<!--<DataGrid Name="DataGrid1" IsReadOnly="True"/>-->
-		</TabControl>
-		
-		<avalonEdit:TextEditor DockPanel.Dock="Top"
+		<GridSplitter Grid.Row="2"  Height="5"
+					HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="{DynamicResource BackgroundHoverSubmenu}" />
+		<TabControl Grid.Row="3" Name="TabControl1" Height="150" DockPanel.Dock="Bottom" Visibility="Collapsed"/>
+
+		<avalonEdit:TextEditor Grid.Row="1"
 			xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"  
 			Name="Editor"
 			FontFamily="Consolas"
@@ -33,5 +40,5 @@
 			ShowLineNumbers="True" 
 			LineNumbersForeground="#FF2B91AF"/>
 
-	</DockPanel>
+	</Grid>
 </Page>

@@ -101,8 +101,13 @@ namespace DBAdministrator.Pages
 			var viewModels = _dataBaseAccessService.ExecuteQuery(Editor.Text, DatabaseName);
 			foreach (var viewModel in viewModels)
 			{
-				var item = new TabItem {Header = "Request 1"};
+				TabControl1.Visibility = System.Windows.Visibility.Visible;
+				var item = new TabItem
+				{ 
+					Header = string.Format("Request {0}", TabControl1.Items.Count + 1)
+				};
 				TabControl1.Items.Add(item);
+				
 				var datagrid = new DataGrid {IsReadOnly = true};
 				foreach (var columnName in viewModel.Columns)
 				{
@@ -115,6 +120,7 @@ namespace DBAdministrator.Pages
 				}
 				viewModel.Rows.ForEach(r => datagrid.Items.Add(r));
 				item.Content = datagrid;
+				TabControl1.SelectedIndex = TabControl1.Items.Count;
 			}
 		}
 	}

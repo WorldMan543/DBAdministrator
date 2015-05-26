@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using Business.Interfaces;
 using DBAdministrator.Models;
+using DBAdministrator.Validators;
 
 namespace DBAdministrator.DialogBoxes
 {
@@ -23,18 +24,49 @@ namespace DBAdministrator.DialogBoxes
 	/// </summary>
 	public partial class ConnectDialogBox : Window
 	{
+		private IDatabaseAccessService _databaseAccessService;
 		public AuthenticationViewModel ViewModel { get; private set; }
 
-		public ConnectDialogBox(IDatabaseAccessService dataBaseAccessService)
+		public ConnectDialogBox(IDatabaseAccessService databaseAccessService)
 		{
-			ViewModel = dataBaseAccessService.GetAuthenticationViewModel();
+			_databaseAccessService = databaseAccessService;
+			ViewModel = databaseAccessService.GetAuthenticationViewModel();
 			InitializeComponent();
 		}
 		
 		private void ConnectBottom_OnClick(object sender, RoutedEventArgs e)
 		{
 			if (!this.IsValid()) return;
-			DialogResult = true;
+			try
+			{
+				_databaseAccessService.Connect(ViewModel);
+				DialogResult = true;
+			}
+			catch (Exception ex)
+			{
+				while (ex.InnerException != null) ex = ex.InnerException;
+				MessageBox.Show(ex.Message, "Error");
+			}
+		}
+
+		private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (this.IsInitialized)
+			{
+				var comboBox = (ComboBox)e.Source;
+				var item = (KeyValuePair<int, string>)comboBox.SelectionBoxItem;
+				var isEnabled = item.Key == 0;
+				if (!isEnabled)
+				{
+					Validation.ClearInvalid(UserName.GetBindingExpression(TextBox.TextProperty));
+				}
+				else
+				{
+					UserName.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+					Password.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+				}
+				UserName.IsEnabled = Password.IsEnabled = isEnabled;
+			}
 		}
 
 	}

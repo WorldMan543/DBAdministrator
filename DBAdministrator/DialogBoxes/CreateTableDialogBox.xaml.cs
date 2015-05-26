@@ -55,5 +55,10 @@ namespace DBAdministrator.DialogBoxes
 			}
 			DialogResult = true;
 		}
+
+		private void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+			Table.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+		}
 	}
 }

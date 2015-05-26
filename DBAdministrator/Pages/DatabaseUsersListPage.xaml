@@ -13,12 +13,14 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<StackPanel Grid.Row="0" Orientation="Horizontal">
-			<Button Content="Create" Height="25" Width="80" Margin="0 0 0 0"
+			<Button Content="Search" Height="25" Width="80" Margin="0 0 0 0" Click="Search_Click"/>
+			<TextBox Name="SearchValue" Height="25" Width="162" Margin="10,8,0,7"></TextBox>
+			<Button Content="Create" Height="25" Width="80" Margin="10 0 0 0"
 					Click="Create_Click"/>
-			<Button Content="Edit" Height="25" Width="80" Margin="10 0 0 0"/>
-			<Button Content="Delete" Height="25" Width="80" Margin="10 0 0 0"/>
+			<Button Content="Delete" Height="25" Width="80" Margin="10 0 0 0" Click="Delete_Click"/>
 		</StackPanel >
-		<DataGrid IsReadOnly="True" ItemsSource="{Binding Models}" AutoGenerateColumns="False" Grid.Row="1">
+		<DataGrid IsReadOnly="True" ItemsSource="{Binding Models}" AutoGenerateColumns="False" Grid.Row="1"
+				  Name="UsersList" SelectionMode="Single">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Name" Binding="{Binding Name}" />
 				<DataGridTextColumn Header="Access" Binding="{Binding Permit}" />

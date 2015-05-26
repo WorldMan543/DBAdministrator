@@ -71,5 +71,21 @@ namespace DBAdministrator.Pages
 				item.Owner);
 			NavigationService.Navigate(new SQLEditorPage(_dataBaseAccessService, query, _database));
 		}
+
+		private void Delete_Click(object sender, RoutedEventArgs e)
+		{
+			if (ProcedureList.SelectedItems.Count == 0) return;
+			var item = (StoredProcedureViewModel)ProcedureList.SelectedItems[0];
+			string messageBoxText = "Do you want to delete procedure?";
+			string caption = "Delete";
+			MessageBoxButton button = MessageBoxButton.YesNo;
+			MessageBoxImage icon = MessageBoxImage.Warning;
+			var result = MessageBox.Show(messageBoxText, caption, button, icon);
+			if (result == MessageBoxResult.Yes)
+			{
+				_storedProcedureAccessService.DeleteStoredProcedure(_database, item.ProcedureName);
+			}
+			
+		}
 	}
 }

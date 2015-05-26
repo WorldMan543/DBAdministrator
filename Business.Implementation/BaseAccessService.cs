@@ -46,7 +46,15 @@ namespace Business.Implementation
 
 		public void Connect(AuthenticationViewModel authenticationModel)
 		{
-			_serverConnect.Connect(authenticationModel.ServerName);
+			if (authenticationModel.SelectedAuthenticationType == 0)
+			{
+				_serverConnect.Connect(authenticationModel.ServerName);
+			}
+			else
+			{
+				_serverConnect.Connect(authenticationModel.ServerName, authenticationModel.UserName, authenticationModel.Password);
+			}
+			
 		}
 
 		public void Disconnect()

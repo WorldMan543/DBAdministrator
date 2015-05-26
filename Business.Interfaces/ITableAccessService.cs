@@ -21,9 +21,8 @@ namespace Business.Interfaces
 		void RenameTable(string database, string oldName, string newName);
 
 		IList<TableInfoViewModel> GetTableSchema(string database, string tableName);
-		
-		//To Do
-		void EditTable();
+
+		void EditTable(IEnumerable<TableInfoViewModel> tableSchema, string talbeName, string databaseName);
 
 
 	}

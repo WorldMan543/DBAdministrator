@@ -24,13 +24,12 @@ namespace SMO.Implementation
 
 		#region Connect
 
-		public void Connect(string serverName, string userName, SecureString password)
+		public void Connect(string serverName, string userName, string password)
 		{
 			_serverConnection = new ServerConnection(serverName, userName, password)
 			{
 				SqlExecutionModes = SqlExecutionModes.
 					ExecuteAndCaptureSql,
-				LoginSecure = true,
 				AutoDisconnectMode = AutoDisconnectMode.NoAutoDisconnect
 			};
 			Connect();
@@ -286,5 +285,6 @@ namespace SMO.Implementation
 			loginsWithRole.ToList().ForEach(role.AddMember);
 			loginsWithoutRole.ToList().ForEach(role.DropMember);
 		}
+
 	}
 }

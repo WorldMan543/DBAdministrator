@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 12.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/XmiLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/XmiLog">
+  <Property Timestamp="2015-05-24T00:07:16" XmiFileName="C:\Users\WorldMan\Desktop\wefw.xml" />
+  <Message Timestamp="2015-05-24T00:07:16" Importance="High" Text="Importing the following XMI file: C:\Users\WorldMan\Desktop\wefw.xml." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="11" LinePosition="7" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="19" LinePosition="6" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_dst4AC344_BAF9_4e47_8863_9BE66614BABF." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="22" LinePosition="7" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="30" LinePosition="7" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="45" LinePosition="7" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="56" LinePosition="7" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="73" LinePosition="6" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_dstE50C84_6743_40d0_8D1C_C7BB79C493EF." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="76" LinePosition="7" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="87" LinePosition="7" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="99" LinePosition="3" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="99" LinePosition="3" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="99" LinePosition="3" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="99" LinePosition="3" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="99" LinePosition="3" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="99" LinePosition="3" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="99" LinePosition="3" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_606706AB_FA21_4454_9648_A1A33FAF627E." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="99" LinePosition="3" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="99" LinePosition="3" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2906AAEE_0CCD_4502_961D_42F867ECC803." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="99" LinePosition="3" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_6EA4C06E_2850_473f_9D33_A24C324FF993." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="99" LinePosition="3" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_C5174B32_940F_475a_A398_C795BA0B048A." />
+  <Warning Timestamp="2015-05-24T00:07:16" LineNumber="99" LinePosition="3" Importance="Medium" Text="Cannot import the object that has the following ID because its reference cannot be resolved: EAID_2FC7F1C4_FD42_41c1_BE71_1320F9400DA9." />
+  <Message Timestamp="2015-05-24T00:07:16" LineNumber="736" LinePosition="5" Importance="Diagnostic" Text="The following element was not imported: thecustomprofile::org.omg.xmi.nsPrefix. This element has the following type: Tag." />
+  <Message Timestamp="2015-05-24T00:07:16" LineNumber="736" LinePosition="5" Importance="Diagnostic" Text="The following element was not imported: thecustomprofile::org.omg.xmi.nsURI. This element has the following type: Tag." />
+  <Message Timestamp="2015-05-24T00:07:22" Importance="High" Text="Number of imported elements: 4." />
+  <Message Timestamp="2015-05-24T00:07:22" Importance="High" Text="Number of imported relationships: 2." />
+  <Message Timestamp="2015-05-24T00:07:22" Importance="High" Text="Finished importing the XMI file." />
+  <Message Timestamp="2015-05-24T00:07:22" Importance="High" Text="Warnings were logged during XMI import." />
+</Log>

@@ -26,6 +26,9 @@ using System.Net.NetworkInformation;
 using DBAdministrator.Models.TreeView;
 using DBAdministrator.Pages;
 using Microsoft.Win32;
+using Microsoft.SqlServer.Management.Common;
+using System.Globalization;
+using System.Threading;
 
 namespace DBAdministrator
 {
@@ -82,7 +85,6 @@ namespace DBAdministrator
 			dlg.ShowDialog();
 			if (dlg.DialogResult.HasValue && dlg.DialogResult.Value)
 			{
-				_databaseAccessService.Connect(dlg.ViewModel);
 				ViewModel.StatusBar.ServerName = dlg.ViewModel.ServerName;
 				ViewModel.ServerStruct.Clear();
 				ViewModel.ServerStruct.Add(new ServerStructViewModel()
@@ -98,7 +100,6 @@ namespace DBAdministrator
 				Grid.Children.Add(Frame);
 				isConnected = true;
 			}
-
 		}
 
 		private void MenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -118,18 +119,26 @@ namespace DBAdministrator
 		private void DeleteStoredProcedure_OnClick(object sender, RoutedEventArgs e)
 		{
 			var model = (StoredProcedureStructViewModel)((MenuItem)sender).DataContext;
-			_storedProcedureAccessService.DeleteStoredProcedure(model.Database, model.ProcedureName);
+			string messageBoxText = "Do you want to delete procedure?";
+			string caption = "Delete";
+			MessageBoxButton button = MessageBoxButton.YesNo;
+			MessageBoxImage icon = MessageBoxImage.Warning;
+			var result = MessageBox.Show(messageBoxText, caption, button, icon);
+			if (result == MessageBoxResult.Yes)
+			{
+				_storedProcedureAccessService.DeleteStoredProcedure(model.Database, model.ProcedureName);
+			}
 		}
 
 		private void DeleteTable_OnClick(object sender, RoutedEventArgs e)
 		{
 			var model = (TableStructViewModel)((MenuItem)sender).DataContext;
 			string messageBoxText = "Do you want to save changes?";
-			string caption = "Word Processor";
-			MessageBoxButton button = MessageBoxButton.OKCancel;
+			string caption = "Delete";
+			MessageBoxButton button = MessageBoxButton.YesNo;
 			MessageBoxImage icon = MessageBoxImage.Warning;
 			var result = MessageBox.Show(messageBoxText, caption, button, icon);
-			if (result.HasFlag(MessageBoxResult.OK))
+			if (result == MessageBoxResult.Yes)
 			{
 				_tableAccessService.DeleteTable(model.Database, model.TableName);
 			}
@@ -138,25 +147,51 @@ namespace DBAdministrator
 		private void DeleteDatabaseRole_OnClick(object sender, RoutedEventArgs e)
 		{
 			var model = (RoleStructViewModel)((MenuItem)sender).DataContext;
-			_databaseRoleAccessService.DeleteDatabaseRole(model.Database, model.RoleName);
+			string messageBoxText = "Do you want to delete database role?";
+			string caption = "Delete";
+			MessageBoxButton button = MessageBoxButton.YesNo;
+			MessageBoxImage icon = MessageBoxImage.Warning;
+			var result = MessageBox.Show(messageBoxText, caption, button, icon);
+			if (result == MessageBoxResult.Yes)
+			{
+				_databaseRoleAccessService.DeleteDatabaseRole(model.Database, model.RoleName);
+			}
+			
 		}
 
 		private void DeleteDatabaseUser_OnClick(object sender, RoutedEventArgs e)
 		{
 			var model = (UserStructViewModel)((MenuItem)sender).DataContext;
-			_databaseUserAccessService.DeleteDatabaseUser(model.Database, model.UserName);
+			string messageBoxText = "Do you want to delete database user?";
+			string caption = "Delete";
+			MessageBoxButton button = MessageBoxButton.YesNo;
+			MessageBoxImage icon = MessageBoxImage.Warning;
+			var result = MessageBox.Show(messageBoxText, caption, button, icon);
+			if (result == MessageBoxResult.Yes)
+			{
+				_databaseUserAccessService.DeleteDatabaseUser(model.Database, model.UserName);
+			}
+			
 		}
 
 		private void DeleteDatabase_OnClick(object sender, RoutedEventArgs e)
 		{
 			var model = (DatabaseStructViewModel)((MenuItem)sender).DataContext;
-			_databaseAccessService.DeleteDatabase(model.DatabaseName);
+			string messageBoxText = "Do you want to delete database?";
+			string caption = "Delete";
+			MessageBoxButton button = MessageBoxButton.YesNo;
+			MessageBoxImage icon = MessageBoxImage.Warning;
+			var result = MessageBox.Show(messageBoxText, caption, button, icon);
+			if (result == MessageBoxResult.Yes)
+			{
+				_databaseAccessService.DeleteDatabase(model.DatabaseName);
+			}
 		}
 
 		private void OpenDatabaseList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			if (e.ClickCount != 2) return;
-			Frame.Navigate(new DatabasesListPage(_databaseAccessService));
+			Frame.Navigate(new DatabasesListPage(_databaseAccessService, _tableAccessService));
 		}
 
 		private void OpenRolesList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -210,7 +245,7 @@ namespace DBAdministrator
 			dialog.ShowDialog();
 			if (dialog.DialogResult != null && dialog.DialogResult.Value)
 			{
-				Frame.Navigate(new TablesListPage(_tableAccessService, dialog.TableName));
+				Frame.Navigate(new EditTablePage(_tableAccessService, model.Database, dialog.TableName));
 			}
 		}
 
@@ -242,6 +277,11 @@ namespace DBAdministrator
 			Grid.Children.Add(Frame);
 			ViewModel.StatusBar.ServerName = string.Empty;
 			ViewModel.ServerStruct.Clear();
+		}
+
+		private void Window_ContentRendered(object sender, EventArgs e)
+		{
+			ConnectMenuItem_OnClick(sender, null);
 		}
 
 	}

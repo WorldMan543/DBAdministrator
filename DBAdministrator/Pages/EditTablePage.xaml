@@ -3,12 +3,31 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+		xmlns:core="clr-namespace:System;assembly=mscorlib"
+		xmlns:data="clr-namespace:Microsoft.SqlServer.Management.Smo;assembly=Microsoft.SqlServer.Smo"
 		mc:Ignorable="d" 
 		d:DesignHeight="300" d:DesignWidth="300"
 		Title="EditTablePage"
 		DataContext="{Binding RelativeSource={RelativeSource Self}}">
-	<Grid>
-		<DataGrid ItemsSource="{Binding ViewModel}" AutoGenerateColumns="False">
+	<Page.Resources>
+		<!--Create list of enumeration values-->
+		<ObjectDataProvider x:Key="myEnum" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+			<ObjectDataProvider.MethodParameters>
+				<x:Type Type="data:SqlDataType"/>
+			</ObjectDataProvider.MethodParameters>
+		</ObjectDataProvider>
+		<!--Create an instance of the converter for Email-->
+		<!--<local:EmailConverter x:Key="EmailConverter" />-->
+	</Page.Resources>
+	<Grid Margin="15">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
+			<Button Content="Save" Height="25" Width="80" Margin="0 0 0 0" Click="Save_Click"/>
+		</StackPanel >
+		<DataGrid ItemsSource="{Binding ViewModel}" AutoGenerateColumns="False" Grid.Row="1" SelectionMode="Single">
 			<DataGrid.Columns>
 				<DataGridCheckBoxColumn Header="Key" Binding="{Binding InPrimaryKey}">
 					<DataGridCheckBoxColumn.CellStyle>
@@ -19,7 +38,7 @@
 				</DataGridCheckBoxColumn>
 				<DataGridCheckBoxColumn Header="Identity" Binding="{Binding Identity}" />
 				<DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-				<DataGridTextColumn Header="Data Type" Binding="{Binding DataType}" />
+				<DataGridComboBoxColumn Header="Data Type" SelectedItemBinding="{Binding DataType}" ItemsSource="{Binding Source={StaticResource myEnum}}"/>
 				<DataGridCheckBoxColumn Header="Nullable" Binding="{Binding Nullable}" />
 			</DataGrid.Columns>
 		</DataGrid>

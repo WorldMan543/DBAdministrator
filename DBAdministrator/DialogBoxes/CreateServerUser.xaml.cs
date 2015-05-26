@@ -46,5 +46,34 @@ namespace DBAdministrator.DialogBoxes
 			_serverUserAccessService.CreateServerUser(ViewModel.SelectedAuthenticationType, ViewModel.UserName, ViewModel.Password);
 			DialogResult = true;
 		}
+
+		private void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+			User.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+			//Password.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+		}
+
+		private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (this.IsInitialized)
+			{
+				var comboBox = (ComboBox)e.Source;
+				var item = (KeyValuePair<int, string>)comboBox.SelectionBoxItem;
+				var isEnabled = item.Key == 0;
+				if (!isEnabled)
+				{
+					//Validation.ClearInvalid(UserName.GetBindingExpression(TextBox.TextProperty));
+					Validation.ClearInvalid(Password.GetBindingExpression(TextBox.TextProperty));
+					//assword.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+				}
+				else
+				{
+					Password.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+					//Password.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+				}
+				User.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+				Password.IsEnabled = isEnabled;
+			}
+		}
 	}
 }

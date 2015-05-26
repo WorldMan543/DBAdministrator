@@ -17,7 +17,7 @@
 			<TextBox Name="SearchValue" Height="25" Width="162" Margin="10,8,0,7"></TextBox>
 			<Button Content="Create" Height="25" Width="80" Margin="10 0 0 0" Click="Create_Click"/>
 		</StackPanel >
-		<DataGrid Name="ProcedureList" IsReadOnly="True" ItemsSource="{Binding Models}" AutoGenerateColumns="False" Grid.Row="1" SelectionMode="Single">
+		<DataGrid Name="LoginsList" IsReadOnly="True" ItemsSource="{Binding Models}" AutoGenerateColumns="False" Grid.Row="1" SelectionMode="Single">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Name" Binding="{Binding Name}" />
 				<DataGridTextColumn Header="Default Database" Binding="{Binding DefaultDatabase}" />

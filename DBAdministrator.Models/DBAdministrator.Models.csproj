@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -44,7 +45,6 @@
     <Compile Include="AuthenticationViewModel.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DataGridViewModel.cs" />
-    <Compile Include="Enums\DataType.cs" />
     <Compile Include="Enums\LoginType.cs" />
     <Compile Include="Enums\ProcedureType.cs" />
     <Compile Include="Enums\ServerAccessType.cs" />

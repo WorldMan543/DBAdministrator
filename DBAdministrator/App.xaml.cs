@@ -11,6 +11,8 @@ using Business.Interfaces;
 using Microsoft.Practices.Unity;
 using SMO.Implementation;
 using SMO.Interfaces;
+using System.Globalization;
+using System.Threading;
 
 namespace DBAdministrator
 {
@@ -21,6 +23,8 @@ namespace DBAdministrator
 	{
 		protected override void OnStartup(StartupEventArgs e)
 		{
+			
+
 			IUnityContainer container = new UnityContainer();
 			container.RegisterType<IDatabaseAccessService, DatabaseAccessService>();
 			container.RegisterType<IDatabaseRoleAccessService, DatabaseRoleAccessService>();
@@ -38,6 +42,9 @@ namespace DBAdministrator
 
 		void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
 		{
+			var exception = e.Exception;
+			while (exception.InnerException != null) exception = exception.InnerException;
+			MessageBox.Show(exception.Message, "Error");
 			e.Handled = true;
 		}
 	}

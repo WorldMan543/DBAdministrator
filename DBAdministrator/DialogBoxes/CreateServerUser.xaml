@@ -2,10 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:validators="clr-namespace:DBAdministrator.Validators"
-        Title="Create Server User" Height="258.383" Width="366.541"
+        Title="Create Server User" Height="218.383" Width="366.541"
 		Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"
 		DataContext="{Binding RelativeSource={RelativeSource Self}}"
-		ResizeMode="NoResize">
+		ResizeMode="NoResize"
+		Loaded="Window_Loaded">
 	<StackPanel Margin="0 15 0 0">
 		<DockPanel Margin="0 5 0 5">
 			<Label Margin="10 0 0 0">Authentication:</Label>
@@ -13,12 +14,13 @@
 						SelectedValue="{Binding ViewModel.SelectedAuthenticationType}"
 						DisplayMemberPath="Value"
 						SelectedValuePath="Key"
-						Margin="8 0 20 0">
+						Margin="8 0 20 0"
+						SelectionChanged="ComboBox_SelectionChanged">
 			</ComboBox>
 		</DockPanel>
 		<DockPanel Margin="0 5 0 5">
 			<Label Margin="10 3 0 0">User name:</Label>
-			<TextBox Margin="30 0 21 0">
+			<TextBox Margin="30 0 21 0" Name="User" >
 				<TextBox.Text >
 					<Binding Path="ViewModel.UserName" UpdateSourceTrigger="PropertyChanged" >
 						<Binding.ValidationRules>
@@ -30,7 +32,7 @@
 		</DockPanel>
 		<DockPanel Margin="0 5 0 5">
 			<Label Margin="10 0 0 0">Password:</Label>
-			<TextBox Margin="36 0 21 0">
+			<TextBox Margin="36 0 21 0" Name="Password" IsEnabled="False">
 				<TextBox.Text >
 					<Binding Path="ViewModel.Password" UpdateSourceTrigger="PropertyChanged" >
 						<Binding.ValidationRules>

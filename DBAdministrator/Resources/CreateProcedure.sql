@@ -16,4 +16,3 @@ BEGIN
     -- Insert statements for procedure here
 	SELECT <@Param1, sysname, @p1>, <@Param2, sysname, @p2>
 END
-GO
