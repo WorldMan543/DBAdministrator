@@ -29,9 +29,9 @@ namespace Business.Implementation
 		{
 		}
 
-		public void DeleteTable(string databaseName, string tableName)
+		public void DeleteTable(string databaseName, string tableName, string schema)
 		{
-			_serverConnect.DeleteTable(databaseName, tableName);
+			_serverConnect.DeleteTable(databaseName, tableName, schema);
 		}
 
 		public IList<TableViewModel> GetTableInfoList(string database)
@@ -40,10 +40,9 @@ namespace Business.Implementation
 			return tables.Select(t => new TableViewModel()
 			{
 				TableName = t.Name,
-				CreateDate = t.CreateDate,
-				RowsCount = t.RowCount,
-				Owner = t.Owner,
-				Type = ReflectionHelpers.GetCustomDescription(t.IsSystemObject 
+				FullName = string.Format("{0}.{1}", t.Schema, t.Name),
+				Owner = t.Schema,
+				Type = ReflectionHelpers.GetCustomDescription(t.Schema.Equals("sys")
 					? TableType.System : TableType.User)
 			}).ToList();
 		}
@@ -53,14 +52,14 @@ namespace Business.Implementation
 			_serverConnect.CreateTable(databaseName, tableName);
 		}
 
-		public void RenameTable(string database, string oldName, string newName)
+		public void RenameTable(string database, string oldName, string newName, string schema)
 		{
-			_serverConnect.RenameTable(database, oldName, newName);
+			_serverConnect.RenameTable(database, oldName, newName, schema);
 		}
 
-		public IList<TableInfoViewModel> GetTableSchema(string database, string tableName)
+		public IList<TableInfoViewModel> GetTableSchema(string database, string tableName, string schema)
 		{
-			var table = _serverConnect.GetTable(database, tableName);
+			var table = _serverConnect.GetTable(database, tableName, schema);
 			return table.Columns.Cast<Column>().Select(c => new TableInfoViewModel
 			{
 				ID = c.ID,
@@ -74,9 +73,9 @@ namespace Business.Implementation
 			}).ToList();
 		}
 
-		public void EditTable(IEnumerable<TableInfoViewModel> tableSchema, string tableName, string databaseName)
+		public void EditTable(IEnumerable<TableInfoViewModel> tableSchema, string tableName, string databaseName, string defaultSchema)
 		{
-			var table = _serverConnect.GetTable(databaseName, tableName);
+			var table = _serverConnect.GetTable(databaseName, tableName, defaultSchema);
 			var oldColumns = table.Columns.Cast<Column>();
 			var updatedColumns = oldColumns.Where(c => tableSchema.Select(s => s.ID).Contains(c.ID)).ToList();
 			var newColumns = tableSchema.Where(s => s.ID == 0);
@@ -85,17 +84,17 @@ namespace Business.Implementation
 			//var transfer = new Transfer(new Database());
 			for(int i = 0; i < updatedColumns.Count(); i++)
 			{
-				if (!updatedColumns[i].InPrimaryKey)
-				{
+				//if (!updatedColumns[i].InPrimaryKey)
+				//{
 					var schema = tableSchema.First(s => s.ID.Equals(updatedColumns[i].ID));
 					//updatedColumn.Identity = schema.Identity;
 					updatedColumns[i].Nullable = schema.Nullable;
-					//updatedColumn.InPrimaryKey = schema.InPrimaryKey;
+					//updatedColumns[i].InPrimaryKey = schema.InPrimaryKey;
 					updatedColumns[i].Rename(schema.Name);
 					//updatedColumn.Set Name = schema.Name;
 					updatedColumns[i].DataType = new DataType(schema.DataType);
 					updatedColumns[i].Alter();
-				}
+			//	}
 
 			}
 			foreach (var newColumn in newColumns)

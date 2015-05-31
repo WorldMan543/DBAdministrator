@@ -26,21 +26,23 @@ namespace DBAdministrator.Pages
 		private readonly ITableAccessService _tableAccessService;
 		private string _tableName;
 		private string _databaseName;
+		private string _schema;
 
-		public ObservableCollection<TableInfoViewModel> ViewModel { get; set; } 
+		public ObservableCollection<TableInfoViewModel> ViewModel { get; set; }
 
-		public EditTablePage(ITableAccessService tableAccessService, string databaseName, string tableName)
+		public EditTablePage(ITableAccessService tableAccessService, string databaseName, string tableName, string schema)
 		{
+			_schema = schema;
 			_tableAccessService = tableAccessService;
 			_databaseName = databaseName;
 			_tableName = tableName;
-			ViewModel = new ObservableCollection<TableInfoViewModel>(_tableAccessService.GetTableSchema(databaseName, tableName));
+			ViewModel = new ObservableCollection<TableInfoViewModel>(_tableAccessService.GetTableSchema(databaseName, tableName, schema));
 			InitializeComponent();
 		}
 
 		private void Save_Click(object sender, RoutedEventArgs e)
 		{
-			_tableAccessService.EditTable(ViewModel, _tableName, _databaseName);
+			_tableAccessService.EditTable(ViewModel, _tableName, _databaseName, _schema);
 		}
 
 		private void OnChecked(object sender, RoutedEventArgs e)

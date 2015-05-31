@@ -27,9 +27,9 @@ namespace SMO.Interfaces
 		#endregion
 
 		#region Delete
-		void DeleteStoredProcedure(string databaseName, string procedureName);
+		void DeleteStoredProcedure(string databaseName, string procedureName, string schema);
 
-		void DeleteTable(string databaseName, string tableName);
+		void DeleteTable(string databaseName, string tableName, string schema);
 
 		void DeleteDatabaseRole(string databaseName, string roleName);
 
@@ -46,11 +46,11 @@ namespace SMO.Interfaces
 
 		#endregion
 
-		Table GetTable(string database, string tableName);
+		Table GetTable(string database, string tableName, string schema);
 
-		void RenameTable(string database, string oldName, string newName);
+		void RenameTable(string database, string oldName, string newName, string schema);
 
-		DataTableCollection ExecuteQuery(string query, string databaseName = "AdventureWorks2014");
+		DataTableCollection ExecuteQuery(string query, string databaseName);
 
 		StringCollection ExportData(string databaseName, bool includeTables,
 			bool includeTablesData, bool includeStoredProcedures,

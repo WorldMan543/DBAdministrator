@@ -80,9 +80,9 @@ namespace Business.Implementation
 						Roles = new ObservableCollection<RoleStructViewModel>(
 							GetDatabaseRolesList(d.Name).Select(r => new RoleStructViewModel() { RoleName = r.Name, Database = r.Parent.Name })),
 						Tables = new ObservableCollection<TableStructViewModel>(
-							GetTablesList(d.Name).Select(t => new TableStructViewModel() { TableName = t.Name, Database = t.Parent.Name })),
+							GetTablesList(d.Name).Select(t => new TableStructViewModel() { TableName = t.Name, Database = t.Parent.Name, Owner = t.Schema })),
 						Procedures = new ObservableCollection<StoredProcedureStructViewModel>(
-							GetStoredProceduresList(d.Name).Select(p => new StoredProcedureStructViewModel() { ProcedureName = p.Name, Database = p.Parent.Name })),
+							GetStoredProceduresList(d.Name).Select(p => new StoredProcedureStructViewModel() { ProcedureName = p.Name, Database = p.Parent.Name, Owner = p.Schema })),
 						Users = new ObservableCollection<UserStructViewModel>(
 							GetDatabasUsersList(d.Name).Select(u => new UserStructViewModel() { UserName = u.Name, Database = u.Parent.Name })),
 					})),

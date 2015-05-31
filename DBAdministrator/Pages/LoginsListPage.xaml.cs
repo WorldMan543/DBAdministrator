@@ -49,7 +49,17 @@ namespace DBAdministrator.Pages
 			dlg.ShowDialog();
 			if (dlg.DialogResult.HasValue && dlg.DialogResult.Value)
 			{
+				GetValue();
+				MainWindow.Refresh();
 			}
+		}
+
+		private void GetValue()
+		{
+			_originalModels = _serverUserAccessService.GetLoginInfoList();
+			Models.Clear();
+			_originalModels.ToList().ForEach(Models.Add);
+			SearchValue.Text = string.Empty;
 		}
 	}
 }

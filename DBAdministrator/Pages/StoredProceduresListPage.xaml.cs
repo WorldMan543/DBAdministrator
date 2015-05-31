@@ -60,6 +60,7 @@ namespace DBAdministrator.Pages
 					query = reader.ReadToEnd();
 				}
 			}
+			MainWindow.Refresh();
 			NavigationService.Navigate(new SQLEditorPage(_dataBaseAccessService, query, _database));
 		}
 
@@ -83,9 +84,18 @@ namespace DBAdministrator.Pages
 			var result = MessageBox.Show(messageBoxText, caption, button, icon);
 			if (result == MessageBoxResult.Yes)
 			{
-				_storedProcedureAccessService.DeleteStoredProcedure(_database, item.ProcedureName);
+				_storedProcedureAccessService.DeleteStoredProcedure(_database, item.ProcedureName, item.Owner);
+				GetValue();
+				MainWindow.Refresh();
 			}
-			
+		}
+
+		private void GetValue()
+		{
+			_originalModels = _storedProcedureAccessService.GetStoredProcedureInfoList(_database);
+			Models.Clear();
+			_originalModels.ToList().ForEach(Models.Add);
+			SearchValue.Text = string.Empty;
 		}
 	}
 }

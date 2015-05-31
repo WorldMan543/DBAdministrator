@@ -119,17 +119,19 @@ namespace SMO.Implementation
 
 		#region Delete
 
-		public void DeleteStoredProcedure(string databaseName, string procedureName)
+		public void DeleteStoredProcedure(string databaseName, string procedureName, string schema)
 		{
 			var database = _server.Databases[databaseName];
-			var procedure = database.StoredProcedures[procedureName];
+			var procedure = database.StoredProcedures[procedureName, schema];
 			procedure.Drop();
 		}
 
-		public void DeleteTable(string databaseName, string tableName)
+		public void DeleteTable(string databaseName, string tableName, string schema)
 		{
 			var database = _server.Databases[databaseName];
-			var table = database.Tables[tableName];
+			var table = string.IsNullOrEmpty(schema)
+				? database.Tables[tableName]
+				: database.Tables[tableName, schema];
 			table.Drop();
 		}
 
@@ -182,18 +184,22 @@ namespace SMO.Implementation
 		}
 
 
-		public void RenameTable(string databaseName, string oldName, string newName)
+		public void RenameTable(string databaseName, string oldName, string newName, string schema)
 		{
 			var database = _server.Databases[databaseName];
-			var table = database.Tables[oldName];
+			var table = string.IsNullOrEmpty(schema)
+				? database.Tables[oldName]
+				: database.Tables[oldName, schema];
 			table.Rename(newName);
 		}
 
 
-		public Table GetTable(string databaseName, string tableName)
+		public Table GetTable(string databaseName, string tableName, string schema)
 		{
 			var database = _server.Databases[databaseName];
-			return database.Tables[tableName];
+			return string.IsNullOrEmpty(schema)
+				? database.Tables[tableName]
+				: database.Tables[tableName, schema];
 		}
 
 		public StringCollection ExportData(string databaseName, bool includeTables,

@@ -52,6 +52,8 @@ namespace DBAdministrator.Pages
 			dlg.ShowDialog();
 			if (dlg.DialogResult.HasValue && dlg.DialogResult.Value)
 			{
+				GetValue();
+				MainWindow.Refresh();
 			}
 		}
 
@@ -67,7 +69,17 @@ namespace DBAdministrator.Pages
 			if (result == MessageBoxResult.Yes)
 			{
 				_databaseUserAccessService.DeleteDatabaseUser(_database, item.Name);
+				GetValue();
+				MainWindow.Refresh();
 			}
+		}
+
+		private void GetValue()
+		{
+			_originalModels = _databaseUserAccessService.GetUserInfoList(_database);
+			Models.Clear();
+			_originalModels.ToList().ForEach(Models.Add);
+			SearchValue.Text = string.Empty;
 		}
 	}
 }

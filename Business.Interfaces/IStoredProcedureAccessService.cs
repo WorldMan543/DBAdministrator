@@ -12,7 +12,7 @@ namespace Business.Interfaces
 	public interface IStoredProcedureAccessService : IAccessService
 	{
 
-		void DeleteStoredProcedure(string databaseName, string procedureName);
+		void DeleteStoredProcedure(string databaseName, string procedureName, string schema);
 
 		IList<StoredProcedureViewModel> GetStoredProcedureInfoList(string database);
 

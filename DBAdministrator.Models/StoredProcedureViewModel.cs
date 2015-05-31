@@ -11,6 +11,6 @@ namespace DBAdministrator.Models
 
 		public string Type { get; set; }
 
-		public DateTime CreateDate { get; set; }
+		public string FullName { get; set; }
 	}
 }

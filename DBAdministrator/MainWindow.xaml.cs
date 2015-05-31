@@ -47,6 +47,8 @@ namespace DBAdministrator
 		private readonly IStoredProcedureAccessService _storedProcedureAccessService;
 		private bool isConnected = false;
 
+		public static Action Refresh { get; set; }
+
 		public MainWindowViewModel ViewModel { get; set; }
 
 		public MainWindow([Dependency] IDatabaseAccessService dataBaseAccessService,
@@ -66,6 +68,7 @@ namespace DBAdministrator
 			_storedProcedureAccessService = storedProcedureAccessService;
 			InitializeViewModel();
 			InitializeComponent();
+			Refresh += RefreshTree;
 		}
 
 		private void InitializeViewModel()
@@ -85,14 +88,14 @@ namespace DBAdministrator
 			dlg.ShowDialog();
 			if (dlg.DialogResult.HasValue && dlg.DialogResult.Value)
 			{
-				ViewModel.StatusBar.ServerName = dlg.ViewModel.ServerName;
+				ViewModel.StatusBar.ServerName = "SQL Server Express 2012";//dlg.ViewModel.ServerName;
 				ViewModel.ServerStruct.Clear();
 				ViewModel.ServerStruct.Add(new ServerStructViewModel()
 				{
-					ServerName = dlg.ViewModel.ServerName
+					ServerName = "SQL Server Express 2012"//dlg.ViewModel.ServerName
 				});
 				var tree = _databaseAccessService.GetDatabaseTree();
-				tree.ServerName = ViewModel.ServerStruct[0].ServerName;
+				tree.ServerName = "SQL Server Express 2012";//ViewModel.ServerStruct[0].ServerName;
 				ViewModel.ServerStruct.Clear();
 				ViewModel.ServerStruct.Add(tree);
 				Frame = new Frame();
@@ -104,10 +107,7 @@ namespace DBAdministrator
 
 		private void MenuItem_OnClick(object sender, RoutedEventArgs e)
 		{
-			var tree = _databaseAccessService.GetDatabaseTree();
-			tree.ServerName = ViewModel.ServerStruct[0].ServerName;
-			ViewModel.ServerStruct.Clear();
-			ViewModel.ServerStruct.Add(tree);
+			RefreshTree();
 		}
 
 		private void OpenEditor_OnClick(object sender, RoutedEventArgs e)
@@ -126,7 +126,8 @@ namespace DBAdministrator
 			var result = MessageBox.Show(messageBoxText, caption, button, icon);
 			if (result == MessageBoxResult.Yes)
 			{
-				_storedProcedureAccessService.DeleteStoredProcedure(model.Database, model.ProcedureName);
+				_storedProcedureAccessService.DeleteStoredProcedure(model.Database, model.ProcedureName, null);
+				RefreshTree();
 			}
 		}
 
@@ -140,7 +141,8 @@ namespace DBAdministrator
 			var result = MessageBox.Show(messageBoxText, caption, button, icon);
 			if (result == MessageBoxResult.Yes)
 			{
-				_tableAccessService.DeleteTable(model.Database, model.TableName);
+				_tableAccessService.DeleteTable(model.Database, model.TableName, model.Owner);
+				RefreshTree();
 			}
 		}
 
@@ -155,6 +157,7 @@ namespace DBAdministrator
 			if (result == MessageBoxResult.Yes)
 			{
 				_databaseRoleAccessService.DeleteDatabaseRole(model.Database, model.RoleName);
+				RefreshTree();
 			}
 			
 		}
@@ -170,6 +173,7 @@ namespace DBAdministrator
 			if (result == MessageBoxResult.Yes)
 			{
 				_databaseUserAccessService.DeleteDatabaseUser(model.Database, model.UserName);
+				RefreshTree();
 			}
 			
 		}
@@ -185,6 +189,7 @@ namespace DBAdministrator
 			if (result == MessageBoxResult.Yes)
 			{
 				_databaseAccessService.DeleteDatabase(model.DatabaseName);
+				RefreshTree();
 			}
 		}
 
@@ -197,35 +202,47 @@ namespace DBAdministrator
 		private void OpenRolesList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			if (e.ClickCount != 2) return;
-			var model = ((RoleStructViewModel[])((TextBlock)sender).DataContext).First();
-			var page = !string.IsNullOrEmpty(model.Database) 
-				? (object)new DatabaseRolesListPage(_databaseRoleAccessService, model.Database)
-				: new ServerRolesListPage(_serverRoleAccessService);
-			Frame.Navigate(page);
+			var model = ((RoleStructViewModel[])((TextBlock)sender).DataContext).FirstOrDefault();
+			if (model != null)
+			{
+				var page = !string.IsNullOrEmpty(model.Database)
+					? (object)new DatabaseRolesListPage(_databaseRoleAccessService, model.Database)
+					: new ServerRolesListPage(_serverRoleAccessService);
+				Frame.Navigate(page);
+			}
 		}
 
 		private void OpenTablesList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			if (e.ClickCount != 2) return;
-			var model = ((TableStructViewModel[])((TextBlock)sender).DataContext).First();
-			Frame.Navigate(new TablesListPage(_tableAccessService, model.Database));
+			var model = ((TableStructViewModel[])((TextBlock)sender).DataContext).FirstOrDefault();
+			if (model != null)
+			{
+				Frame.Navigate(new TablesListPage(_tableAccessService, model.Database));
+			}
 		}
 
 		private void OpenProceduresList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			if (e.ClickCount != 2) return;
-			var model = ((StoredProcedureStructViewModel[])((TextBlock)sender).DataContext).First();
-			Frame.Navigate(new StoredProceduresListPage(_storedProcedureAccessService, _databaseAccessService, model.Database));
+			var model = ((StoredProcedureStructViewModel[])((TextBlock)sender).DataContext).FirstOrDefault();
+			if (model != null)
+			{
+				Frame.Navigate(new StoredProceduresListPage(_storedProcedureAccessService, _databaseAccessService, model.Database));
+			}
 		}
 
 		private void OpenUsersList_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			if (e.ClickCount != 2) return;
-			var model = ((UserStructViewModel[])((TextBlock)sender).DataContext).First();
-			var page = !string.IsNullOrEmpty(model.Database)
-				? (object)new DatabaseUsersListPage(_databaseUserAccessService, _serverUserAccessService, model.Database)
-				: new LoginsListPage(_serverUserAccessService);
-			Frame.Navigate(page);
+			var model = ((UserStructViewModel[])((TextBlock)sender).DataContext).FirstOrDefault();
+			if (model != null)
+			{
+				var page = !string.IsNullOrEmpty(model.Database)
+					? (object)new DatabaseUsersListPage(_databaseUserAccessService, _serverUserAccessService, model.Database)
+					: new LoginsListPage(_serverUserAccessService);
+				Frame.Navigate(page);
+			}
 		}
 
 		private void CreateDatabase_OnClick(object sender, RoutedEventArgs e)
@@ -235,6 +252,7 @@ namespace DBAdministrator
 			if (dialog.DialogResult != null && dialog.DialogResult.Value)
 			{
 				Frame.Navigate(new TablesListPage(_tableAccessService, dialog.DatabaseName));
+				RefreshTree();
 			}
 		}
 
@@ -245,15 +263,20 @@ namespace DBAdministrator
 			dialog.ShowDialog();
 			if (dialog.DialogResult != null && dialog.DialogResult.Value)
 			{
-				Frame.Navigate(new EditTablePage(_tableAccessService, model.Database, dialog.TableName));
+				Frame.Navigate(new EditTablePage(_tableAccessService, model.Database, dialog.TableName, string.Empty));
+				RefreshTree();
 			}
 		}
 
 		private void RenameTable_OnClick(object sender, RoutedEventArgs e)
 		{
 			var model = (TableStructViewModel)((MenuItem)sender).DataContext;
-			var dialog = new CreateTableDialogBox(_tableAccessService, model.Database, model.TableName);
+			var dialog = new CreateTableDialogBox(_tableAccessService, model.Database, model.TableName, model.Owner);
 			dialog.ShowDialog();
+			if (dialog.DialogResult != null && dialog.DialogResult.Value)
+			{
+				RefreshTree();
+			}
 		}
 
 		private void ExportDatabase_OnClick(object sender, RoutedEventArgs e)
@@ -282,6 +305,14 @@ namespace DBAdministrator
 		private void Window_ContentRendered(object sender, EventArgs e)
 		{
 			ConnectMenuItem_OnClick(sender, null);
+		}
+
+		public void RefreshTree()
+		{
+			var tree = _databaseAccessService.GetDatabaseTree();
+			tree.ServerName = ViewModel.ServerStruct[0].ServerName;
+			ViewModel.ServerStruct.Clear();
+			ViewModel.ServerStruct.Add(tree);
 		}
 
 	}

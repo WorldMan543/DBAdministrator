@@ -29,9 +29,9 @@ namespace Business.Implementation
 		{
 		}
 
-		public void DeleteStoredProcedure(string databaseName, string procedureName)
+		public void DeleteStoredProcedure(string databaseName, string procedureName, string schema)
 		{
-			_serverConnect.DeleteStoredProcedure(databaseName, procedureName);
+			_serverConnect.DeleteStoredProcedure(databaseName, procedureName, schema);
 		}
 
 
@@ -41,9 +41,9 @@ namespace Business.Implementation
 			return procedures.AsQueryable().Select(p => new StoredProcedureViewModel()
 			{
 				ProcedureName = p.Name,
-				CreateDate = p.CreateDate,
-				Owner = p.Owner,
-				Type = ReflectionHelpers.GetCustomDescription(p.IsSystemObject
+				FullName = string.Format("{0}.{1}", p.Schema, p.Name),
+				Owner = p.Schema,
+				Type = ReflectionHelpers.GetCustomDescription(p.Schema.Equals("sys")
 					? ProcedureType.System : ProcedureType.User)
 			}).ToList();
 		}

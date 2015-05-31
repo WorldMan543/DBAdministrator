@@ -52,6 +52,7 @@ namespace DBAdministrator.Pages
 			dialog.ShowDialog();
 			if (dialog.DialogResult != null && dialog.DialogResult.Value)
 			{
+				MainWindow.Refresh();
 				NavigationService.Navigate(new TablesListPage(_tableAccessService, dialog.DatabaseName));
 			}
 		}
@@ -68,7 +69,17 @@ namespace DBAdministrator.Pages
 			if (result == MessageBoxResult.Yes)
 			{
 				_dataBaseAccessService.DeleteDatabase(item.DatabaseName);
+				GetValue();
+				MainWindow.Refresh();
 			}
+		}
+
+		private void GetValue()
+		{
+			_originalModels = _dataBaseAccessService.GetDatabaseInfoList();
+			Models.Clear();
+			_originalModels.ToList().ForEach(Models.Add);
+			SearchValue.Text = string.Empty;
 		}
 	}
 }

@@ -55,7 +55,17 @@ namespace DBAdministrator.Pages
 			if (result == MessageBoxResult.Yes)
 			{
 				_databaseRoleAccessService.DeleteDatabaseRole(_database, item.Name);
+				GetValue();
+				MainWindow.Refresh();
 			}
+		}
+
+		private void GetValue()
+		{
+			_originalModels = _databaseRoleAccessService.GetRoleInfoList(_database);
+			Models.Clear();
+			_originalModels.ToList().ForEach(Models.Add);
+			SearchValue.Text = string.Empty;
 		}
 	}
 }

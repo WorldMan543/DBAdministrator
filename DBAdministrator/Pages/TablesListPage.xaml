@@ -26,8 +26,7 @@
 				<DataGridTextColumn Header="Table Name" Binding="{Binding TableName}" />
 				<DataGridTextColumn Header="Owner" Binding="{Binding Owner}" />
 				<DataGridTextColumn Header="Table Type" Binding="{Binding Type}" />
-				<DataGridTextColumn Header="Create Date" Binding="{Binding CreateDate}" />
-				<DataGridTextColumn Header="Row Count" Binding="{Binding RowsCount}" />
+				<DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" />
 			</DataGrid.Columns>
 		</DataGrid>
 	</Grid>

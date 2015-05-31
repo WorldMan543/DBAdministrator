@@ -25,6 +25,7 @@ namespace DBAdministrator.DialogBoxes
 		private readonly ITableAccessService _tableAccessService;
 		private readonly string _database;
 		private readonly string _oldName;
+		private string _schema;
 
 		public string TableName { get; set; }
 		public CreateTableDialogBox(ITableAccessService tableAccessService, string database)
@@ -34,8 +35,9 @@ namespace DBAdministrator.DialogBoxes
 			InitializeComponent();
 		}
 
-		public CreateTableDialogBox(ITableAccessService tableAccessService, string database, string oldName)
+		public CreateTableDialogBox(ITableAccessService tableAccessService, string database, string oldName, string schema)
 		{
+			_schema = schema;
 			_database = database;
 			TableName = _oldName = oldName;
 			_tableAccessService = tableAccessService;
@@ -51,7 +53,7 @@ namespace DBAdministrator.DialogBoxes
 			}
 			else
 			{
-				_tableAccessService.RenameTable(_database, _oldName, TableName);
+				_tableAccessService.RenameTable(_database, _oldName, TableName, _schema);
 			}
 			DialogResult = true;
 		}

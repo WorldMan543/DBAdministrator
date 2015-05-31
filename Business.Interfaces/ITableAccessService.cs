@@ -12,17 +12,17 @@ namespace Business.Interfaces
 	public interface ITableAccessService : IAccessService
 	{
 
-		void DeleteTable(string databaseName, string tableName);
+		void DeleteTable(string databaseName, string tableName, string schema);
 
 		IList<TableViewModel> GetTableInfoList(string database);
 
 		void CreateTable(string databaseName, string tableName);
 
-		void RenameTable(string database, string oldName, string newName);
+		void RenameTable(string database, string oldName, string newName, string schema);
 
-		IList<TableInfoViewModel> GetTableSchema(string database, string tableName);
+		IList<TableInfoViewModel> GetTableSchema(string database, string tableName, string schema);
 
-		void EditTable(IEnumerable<TableInfoViewModel> tableSchema, string talbeName, string databaseName);
+		void EditTable(IEnumerable<TableInfoViewModel> tableSchema, string talbeName, string databaseName, string schema);
 
 
 	}

@@ -17,7 +17,7 @@
 	</Window.Resources>
 	<DockPanel>
 		<Menu Height="Auto" DockPanel.Dock="Top">
-			<MenuItem Header="Database" Height="24">
+			<MenuItem Header="Server" Height="24">
 				<MenuItem Header="Connect" HorizontalAlignment="Left" Width="139.506666666667" Name="ConnectMenuItem" Click="ConnectMenuItem_OnClick"/>
 				<MenuItem Header="Logout" HorizontalAlignment="Left" Width="139.506666666667" Name="LogoutMenuItem" Click="LogoutMenuItem_Click"/>
 			</MenuItem>

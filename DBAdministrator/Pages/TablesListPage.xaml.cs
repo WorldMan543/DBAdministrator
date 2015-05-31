@@ -49,7 +49,7 @@ namespace DBAdministrator.Pages
 		{
 			if (TablesList.SelectedItems.Count == 0) return;
 			var item = (TableViewModel)TablesList.SelectedItems[0];
-			NavigationService.Navigate(new EditTablePage(_tableAccessService, _database, item.TableName));
+			NavigationService.Navigate(new EditTablePage(_tableAccessService, _database, item.TableName, item.Owner));
 		}
 
 		private void Create_Click(object sender, RoutedEventArgs e)
@@ -58,7 +58,8 @@ namespace DBAdministrator.Pages
 			dialog.ShowDialog();
 			if (dialog.DialogResult != null && dialog.DialogResult.Value)
 			{
-				NavigationService.Navigate(new EditTablePage(_tableAccessService, _database, dialog.TableName));
+				MainWindow.Refresh();
+				NavigationService.Navigate(new EditTablePage(_tableAccessService, _database, dialog.TableName, string.Empty));
 			}
 		}
 
@@ -66,8 +67,13 @@ namespace DBAdministrator.Pages
 		{
 			if (TablesList.SelectedItems.Count == 0) return;
 			var item = (TableViewModel)TablesList.SelectedItems[0];
-			var dialog = new CreateTableDialogBox(_tableAccessService, _database, item.TableName);
+			var dialog = new CreateTableDialogBox(_tableAccessService, _database, item.TableName, item.Owner);
 			dialog.ShowDialog();
+			if (dialog.DialogResult.HasValue && dialog.DialogResult.Value)
+			{
+				GetValue();
+				MainWindow.Refresh();
+			}
 		}
 
 		private void Delete_Click(object sender, RoutedEventArgs e)
@@ -81,8 +87,18 @@ namespace DBAdministrator.Pages
 			var result = MessageBox.Show(messageBoxText, caption, button, icon);
 			if (result == MessageBoxResult.Yes)
 			{
-				_tableAccessService.DeleteTable(_database, item.TableName);
+				_tableAccessService.DeleteTable(_database, item.TableName, item.Owner);
+				GetValue();
+				MainWindow.Refresh();
 			}
+		}
+
+		private void GetValue()
+		{
+			_originalModels = _tableAccessService.GetTableInfoList(_database);
+			Models.Clear();
+			_originalModels.ToList().ForEach(Models.Add);
+			SearchValue.Text = string.Empty;
 		}
 	}
 }

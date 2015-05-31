@@ -47,5 +47,6 @@ namespace DBAdministrator.Pages
 			var item = (RoleViewModel)RolesList.SelectedItems[0];
 			NavigationService.Navigate(new EditServerRole(_serverRoleAccessService, item.Name));
 		}
+
 	}
 }

@@ -23,7 +23,7 @@
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Procedure Name" Binding="{Binding ProcedureName}" />
 				<DataGridTextColumn Header="Owner" Binding="{Binding Owner}" />
-				<DataGridTextColumn Header="Create Date" Binding="{Binding CreateDate}" />
+				<DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" />
 				<DataGridTextColumn Header="Type" Binding="{Binding Type}" />
 			</DataGrid.Columns>
 		</DataGrid>

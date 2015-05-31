@@ -5,5 +5,7 @@
 		public string ProcedureName { get; set; }
 
 		public string Database { get; set; }
+
+		public string Owner { get; set; }
 	}
 }
