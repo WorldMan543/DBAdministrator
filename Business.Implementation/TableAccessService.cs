@@ -81,32 +81,36 @@ namespace Business.Implementation
 			var newColumns = tableSchema.Where(s => s.ID == 0);
 			var deletedColumns = oldColumns.Except(updatedColumns).ToList();
 			deletedColumns.ForEach(d => d.Drop());
-			//var transfer = new Transfer(new Database());
 			for(int i = 0; i < updatedColumns.Count(); i++)
 			{
-				//if (!updatedColumns[i].InPrimaryKey)
-				//{
-					var schema = tableSchema.First(s => s.ID.Equals(updatedColumns[i].ID));
-					//updatedColumn.Identity = schema.Identity;
-					updatedColumns[i].Nullable = schema.Nullable;
-					//updatedColumns[i].InPrimaryKey = schema.InPrimaryKey;
-					updatedColumns[i].Rename(schema.Name);
-					//updatedColumn.Set Name = schema.Name;
-					updatedColumns[i].DataType = new DataType(schema.DataType);
-					updatedColumns[i].Alter();
-			//	}
-
+				var schema = tableSchema.First(s => s.ID.Equals(updatedColumns[i].ID));
+				updatedColumns[i].Nullable = schema.Nullable;
+				updatedColumns[i].Rename(schema.Name);
+				updatedColumns[i].DataType = new DataType(schema.DataType);
+				updatedColumns[i].Alter();
 			}
 			foreach (var newColumn in newColumns)
 			{
 				var column = new Column(table, newColumn.Name, new DataType(newColumn.DataType))
 				{
-					//Identity = newColumn.Identity,
-					Nullable = newColumn.Nullable,
-					//InPrimaryKey = newColumn.InPrimaryKey
+					Nullable = newColumn.Nullable
 				};
 				column.Create();
 			}
+			table.Alter();
+			table.Indexes.Cast<Index>().Where(index => index.IndexKeyType == IndexKeyType.DriPrimaryKey).ToList().ForEach(index => index.MarkForDrop(true));
+			foreach (var i in tableSchema.Where(x => x.InPrimaryKey))
+			{
+				Index index = new Index(table, Guid.NewGuid().ToString());
+				index.IndexKeyType = IndexKeyType.DriPrimaryKey;
+
+				//You will have to store the names of columns before deleting the key.
+				index.IndexedColumns.Add(new IndexedColumn(index, i.Name));
+
+				table.Indexes.Add(index);
+			}
+			table.Alter();
+
 		}
 
 	}

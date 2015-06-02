@@ -36,9 +36,8 @@
 						</Style>
 					</DataGridCheckBoxColumn.CellStyle>
 				</DataGridCheckBoxColumn>
-				<DataGridCheckBoxColumn Header="Identity" Binding="{Binding Identity}" />
 				<DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-				<DataGridComboBoxColumn Header="Data Type" SelectedItemBinding="{Binding DataType}" ItemsSource="{Binding Source={StaticResource myEnum}}"/>
+				<DataGridComboBoxColumn Header="Data Type" SelectedItemBinding="{Binding DataType}"  ItemsSource="{Binding Source={StaticResource myEnum}}"/>
 				<DataGridCheckBoxColumn Header="Nullable" Binding="{Binding Nullable}" />
 			</DataGrid.Columns>
 		</DataGrid>

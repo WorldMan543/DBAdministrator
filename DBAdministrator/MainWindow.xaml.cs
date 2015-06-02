@@ -88,14 +88,14 @@ namespace DBAdministrator
 			dlg.ShowDialog();
 			if (dlg.DialogResult.HasValue && dlg.DialogResult.Value)
 			{
-				ViewModel.StatusBar.ServerName = "SQL Server Express 2012";//dlg.ViewModel.ServerName;
+				ViewModel.StatusBar.ServerName = dlg.ViewModel.ServerName;
 				ViewModel.ServerStruct.Clear();
 				ViewModel.ServerStruct.Add(new ServerStructViewModel()
 				{
-					ServerName = "SQL Server Express 2012"//dlg.ViewModel.ServerName
+					ServerName = dlg.ViewModel.ServerName
 				});
 				var tree = _databaseAccessService.GetDatabaseTree();
-				tree.ServerName = "SQL Server Express 2012";//ViewModel.ServerStruct[0].ServerName;
+				tree.ServerName = ViewModel.ServerStruct[0].ServerName;
 				ViewModel.ServerStruct.Clear();
 				ViewModel.ServerStruct.Add(tree);
 				Frame = new Frame();
